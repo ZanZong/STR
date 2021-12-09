@@ -1,0 +1,56 @@
+
+Gurobi 9.1.2 (linux64) logging started Wed Oct 13 02:58:45 2021
+
+Changed value of parameter LogFile to /home/zongzan/dist_dnn_training/MixedMemoryOpt/data/budget_sweep/p32xlarge_VGG16_256_None/ilp_log/ilp_10893139648.log
+   Prev:   Default: 
+Changed value of parameter Threads to 32
+   Prev: 0  Min: 0  Max: 1024  Default: 0
+Changed value of parameter TimeLimit to 3600.0
+   Prev: inf  Min: 0.0  Max: inf  Default: inf
+Changed value of parameter OptimalityTol to 0.0001
+   Prev: 1e-06  Min: 1e-09  Max: 0.01  Default: 1e-06
+Parameter IntFeasTol unchanged
+   Value: 1e-05  Min: 1e-09  Max: 0.1  Default: 1e-05
+Changed value of parameter Presolve to 2
+   Prev: -1  Min: -1  Max: 2  Default: -1
+Changed value of parameter StartNodeLimit to 10000000
+   Prev: -1  Min: -3  Max: 2000000000  Default: -1
+Parameter TimeLimit unchanged
+   Value: 3600.0  Min: 0.0  Max: inf  Default: inf
+
+
+Restarting solve
+
+
+Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (linux64)
+Thread count: 28 physical cores, 56 logical processors, using up to 32 threads
+Optimize a model with 19803 rows, 9990 columns and 64716 nonzeros
+Model fingerprint: 0x65cebfc8
+Variable types: 2025 continuous, 7965 integer (7965 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+07]
+  Objective range  [4e+00, 2e+02]
+  Bounds range     [1e+00, 2e+08]
+  RHS range        [1e+00, 2e+08]
+Presolve removed 13920 rows and 5725 columns
+Presolve time: 0.07s
+Presolved: 5883 rows, 4265 columns, 22000 nonzeros
+Variable types: 0 continuous, 4265 integer (3258 binary)
+Presolve removed 55 rows and 56 columns
+Presolved: 5828 rows, 4209 columns, 21887 nonzeros
+
+
+Root relaxation: infeasible, 2140 iterations, 0.08 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 infeasible    0               - infeasible      -     -    0s
+
+Explored 0 nodes (2140 simplex iterations) in 0.18 seconds
+Thread count was 32 (of 56 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -

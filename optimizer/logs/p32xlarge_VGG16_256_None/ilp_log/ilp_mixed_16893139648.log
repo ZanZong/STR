@@ -1,0 +1,100 @@
+
+Gurobi 9.1.2 (linux64) logging started Wed Oct 13 02:59:33 2021
+
+Changed value of parameter LogFile to /home/zongzan/dist_dnn_training/MixedMemoryOpt/data/budget_sweep/p32xlarge_VGG16_256_None/ilp_log/ilp_mixed_16893139648.log
+   Prev:   Default: 
+Changed value of parameter Threads to 32
+   Prev: 0  Min: 0  Max: 1024  Default: 0
+Changed value of parameter TimeLimit to 3600.0
+   Prev: inf  Min: 0.0  Max: inf  Default: inf
+Changed value of parameter OptimalityTol to 0.0001
+   Prev: 1e-06  Min: 1e-09  Max: 0.01  Default: 1e-06
+Parameter IntFeasTol unchanged
+   Value: 1e-05  Min: 1e-09  Max: 0.1  Default: 1e-05
+Changed value of parameter Presolve to 2
+   Prev: -1  Min: -1  Max: 2  Default: -1
+Changed value of parameter StartNodeLimit to 10000000
+   Prev: -1  Min: -3  Max: 2000000000  Default: -1
+Changed value of parameter TimeLimit to 300.0
+   Prev: 3600.0  Min: 0.0  Max: inf  Default: inf
+Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (linux64)
+Thread count: 28 physical cores, 56 logical processors, using up to 32 threads
+Optimize a model with 61248 rows, 14040 columns and 577099 nonzeros
+Model fingerprint: 0x11a2f6a5
+Variable types: 2025 continuous, 12015 integer (12015 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+07]
+  Objective range  [4e+00, 2e+02]
+  Bounds range     [1e+00, 3e+08]
+  RHS range        [1e+00, 3e+08]
+Presolve removed 55660 rows and 9558 columns
+Presolve time: 1.69s
+Presolved: 5588 rows, 4482 columns, 32569 nonzeros
+Variable types: 0 continuous, 4482 integer (3479 binary)
+Found heuristic solution: objective 19811.483471
+Found heuristic solution: objective 10718.224716
+Found heuristic solution: objective 3876.5954549
+Presolve removed 84 rows and 73 columns
+Presolved: 5504 rows, 4409 columns, 32248 nonzeros
+
+
+Root relaxation: objective 3.099672e+03, 2598 iterations, 0.20 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 3099.67166    0  572 3876.59545 3099.67166  20.0%     -    2s
+     0     0 3099.67166    0  135 3876.59545 3099.67166  20.0%     -    2s
+H    0     0                    3099.6716615 3099.67166  0.00%     -    2s
+     0     0 3099.67166    0  135 3099.67166 3099.67166  0.00%     -    2s
+
+Cutting planes:
+  Gomory: 9
+  Cover: 27
+  Clique: 102
+  MIR: 2
+  StrongCG: 1
+  GUB cover: 3
+  Zero half: 1
+  RLT: 5
+
+Explored 1 nodes (6291 simplex iterations) in 2.43 seconds
+Thread count was 32 (of 56 available processors)
+
+Solution count 4: 3099.67 3876.6 10718.2 19811.5 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.099671661478e+03, best bound 3.099671661478e+03, gap 0.0000%
+Changed value of parameter TimeLimit to 3600.0
+   Prev: 300.0  Min: 0.0  Max: inf  Default: inf
+
+
+Restarting solve
+
+
+Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (linux64)
+Thread count: 28 physical cores, 56 logical processors, using up to 32 threads
+Optimize a model with 59836 rows, 14040 columns and 575687 nonzeros
+Model fingerprint: 0x883c8d9f
+Variable types: 2025 continuous, 12015 integer (12015 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+07]
+  Objective range  [4e+00, 2e+02]
+  Bounds range     [1e+00, 3e+08]
+  RHS range        [1e+00, 3e+08]
+
+MIP start from previous solve produced solution with objective 3099.67 (0.11s)
+Loaded MIP start from previous solve with objective 3099.67
+
+Presolve removed 57631 rows and 12231 columns
+Presolve time: 2.88s
+Presolved: 2205 rows, 1809 columns, 23386 nonzeros
+Variable types: 0 continuous, 1809 integer (1808 binary)
+
+Explored 0 nodes (0 simplex iterations) in 3.01 seconds
+Thread count was 32 (of 56 available processors)
+
+Solution count 1: 3099.67 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.099671661478e+03, best bound 3.099671661478e+03, gap 0.0000%

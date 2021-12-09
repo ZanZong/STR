@@ -1,0 +1,327 @@
+digraph render_dfgraphvgg_unet {
+	graph [ratio=compress]
+	{
+		rank=same
+		0 [label="block1_conv1 (0)"]
+		70 [label="&nabla;block1_conv1 (70)" style=filled]
+	}
+	{
+		rank=same
+		1 [label="block1_conv2 (1)"]
+		69 [label="&nabla;block1_conv2 (69)" style=filled]
+	}
+	{
+		rank=same
+		2 [label="block1_pool (2)"]
+		68 [label="&nabla;block1_pool (68)" style=filled]
+	}
+	{
+		rank=same
+		3 [label="block2_conv1 (3)"]
+		67 [label="&nabla;block2_conv1 (67)" style=filled]
+	}
+	{
+		rank=same
+		4 [label="block2_conv2 (4)"]
+		66 [label="&nabla;block2_conv2 (66)" style=filled]
+	}
+	{
+		rank=same
+		5 [label="block2_pool (5)"]
+		65 [label="&nabla;block2_pool (65)" style=filled]
+	}
+	{
+		rank=same
+		6 [label="block3_conv1 (6)"]
+		64 [label="&nabla;block3_conv1 (64)" style=filled]
+	}
+	{
+		rank=same
+		7 [label="block3_conv2 (7)"]
+		63 [label="&nabla;block3_conv2 (63)" style=filled]
+	}
+	{
+		rank=same
+		8 [label="block3_conv3 (8)"]
+		62 [label="&nabla;block3_conv3 (62)" style=filled]
+	}
+	{
+		rank=same
+		9 [label="block3_pool (9)"]
+		61 [label="&nabla;block3_pool (61)" style=filled]
+	}
+	{
+		rank=same
+		10 [label="block4_conv1 (10)"]
+		60 [label="&nabla;block4_conv1 (60)" style=filled]
+	}
+	{
+		rank=same
+		11 [label="block4_conv2 (11)"]
+		59 [label="&nabla;block4_conv2 (59)" style=filled]
+	}
+	{
+		rank=same
+		12 [label="block4_conv3 (12)"]
+		58 [label="&nabla;block4_conv3 (58)" style=filled]
+	}
+	{
+		rank=same
+		13 [label="block4_pool (13)"]
+		57 [label="&nabla;block4_pool (57)" style=filled]
+	}
+	{
+		rank=same
+		14 [label="zero_padding2d (14)"]
+		56 [label="&nabla;zero_padding2d (56)" style=filled]
+	}
+	{
+		rank=same
+		15 [label="conv2d (15)"]
+		55 [label="&nabla;conv2d (55)" style=filled]
+	}
+	{
+		rank=same
+		16 [label="batch_normalization (16)"]
+		54 [label="&nabla;batch_normalization (54)" style=filled]
+	}
+	{
+		rank=same
+		17 [label="up_sampling2d (17)"]
+		53 [label="&nabla;up_sampling2d (53)" style=filled]
+	}
+	{
+		rank=same
+		18 [label="concatenate (18)"]
+		52 [label="&nabla;concatenate (52)" style=filled]
+	}
+	{
+		rank=same
+		19 [label="zero_padding2d_1 (19)"]
+		51 [label="&nabla;zero_padding2d_1 (51)" style=filled]
+	}
+	{
+		rank=same
+		20 [label="conv2d_1 (20)"]
+		50 [label="&nabla;conv2d_1 (50)" style=filled]
+	}
+	{
+		rank=same
+		21 [label="batch_normalization_1 (21)"]
+		49 [label="&nabla;batch_normalization_1 (49)" style=filled]
+	}
+	{
+		rank=same
+		22 [label="up_sampling2d_1 (22)"]
+		48 [label="&nabla;up_sampling2d_1 (48)" style=filled]
+	}
+	{
+		rank=same
+		23 [label="concatenate_1 (23)"]
+		47 [label="&nabla;concatenate_1 (47)" style=filled]
+	}
+	{
+		rank=same
+		24 [label="zero_padding2d_2 (24)"]
+		46 [label="&nabla;zero_padding2d_2 (46)" style=filled]
+	}
+	{
+		rank=same
+		25 [label="conv2d_2 (25)"]
+		45 [label="&nabla;conv2d_2 (45)" style=filled]
+	}
+	{
+		rank=same
+		26 [label="batch_normalization_2 (26)"]
+		44 [label="&nabla;batch_normalization_2 (44)" style=filled]
+	}
+	{
+		rank=same
+		27 [label="up_sampling2d_2 (27)"]
+		43 [label="&nabla;up_sampling2d_2 (43)" style=filled]
+	}
+	{
+		rank=same
+		28 [label="concatenate_2 (28)"]
+		42 [label="&nabla;concatenate_2 (42)" style=filled]
+	}
+	{
+		rank=same
+		29 [label="zero_padding2d_3 (29)"]
+		41 [label="&nabla;zero_padding2d_3 (41)" style=filled]
+	}
+	{
+		rank=same
+		30 [label="conv2d_3 (30)"]
+		40 [label="&nabla;conv2d_3 (40)" style=filled]
+	}
+	{
+		rank=same
+		31 [label="batch_normalization_3 (31)"]
+		39 [label="&nabla;batch_normalization_3 (39)" style=filled]
+	}
+	{
+		rank=same
+		32 [label="conv2d_4 (32)"]
+		38 [label="&nabla;conv2d_4 (38)" style=filled]
+	}
+	{
+		rank=same
+		33 [label="reshape (33)"]
+		37 [label="&nabla;reshape (37)" style=filled]
+	}
+	{
+		rank=same
+		34 [label="activation (34)"]
+		36 [label="&nabla;activation (36)" style=filled]
+	}
+	35 [label="Loss (35)"]
+	0 -> 1 [label=0]
+	1 -> 2 [label=0]
+	2 -> 3 [label=0]
+	3 -> 4 [label=0]
+	4 -> 5 [label=0]
+	5 -> 6 [label=0]
+	6 -> 7 [label=0]
+	7 -> 8 [label=0]
+	8 -> 9 [label=0]
+	9 -> 10 [label=0]
+	10 -> 11 [label=0]
+	11 -> 12 [label=0]
+	12 -> 13 [label=0]
+	13 -> 14 [label=0]
+	14 -> 15 [label=0]
+	15 -> 16 [label=0]
+	16 -> 17 [label=0]
+	17 -> 18 [label=0]
+	9 -> 18 [label=1]
+	18 -> 19 [label=0]
+	19 -> 20 [label=0]
+	20 -> 21 [label=0]
+	21 -> 22 [label=0]
+	22 -> 23 [label=0]
+	5 -> 23 [label=1]
+	23 -> 24 [label=0]
+	24 -> 25 [label=0]
+	25 -> 26 [label=0]
+	26 -> 27 [label=0]
+	27 -> 28 [label=0]
+	2 -> 28 [label=1]
+	28 -> 29 [label=0]
+	29 -> 30 [label=0]
+	30 -> 31 [label=0]
+	31 -> 32 [label=0]
+	32 -> 33 [label=0]
+	33 -> 34 [label=0]
+	34 -> 35 [label=0]
+	35 -> 36 [label=0]
+	34 -> 36 [label=1 constraint=false]
+	33 -> 37 [label=0 constraint=false]
+	34 -> 37 [label=1 constraint=false]
+	36 -> 37 [label=2 constraint=false]
+	32 -> 38 [label=0 constraint=false]
+	33 -> 38 [label=1 constraint=false]
+	37 -> 38 [label=2 constraint=false]
+	31 -> 39 [label=0 constraint=false]
+	32 -> 39 [label=1 constraint=false]
+	38 -> 39 [label=2 constraint=false]
+	30 -> 40 [label=0 constraint=false]
+	31 -> 40 [label=1 constraint=false]
+	39 -> 40 [label=2 constraint=false]
+	29 -> 41 [label=0 constraint=false]
+	30 -> 41 [label=1 constraint=false]
+	40 -> 41 [label=2 constraint=false]
+	28 -> 42 [label=0 constraint=false]
+	29 -> 42 [label=1 constraint=false]
+	41 -> 42 [label=2 constraint=false]
+	27 -> 43 [label=0 constraint=false]
+	28 -> 43 [label=1 constraint=false]
+	42 -> 43 [label=2 constraint=false]
+	26 -> 44 [label=0 constraint=false]
+	27 -> 44 [label=1 constraint=false]
+	43 -> 44 [label=2 constraint=false]
+	25 -> 45 [label=0 constraint=false]
+	26 -> 45 [label=1 constraint=false]
+	44 -> 45 [label=2 constraint=false]
+	24 -> 46 [label=0 constraint=false]
+	25 -> 46 [label=1 constraint=false]
+	45 -> 46 [label=2 constraint=false]
+	23 -> 47 [label=0 constraint=false]
+	24 -> 47 [label=1 constraint=false]
+	46 -> 47 [label=2 constraint=false]
+	22 -> 48 [label=0 constraint=false]
+	23 -> 48 [label=1 constraint=false]
+	47 -> 48 [label=2 constraint=false]
+	21 -> 49 [label=0 constraint=false]
+	22 -> 49 [label=1 constraint=false]
+	48 -> 49 [label=2 constraint=false]
+	20 -> 50 [label=0 constraint=false]
+	21 -> 50 [label=1 constraint=false]
+	49 -> 50 [label=2 constraint=false]
+	19 -> 51 [label=0 constraint=false]
+	20 -> 51 [label=1 constraint=false]
+	50 -> 51 [label=2 constraint=false]
+	18 -> 52 [label=0 constraint=false]
+	19 -> 52 [label=1 constraint=false]
+	51 -> 52 [label=2 constraint=false]
+	17 -> 53 [label=0 constraint=false]
+	18 -> 53 [label=1 constraint=false]
+	52 -> 53 [label=2 constraint=false]
+	16 -> 54 [label=0 constraint=false]
+	17 -> 54 [label=1 constraint=false]
+	53 -> 54 [label=2 constraint=false]
+	15 -> 55 [label=0 constraint=false]
+	16 -> 55 [label=1 constraint=false]
+	54 -> 55 [label=2 constraint=false]
+	14 -> 56 [label=0 constraint=false]
+	15 -> 56 [label=1 constraint=false]
+	55 -> 56 [label=2 constraint=false]
+	13 -> 57 [label=0 constraint=false]
+	14 -> 57 [label=1 constraint=false]
+	56 -> 57 [label=2 constraint=false]
+	12 -> 58 [label=0 constraint=false]
+	13 -> 58 [label=1 constraint=false]
+	57 -> 58 [label=2 constraint=false]
+	11 -> 59 [label=0 constraint=false]
+	12 -> 59 [label=1 constraint=false]
+	58 -> 59 [label=2 constraint=false]
+	10 -> 60 [label=0 constraint=false]
+	11 -> 60 [label=1 constraint=false]
+	59 -> 60 [label=2 constraint=false]
+	9 -> 61 [label=0 constraint=false]
+	10 -> 61 [label=1 constraint=false]
+	18 -> 61 [label=2 constraint=false]
+	60 -> 61 [label=3 constraint=false]
+	52 -> 61 [label=4 constraint=false]
+	8 -> 62 [label=0 constraint=false]
+	9 -> 62 [label=1 constraint=false]
+	61 -> 62 [label=2 constraint=false]
+	7 -> 63 [label=0 constraint=false]
+	8 -> 63 [label=1 constraint=false]
+	62 -> 63 [label=2 constraint=false]
+	6 -> 64 [label=0 constraint=false]
+	7 -> 64 [label=1 constraint=false]
+	63 -> 64 [label=2 constraint=false]
+	5 -> 65 [label=0 constraint=false]
+	6 -> 65 [label=1 constraint=false]
+	23 -> 65 [label=2 constraint=false]
+	64 -> 65 [label=3 constraint=false]
+	47 -> 65 [label=4 constraint=false]
+	4 -> 66 [label=0 constraint=false]
+	5 -> 66 [label=1 constraint=false]
+	65 -> 66 [label=2 constraint=false]
+	3 -> 67 [label=0 constraint=false]
+	4 -> 67 [label=1 constraint=false]
+	66 -> 67 [label=2 constraint=false]
+	2 -> 68 [label=0 constraint=false]
+	3 -> 68 [label=1 constraint=false]
+	28 -> 68 [label=2 constraint=false]
+	67 -> 68 [label=3 constraint=false]
+	42 -> 68 [label=4 constraint=false]
+	1 -> 69 [label=0 constraint=false]
+	2 -> 69 [label=1 constraint=false]
+	68 -> 69 [label=2 constraint=false]
+	0 -> 70 [label=0 constraint=false]
+	1 -> 70 [label=1 constraint=false]
+	69 -> 70 [label=2 constraint=false]
+}
