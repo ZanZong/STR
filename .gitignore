@@ -1,0 +1,14 @@
+data/
+__pycache__/
+.cache-main
+.project
+.pydevproject
+.scalastyle
+.classpath
+.settings/
+.pyc
+.class
+.DS_Store
+experiments/logs/
+gradient-checkpointing-master/
+optimizer/logs/
