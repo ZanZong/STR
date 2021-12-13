@@ -19,7 +19,7 @@ import datetime
 from tensorflow.python.platform import tf_logging as logging
 logging.set_verbosity(logging.INFO)
 
-batch_size = 32
+batch_size = 128
 image_size = 32
 epochs = 1
 num_classes = 10

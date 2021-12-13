@@ -2,12 +2,35 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 import os
+import datetime
+from tensorflow.python.keras import callbacks
+from tensorflow.python.platform import tf_logging as logging
+os.environ['TF_CPP_MIN_LOG_LEVEL']='1'
+logging.set_verbosity(logging.INFO)
+
+import tensorboard
+tensorboard.__version__
+log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
+
+# turn on memory growth
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+  try:
+    # Currently, memory growth needs to be the same across GPUs
+    for gpu in gpus:
+      tf.config.experimental.set_memory_growth(gpu, True)
+    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+  except RuntimeError as e:
+    # Memory growth must be set before GPUs have been initialized
+    print(e)
 
 def train_with_mnist():
     batch_size = 128
     num_classes = 10
-    epochs = 10
-
+    epochs = 1
+   
     # the data, shuffled and split between train and test sets
     (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
@@ -26,9 +49,11 @@ def train_with_mnist():
 
     model = keras.Sequential()
     model.add(keras.layers.Dense(512, activation='relu', input_shape=(784,)))
-    model.add(keras.layers.Dropout(0.2))
+    # model.add(keras.layers.Dropout(0.2))
     model.add(keras.layers.Dense(512, activation='relu'))
-    model.add(keras.layers.Dropout(0.2))
+    model.add(keras.layers.Dense(512, activation='relu'))
+    model.add(keras.layers.Dense(512, activation='relu'))
+    # model.add(keras.layers.Dropout(0.2))
     model.add(keras.layers.Dense(num_classes, activation='softmax'))
 
     model.summary()
@@ -40,8 +65,9 @@ def train_with_mnist():
     history = model.fit(x_train, y_train,
                         batch_size=batch_size,
                         epochs=epochs,
-                        verbose=1,
-                        validation_data=(x_test, y_test))
+                        verbose=0,
+                        validation_data=(x_test, y_test),
+                        callbacks=[tensorboard_callback])
     score = model.evaluate(x_test, y_test, verbose=0)
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])
@@ -130,4 +156,4 @@ def train_with_cifar10():
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])
 
-train_with_cifar10()
+train_with_mnist()
