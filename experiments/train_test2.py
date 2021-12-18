@@ -8,10 +8,10 @@ from tensorflow.python.platform import tf_logging as logging
 os.environ['TF_CPP_MIN_LOG_LEVEL']='1'
 logging.set_verbosity(logging.INFO)
 
-import tensorboard
-tensorboard.__version__
-log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
+# import tensorboard
+# tensorboard.__version__
+# log_dir = "logs/fit-3node-checkpoint02/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+# tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
 
 # turn on memory growth
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -51,8 +51,8 @@ def train_with_mnist():
     model.add(keras.layers.Dense(512, activation='relu', input_shape=(784,)))
     # model.add(keras.layers.Dropout(0.2))
     model.add(keras.layers.Dense(512, activation='relu'))
-    model.add(keras.layers.Dense(512, activation='relu'))
-    model.add(keras.layers.Dense(512, activation='relu'))
+    # model.add(keras.layers.Dense(512, activation='relu'))
+    # model.add(keras.layers.Dense(512, activation='relu'))
     # model.add(keras.layers.Dropout(0.2))
     model.add(keras.layers.Dense(num_classes, activation='softmax'))
 
@@ -61,13 +61,24 @@ def train_with_mnist():
     model.compile(loss='categorical_crossentropy',
                 optimizer=keras.optimizers.RMSprop(),
                 metrics=['accuracy'])
-
+    #############
+    layers = model.layers
+    print([l.name for l in layers])
+    # name_to_idx = {model.layers[0].name: -1}
+    # relevant_nodes = sum(model._nodes_by_depth.values(), [])
+    # name_to_idx = {}
+    # for layer_idx, layer in enumerate(layers):
+    #     name_to_idx[layer.name] = layer_idx
+    #     print(layer._inbound_nodes)
+    # print(name_to_idx)
+    # return
+    #############
     history = model.fit(x_train, y_train,
                         batch_size=batch_size,
                         epochs=epochs,
-                        verbose=0,
-                        validation_data=(x_test, y_test),
-                        callbacks=[tensorboard_callback])
+                        verbose=1,
+                        validation_data=(x_test, y_test))
+                        # callbacks=[tensorboard_callback])
     score = model.evaluate(x_test, y_test, verbose=0)
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])
