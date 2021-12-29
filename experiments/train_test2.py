@@ -10,7 +10,7 @@ logging.set_verbosity(logging.INFO)
 
 # import tensorboard
 # tensorboard.__version__
-# log_dir = "logs/fit-3node-checkpoint02/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+# log_dir = "logs/fit-3node-origin"# + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 # tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
 
 # turn on memory growth
@@ -49,10 +49,10 @@ def train_with_mnist():
 
     model = keras.Sequential()
     model.add(keras.layers.Dense(512, activation='relu', input_shape=(784,)))
-    # model.add(keras.layers.Dropout(0.2))
+    # model.add(keras.layers.Dropout(0.2))    
     model.add(keras.layers.Dense(512, activation='relu'))
-    # model.add(keras.layers.Dense(512, activation='relu'))
-    # model.add(keras.layers.Dense(512, activation='relu'))
+    model.add(keras.layers.Dense(512, activation='relu'))
+    model.add(keras.layers.Dense(512, activation='relu'))
     # model.add(keras.layers.Dropout(0.2))
     model.add(keras.layers.Dense(num_classes, activation='softmax'))
 
@@ -63,7 +63,11 @@ def train_with_mnist():
                 metrics=['accuracy'])
     #############
     layers = model.layers
-    print([l.name for l in layers])
+    # print("Total layers: {}".format(len(layers)))
+    # for layer in layers:
+    #         print(layer.name)
+    # exit()
+    # layers = model.layers
     # name_to_idx = {model.layers[0].name: -1}
     # relevant_nodes = sum(model._nodes_by_depth.values(), [])
     # name_to_idx = {}

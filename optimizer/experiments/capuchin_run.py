@@ -51,7 +51,30 @@ def cache_candidates(g:DFGraph, U: list, peak_period_threshold: float):
             candidates.append(Tensor(id=i, size=g.cost_ram[i], access_count=cand_access_count[i], \
                 srcs=[u for (u, v) in g.edge_list if v == i]))
     return candidates
-    
+
+def gen_p_q(s):
+    p = np.zeros_like(s)
+    q = np.zeros_like(s)
+    for j in range(s.shape[1]):
+        if j > (s.shape[1] / 2):
+            continue
+        step_into = False
+        set_p = False
+        set_q = False
+        for i in range(s.shape[0]):
+            if not step_into and s[i, j] == 1:
+                step_into = True
+                continue
+            if i < (s.shape[0]/2) and step_into and not set_p and not set_q and s[i, j] == 0:
+                p[i, j] = 1
+                set_p = True
+                continue
+            if i > (s.shape[0]/2) and step_into and set_p and not set_q and s[i, j] == 1:
+                q[i - 1, j] = 1
+                set_q = True
+                break
+    return p, q
+
 
 if __name__ == "__main__":
     args = extract_params()
@@ -121,6 +144,11 @@ if __name__ == "__main__":
         # Set r for recompute
         r = solve_r_opt(g, s)
         np.savetxt("R_filled", r, fmt="%i")
+
+        # generate p and q matrices
+        p, q = gen_p_q(s)
+        np.savetxt(log_base.joinpath("P-capuchin"), p, fmt="%i")
+        np.savetxt(log_base.joinpath("Q-capuchin"), q, fmt="%i")
 
         schedule, aux_data = schedule_from_rs(g, r, s)
         # log memory timeline

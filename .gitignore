@@ -13,3 +13,4 @@ experiments/logs/
 gradient-checkpointing-master/
 optimizer/logs/
 .vscode/
+sync.sh

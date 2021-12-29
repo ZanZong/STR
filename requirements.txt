@@ -39,3 +39,5 @@ typing_extensions==4.0.0
 Werkzeug==2.0.2
 wrapt==1.13.3
 zipp==3.6.0
+opencv-python==4.5.4.60
+tqdm==4.62.3
