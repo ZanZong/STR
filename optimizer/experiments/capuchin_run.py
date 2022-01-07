@@ -161,8 +161,8 @@ if __name__ == "__main__":
             schedule_aux_data=aux_data,
             solve_time_s=None
         )
-        np.savetxt(log_base.joinpath("S"), s, fmt="%i")
-        np.savetxt(log_base.joinpath("R"), r, fmt="%i")
+        np.savetxt(log_base.joinpath("S-capuchin"), s, fmt="%i")
+        np.savetxt(log_base.joinpath("R-capuchin"), r, fmt="%i")
         baseline_cpu = np.sum(list(g.cost_cpu.values()))
         peak_mem = aux_data.peak_ram / (1024 * 1024 * 1024)
         compute_overhead = aux_data.cpu * 1.0 / baseline_cpu
@@ -171,4 +171,3 @@ if __name__ == "__main__":
         results.append((peak_mem, compute_overhead, m_device))
     print("Scheduling results:")
     print(results)
-

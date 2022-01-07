@@ -7,6 +7,7 @@ import tensorflow as tf
 from experiments.common.profile.cost_model import CostModel
 from remat.core import dfgraph
 from remat.tensorflow2.extraction_hooks import op_hook, MEMORY_MULTIPLIER
+import numpy as np
 
 try:
     from tensorflow.python.keras.utils.layer_utils import count_params  # TF r2.0
@@ -91,7 +92,7 @@ def dfgraph_from_keras(mod: tf.keras.models.Model, input_dep=False, output_dep=T
     names = {u: idx_to_name[u] for u in vfwd}
 
     # Get parameter and gradient momentum memory usage
-    total_params = sum(count_params_keras(mod))
+    total_params = np.array(list(count_params_keras(mod)))
     total_mem_params = total_params * MEMORY_MULTIPLIER
 
     logging.info(f"Build graph from profiling, cost and memory info:\n---cost---\n{costs}\n---mem---\n{mems}")
