@@ -1,0 +1,67 @@
+WARNING:tensorflow:From ../run_training.py:27: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From ../run_training.py:27: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From ../run_training.py:27: The name tf.GPUOptions is deprecated. Please use tf.compat.v1.GPUOptions instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 45), ('epochs', 1), ('model_name', 'vgg_unet'), ('strategy', 'capuchin'), ('verbose', False)]
+Cannot find config for batch_size=45, use 40 instead
+There are 367 and 367 images downloaded for train and test
+Verifying train dataset
+  0%|          | 0/367 [00:00<?, ?it/s]  4%|▎         | 13/367 [00:00<00:02, 122.92it/s]  7%|▋         | 26/367 [00:00<00:02, 125.73it/s] 11%|█         | 39/367 [00:00<00:02, 127.29it/s] 14%|█▍        | 53/367 [00:00<00:02, 130.49it/s] 19%|█▉        | 69/367 [00:00<00:02, 139.82it/s] 23%|██▎       | 86/367 [00:00<00:01, 146.92it/s] 28%|██▊       | 103/367 [00:00<00:01, 153.28it/s] 32%|███▏      | 119/367 [00:00<00:01, 153.92it/s] 37%|███▋      | 136/367 [00:00<00:01, 155.75it/s] 42%|████▏     | 153/367 [00:01<00:01, 157.44it/s] 46%|████▋     | 170/367 [00:01<00:01, 158.75it/s] 51%|█████     | 187/367 [00:01<00:01, 160.44it/s] 56%|█████▌    | 204/367 [00:01<00:01, 159.59it/s] 60%|█████▉    | 220/367 [00:01<00:00, 159.13it/s] 64%|██████▍   | 236/367 [00:01<00:00, 158.57it/s] 69%|██████▉   | 253/367 [00:01<00:00, 159.94it/s] 74%|███████▎  | 270/367 [00:01<00:00, 160.72it/s] 78%|███████▊  | 287/367 [00:01<00:00, 161.50it/s] 83%|████████▎ | 304/367 [00:01<00:00, 161.86it/s] 87%|████████▋ | 321/367 [00:02<00:00, 161.71it/s] 92%|█████████▏| 338/367 [00:02<00:00, 161.60it/s] 97%|█████████▋| 355/367 [00:02<00:00, 160.91it/s]100%|██████████| 367/367 [00:02<00:00, 155.07it/s]
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/str_strategy.py:122: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1424: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+2022-01-05 02:16:43.236204: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.69GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-05 02:16:43.236279: W tensorflow/core/kernels/gpu_utils.cc:48] Failed to allocate memory for convolution redzone checking; skipping this check. This is benign and only means that we won't check cudnn for out-of-bounds reads and writes. This message will only be printed once.
+Dataset verified! 
+Starting Epoch  0
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'hybrid', 'verbose': 'false', 'tags': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/vgg_unet_40/layer_names'}, {'r': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/vgg_unet_40/R-capuchin', 'p': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/vgg_unet_40/P-capuchin', 'q': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/vgg_unet_40/Q-capuchin'}]
+[STR DEBUG] Processing layer 28's swapping, swap out at [30], swap in at [41]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 28 among [<tf.Operation 'up_sampling2d_2/strided_slice' type=StridedSlice>, <tf.Operation 'up_sampling2d_2/mul' type=Mul>, <tf.Operation 'up_sampling2d_2/resize/ResizeNearestNeighbor' type=ResizeNearestNeighbor>, <tf.Operation 'up_sampling2d_2/strided_slice/stack_2' type=Const>, <tf.Operation 'up_sampling2d_2/Const' type=Const>, <tf.Operation 'up_sampling2d_2/Shape' type=Shape>, <tf.Operation 'up_sampling2d_2/strided_slice/stack_1' type=Const>, <tf.Operation 'up_sampling2d_2/strided_slice/stack' type=Const>]
+[STR DEBUG] Processing layer 29's swapping, swap out at [31], swap in at [40]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 29 among [<tf.Operation 'concatenate_2/concat/axis' type=Const>, <tf.Operation 'concatenate_2/concat' type=ConcatV2>]
+[STR DEBUG] Processing layer 31's swapping, swap out at [34], swap in at [38]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 31 among [<tf.Operation 'conv2d_3/kernel/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv2d_3/kernel/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_3/kernel/Assign' type=AssignVariableOp>, <tf.Operation 'conv2d_3/bias/Initializer/zeros' type=Const>, <tf.Operation 'conv2d_3/bias' type=VarHandleOp>, <tf.Operation 'conv2d_3/bias/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv2d_3/Conv2D' type=Conv2D>, <tf.Operation 'conv2d_3/bias/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_3/bias/Assign' type=AssignVariableOp>, <tf.Operation 'conv2d_3/BiasAdd' type=BiasAdd>, <tf.Operation 'conv2d_3/BiasAdd/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_3/Conv2D/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_3/dilation_rate' type=Const>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/shape' type=Const>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/min' type=Const>, <tf.Operation 'conv2d_3/kernel' type=VarHandleOp>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/max' type=Const>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/RandomUniform' type=RandomUniform>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/sub' type=Sub>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/mul' type=Mul>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform' type=Add>]
+[STR DEBUG] Processing layer 33's swapping, swap out at [35], swap in at [36]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 33 among [<tf.Operation 'conv2d_4/kernel/Assign' type=AssignVariableOp>, <tf.Operation 'conv2d_4/bias/Initializer/zeros' type=Const>, <tf.Operation 'conv2d_4/bias' type=VarHandleOp>, <tf.Operation 'conv2d_4/bias/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv2d_4/bias/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_4/bias/Assign' type=AssignVariableOp>, <tf.Operation 'conv2d_4/Conv2D' type=Conv2D>, <tf.Operation 'conv2d_4/BiasAdd' type=BiasAdd>, <tf.Operation 'conv2d_4/BiasAdd/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_4/Conv2D/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/shape' type=Const>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/min' type=Const>, <tf.Operation 'conv2d_4/kernel' type=VarHandleOp>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/max' type=Const>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/RandomUniform' type=RandomUniform>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/sub' type=Sub>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform' type=Add>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/mul' type=Mul>, <tf.Operation 'conv2d_4/kernel/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv2d_4/kernel/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_4/dilation_rate' type=Const>]
+ 1/64 [..............................] - ETA: 30:53 - loss: 4.2456 - acc: 0.01992022-01-05 02:17:08.571263: W tensorflow/core/common_runtime/bfc_allocator.cc:419] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.68GiB (rounded to 1802787840).  Current allocation summary follows.
+2022-01-05 02:17:08.572474: W tensorflow/core/common_runtime/bfc_allocator.cc:424] ***********************************____********____****____******************************_____**_***
+2022-01-05 02:17:08.572528: W tensorflow/core/framework/op_kernel.cc:1651] OP_REQUIRES failed at conv_grad_input_ops.cc:1063 : Resource exhausted: OOM when allocating tensor with shape[45,192,162,322] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+Traceback (most recent call last):
+  File "../run_training.py", line 68, in <module>
+    epochs=1)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/keras_segmentation-0.2.0remat-py3.6.egg/keras_segmentation/train.py", line 106, in train
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 1301, in fit_generator
+    steps_name='steps_per_epoch')
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 265, in model_iteration
+    batch_outs = batch_function(*batch_data)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 1021, in train_on_batch
+    outputs = self.train_function(ins)  # pylint: disable=not-callable
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/backend.py", line 3476, in __call__
+    run_metadata=self.run_metadata)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/client/session.py", line 1472, in __call__
+    run_metadata_ptr)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[45,192,162,322] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node training/Adadelta/gradients/gradients/training/Adadelta/gradients/conv2d_3/Conv2D_grad/Conv2DBackpropInput}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+

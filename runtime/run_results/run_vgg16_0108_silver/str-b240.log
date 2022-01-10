@@ -1,0 +1,841 @@
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/contrib/graph_editor/select.py:554: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 240), ('epochs', 1), ('model_name', 'VGG16'), ('strategy', 'str'), ('verbose', False)]
+Cannot find config for batch_size=240, use 250 instead
+Shape of x_train: (40000, 224, 224, 3), shape of x_test: (10000, 224, 224, 3)
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'hybrid', 'verbose': 'false', 'tags': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/layer_names'}, {'r': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/R', 'p': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/P', 'q': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/PrunedQ'}]
+[STR DEBUG] Processing layer 0's swapping, swap out at [1], swap in at [43]
+[STR DEBUG] Find swapout ops: name: "input_1"
+op: "Placeholder"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "shape"
+  value {
+    shape {
+      dim {
+        size: -1
+      }
+      dim {
+        size: 224
+      }
+      dim {
+        size: 224
+      }
+      dim {
+        size: 3
+      }
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("input_1:0", shape=(?, 224, 224, 3), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block1_conv1/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block1_conv1/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block1_conv2/Conv2D_grad/Conv2DBackpropInput"
+input: "block1_conv1/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block1_conv1/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 1's swapping, swap out at [3], swap in at [8, 41]
+[STR DEBUG] Find swapout ops: name: "block1_conv1/Relu"
+op: "Relu"
+input: "block1_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block1_conv1/Relu:0", shape=(?, 224, 224, 64), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block1_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "block3_conv2/Relu"
+op: "Relu"
+input: "block3_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block1_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block1_conv1/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block1_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block1_conv2/Relu"
+input: "block1_pool/MaxPool"
+input: "training/RMSprop/gradients/gradients/block2_conv1/Conv2D_grad/Conv2DBackpropInput"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block1_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block1_conv1/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 3's swapping, swap out at [4], swap in at [40]
+[STR DEBUG] Find swapout ops: name: "block1_pool/MaxPool"
+op: "MaxPool"
+input: "block1_conv2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("block1_pool/MaxPool:0", shape=(?, 112, 112, 64), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block2_conv1/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block2_conv1/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block2_conv2/Conv2D_grad/Conv2DBackpropInput"
+input: "block2_conv1/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block2_conv1/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block1_pool/MaxPool_grad/MaxPoolGrad' type=MaxPoolGrad>]
+[STR DEBUG] Processing layer 4's swapping, swap out at [6], swap in at [11, 38]
+[STR DEBUG] Find swapout ops: name: "block2_conv1/Relu"
+op: "Relu"
+input: "block2_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block2_conv1/Relu:0", shape=(?, 112, 112, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block2_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "block4_conv1/Relu"
+op: "Relu"
+input: "block4_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block2_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block2_conv1/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block2_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block2_conv2/Relu"
+input: "block2_pool/MaxPool"
+input: "training/RMSprop/gradients/gradients/block3_conv1/Conv2D_grad/Conv2DBackpropInput"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block2_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block2_conv1/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 6's swapping, swap out at [7], swap in at [37]
+[STR DEBUG] Find swapout ops: name: "block2_pool/MaxPool"
+op: "MaxPool"
+input: "block2_conv2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("block2_pool/MaxPool:0", shape=(?, 56, 56, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block3_conv1/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block3_conv1/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block3_conv2/Conv2D_grad/Conv2DBackpropInput"
+input: "block3_conv1/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block3_conv1/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block2_pool/MaxPool_grad/MaxPoolGrad' type=MaxPoolGrad>]
+[STR DEBUG] Processing layer 7's swapping, swap out at [8], swap in at [36]
+[STR DEBUG] Find swapout ops: name: "block3_conv1/Relu"
+op: "Relu"
+input: "block3_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block3_conv1/Relu:0", shape=(?, 56, 56, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block3_conv2/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block3_conv2/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block3_conv3/Conv2D_grad/Conv2DBackpropInput"
+input: "block3_conv2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block3_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block3_conv1/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 8's swapping, swap out at [10], swap in at [14, 34]
+[STR DEBUG] Find swapout ops: name: "block3_conv2/Relu"
+op: "Relu"
+input: "block3_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block3_conv2/Relu:0", shape=(?, 56, 56, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block3_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "block4_pool/MaxPool"
+op: "MaxPool"
+input: "block4_conv3/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block3_conv3/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block3_conv2/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block3_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block3_conv3/Relu"
+input: "block3_pool/MaxPool"
+input: "training/RMSprop/gradients/gradients/block4_conv1/Conv2D_grad/Conv2DBackpropInput"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block3_conv3/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block3_conv2/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 10's swapping, swap out at [11], swap in at [33]
+[STR DEBUG] Find swapout ops: name: "block3_pool/MaxPool"
+op: "MaxPool"
+input: "block3_conv3/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("block3_pool/MaxPool:0", shape=(?, 28, 28, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block4_conv1/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block4_conv1/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block4_conv2/Conv2D_grad/Conv2DBackpropInput"
+input: "block4_conv1/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block3_pool/MaxPool_grad/MaxPoolGrad' type=MaxPoolGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block4_conv1/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 11's swapping, swap out at [12], swap in at [32]
+[STR DEBUG] Find swapout ops: name: "block4_conv1/Relu"
+op: "Relu"
+input: "block4_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block4_conv1/Relu:0", shape=(?, 28, 28, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block4_conv2/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block4_conv2/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block4_conv3/Conv2D_grad/Conv2DBackpropInput"
+input: "block4_conv2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block4_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block4_conv1/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 12's swapping, swap out at [14], swap in at [30]
+[STR DEBUG] Find swapout ops: name: "block4_conv2/Relu"
+op: "Relu"
+input: "block4_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block4_conv2/Relu:0", shape=(?, 28, 28, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block4_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block4_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block4_conv3/Relu"
+input: "block4_pool/MaxPool"
+input: "training/RMSprop/gradients/gradients/block5_conv1/Conv2D_grad/Conv2DBackpropInput"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block4_conv3/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block4_conv2/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 14's swapping, swap out at [15], swap in at [29]
+[STR DEBUG] Find swapout ops: name: "block4_pool/MaxPool"
+op: "MaxPool"
+input: "block4_conv3/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("block4_pool/MaxPool:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block5_conv1/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block5_conv1/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block5_conv2/Conv2D_grad/Conv2DBackpropInput"
+input: "block5_conv1/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block5_conv1/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block4_pool/MaxPool_grad/MaxPoolGrad' type=MaxPoolGrad>]
+[STR DEBUG] Processing layer 15's swapping, swap out at [16], swap in at [28]
+[STR DEBUG] Find swapout ops: name: "block5_conv1/Relu"
+op: "Relu"
+input: "block5_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block5_conv1/Relu:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block5_conv2/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block5_conv2/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block5_conv3/Conv2D_grad/Conv2DBackpropInput"
+input: "block5_conv2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block5_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block5_conv1/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 16's swapping, swap out at [19], swap in at [25]
+[STR DEBUG] Cannot find swap-out control nodes for layer 16, use the first op name: "flatten/Shape"
+op: "Shape"
+input: "block5_pool/MaxPool"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "out_type"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "block5_conv2/Relu"
+op: "Relu"
+input: "block5_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block5_conv2/Relu:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'flatten/Shape' type=Shape>]2022-01-08 23:06:58.171607: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.89GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 23:06:58.171671: W tensorflow/core/kernels/gpu_utils.cc:48] Failed to allocate memory for convolution redzone checking; skipping this check. This is benign and only means that we won't check cudnn for out-of-bounds reads and writes. This message will only be printed once.
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 25, use the last op name: "training/RMSprop/gradients/gradients/flatten/Reshape_grad/Reshape"
+op: "Reshape"
+input: "training/RMSprop/gradients/gradients/fc1/MatMul_grad/MatMul"
+input: "training/RMSprop/gradients/gradients/flatten/Reshape_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/flatten/Reshape_grad/Reshape"
+op: "Reshape"
+input: "training/RMSprop/gradients/gradients/fc1/MatMul_grad/MatMul"
+input: "training/RMSprop/gradients/gradients/flatten/Reshape_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block5_conv3/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block5_conv2/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 19's swapping, swap out at [20], swap in at [24]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 19, among [<tf.Operation 'flatten/Shape' type=Shape>, <tf.Operation 'flatten/strided_slice/stack_2' type=Const>, <tf.Operation 'flatten/strided_slice' type=StridedSlice>, <tf.Operation 'flatten/Reshape/shape/1' type=Const>, <tf.Operation 'flatten/Reshape' type=Reshape>, <tf.Operation 'flatten/Reshape/shape' type=Pack>, <tf.Operation 'flatten/strided_slice/stack_1' type=Const>, <tf.Operation 'flatten/strided_slice/stack' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "flatten/strided_slice/stack"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+        dim {
+          size: 1
+        }
+      }
+      int_val: 0
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "flatten/strided_slice/stack"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+        dim {
+          size: 1
+        }
+      }
+      int_val: 0
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("flatten/strided_slice/stack:0", shape=(1,), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'fc1/Relu' type=Relu>]
+[STR DEBUG] Processing layer 20's swapping, swap out at [21], swap in at [23]
+[STR DEBUG] Find swapout ops: name: "fc1/Relu"
+op: "Relu"
+input: "fc1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("fc1/Relu:0", shape=(?, 4096), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'fc2/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/fc2/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/predictions/MatMul_grad/MatMul"
+input: "fc2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/fc1/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/fc2/MatMul_grad/MatMul_1' type=MatMul>]
+[STR DEBUG] Cannot find swap-out operations for swap-in at layer 21, skipping
+  1/167 [..............................] - ETA: 1:04:37 - loss: 2.3335 - acc: 0.1042  2/167 [..............................] - ETA: 34:12 - loss: 17021823.1667 - acc: 0.1125  3/167 [..............................] - ETA: 24:00 - loss: 11347967.3263 - acc: 0.12082022-01-08 23:07:12.953674: W tensorflow/core/common_runtime/bfc_allocator.cc:419] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.87GiB (rounded to 3082813440).  Current allocation summary follows.
+2022-01-08 23:07:12.954629: W tensorflow/core/common_runtime/bfc_allocator.cc:424] ______**___________________***************____________**************____**************___***_****x_*
+2022-01-08 23:07:12.954687: W tensorflow/core/framework/op_kernel.cc:1651] OP_REQUIRES failed at conv_grad_input_ops.cc:1063 : Resource exhausted: OOM when allocating tensor with shape[240,64,224,224] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+Traceback (most recent call last):
+  File "../run_training.py", line 83, in <module>
+    verbose=1)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 728, in fit
+    use_multiprocessing=use_multiprocessing)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 603, in fit
+    steps_name='steps_per_epoch')
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 265, in model_iteration
+    batch_outs = batch_function(*batch_data)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 1021, in train_on_batch
+    outputs = self.train_function(ins)  # pylint: disable=not-callable
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/backend.py", line 3476, in __call__
+    run_metadata=self.run_metadata)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/client/session.py", line 1472, in __call__
+    run_metadata_ptr)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: 2 root error(s) found.
+  (0) Resource exhausted: OOM when allocating tensor with shape[240,64,224,224] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node training/RMSprop/gradients/gradients/block1_conv2/Conv2D_grad/Conv2DBackpropInput}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+	 [[training/RMSprop/gradients/gradients/block1_conv1/Relu_grad/ReluGrad/_164]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+  (1) Resource exhausted: OOM when allocating tensor with shape[240,64,224,224] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node training/RMSprop/gradients/gradients/block1_conv2/Conv2D_grad/Conv2DBackpropInput}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+0 successful operations.
+0 derived errors ignored.

@@ -1,0 +1,1932 @@
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/str_strategy.py:122: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 340), ('epochs', 1), ('model_name', 'MobileNet'), ('strategy', 'capuchin'), ('verbose', False)]
+Cannot find config for batch_size=340, use 400 instead
+Shape of x_train: (40000, 224, 224, 3), shape of x_test: (10000, 224, 224, 3)
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'hybrid', 'verbose': 'false', 'tags': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_400/layer_names'}, {'r': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_400/R-capuchin', 'p': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_400/P-capuchin', 'q': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_400/Q-capuchin'}]
+[STR DEBUG] Processing layer 40's swapping, swap out at [42], swap in at [143]
+[STR DEBUG] Cannot find swap-out control nodes for layer 40, use the first op name: "conv_pw_6_bn/moving_variance/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_6_bn/moving_variance"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_6_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_6_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_6_relu/Relu6:0", shape=(?, 14, 14, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_6_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>]
+[STR DEBUG] Processing layer 41's swapping, swap out at [43], swap in at [142]
+[STR DEBUG] Find swapout ops: name: "conv_pw_6_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_6_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_6_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_6_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 142, use the last op name: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_6_bn/cond/Merge_grad/Equal_1"
+op: "Equal"
+input: "training/RMSprop/gradients/conv_pw_6_bn/cond/Merge:1"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_6_bn/cond/Merge_grad/Equal_1/y"
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "incompatible_shape_error"
+  value {
+    b: true
+  }
+}
+
+[STR DEBUG] Processing layer 42's swapping, swap out at [44], swap in at [141]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 42, among [<tf.Operation 'conv_pw_6_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_6_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_6_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_6_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_6_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_6_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_6_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_6_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_6_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_6_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_6_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_6_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_6_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_6_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_6_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_6_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_6_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_6_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_6_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_6_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_6_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_6_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_6_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_6_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_6_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_6_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_6_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_6_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_6_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_6_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_6_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_6_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_6_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_6_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_6_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_6_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_6_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_6_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_6_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_6_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_6_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_6_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_6_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_6_bn/moving_variance/IsInitialized/VarIsInitializedOp"
+op: "VarIsInitializedOp"
+input: "conv_pw_6_bn/moving_variance"
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_6_bn/moving_variance/IsInitialized/VarIsInitializedOp"
+op: "VarIsInitializedOp"
+input: "conv_pw_6_bn/moving_variance"
+, 
+	choose swap tensor Tensor("conv_pw_6_bn/moving_variance/IsInitialized/VarIsInitializedOp:0", shape=(), dtype=bool), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_7_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 43's swapping, swap out at [45], swap in at [140]
+[STR DEBUG] Cannot find swap-out control nodes for layer 43, use the first op name: "conv_dw_7_bn/cond/ReadVariableOp_1/Switch"
+op: "Switch"
+input: "conv_dw_7_bn/beta"
+input: "conv_dw_7_bn/cond/pred_id"
+attr {
+  key: "T"
+  value {
+    type: DT_RESOURCE
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_7_bn/beta"
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_6_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_6_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_6_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_7_bn/cond/ReadVariableOp_1/Switch' type=Switch>]
+[STR DEBUG] Processing layer 44's swapping, swap out at [46], swap in at [139]
+[STR DEBUG] Find swapout ops: name: "conv_dw_7_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_7_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_7_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_7_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 139, use the last op name: "training/RMSprop/gradients/gradients/conv_dw_7_bn/cond/ReadVariableOp_3/Switch_grad/cond_grad"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_dw_7_bn/cond/FusedBatchNormV3_1_grad/FusedBatchNormGradV3:2"
+input: "training/RMSprop/gradients/gradients/zeros_53"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 45's swapping, swap out at [47], swap in at [138]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 45, among [<tf.Operation 'conv_dw_7_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_7_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_7_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_dw_7_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_dw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_dw_7_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_dw_7_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_dw_7_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_dw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_7_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_dw_7_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_dw_7_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_dw_7_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_dw_7_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_dw_7_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_dw_7_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_dw_7_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_dw_7_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_7_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_dw_7_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_7_bn/cond/Const' type=Const>, <tf.Operation 'conv_dw_7_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_7_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_7_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_dw_7_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_7_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_7_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_7_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_dw_7_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_dw_7_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_7_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_7_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_7_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_dw_7_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_7_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_dw_7_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_7_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_dw_7_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_dw_7_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_7_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_dw_7_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_7_bn/cond/ReadVariableOp/Switch' type=Switch>]
+[STR DEBUG] Choose op that have outputs: name: "conv_dw_7_bn/cond/ReadVariableOp/Switch"
+op: "Switch"
+input: "conv_dw_7_bn/gamma"
+input: "conv_dw_7_bn/cond/pred_id"
+attr {
+  key: "T"
+  value {
+    type: DT_RESOURCE
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_7_bn/gamma"
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_7_bn/cond/ReadVariableOp/Switch"
+op: "Switch"
+input: "conv_dw_7_bn/gamma"
+input: "conv_dw_7_bn/cond/pred_id"
+attr {
+  key: "T"
+  value {
+    type: DT_RESOURCE
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_7_bn/gamma"
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_7_bn/cond/ReadVariableOp/Switch:0", shape=(), dtype=resource), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_7_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 46's swapping, swap out at [48], swap in at [137]
+[STR DEBUG] Cannot find swap-out control nodes for layer 46, use the first op name: "conv_pw_7_bn/cond/ReadVariableOp_3/Switch"
+op: "Switch"
+input: "conv_pw_7_bn/beta"
+input: "conv_pw_7_bn/cond/pred_id"
+attr {
+  key: "T"
+  value {
+    type: DT_RESOURCE
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_7_bn/beta"
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_7_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_7_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_7_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_7_bn/cond/ReadVariableOp_3/Switch' type=Switch>]
+[STR DEBUG] Processing layer 47's swapping, swap out at [49], swap in at [136]
+[STR DEBUG] Find swapout ops: name: "conv_pw_7_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_7_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_7_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_7_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 136, use the last op name: "training/RMSprop/gradients/gradients/conv_pw_7_bn/cond/ReadVariableOp_1/Switch_grad/cond_grad"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/zeros_51"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_7_bn/cond/FusedBatchNormV3_grad/FusedBatchNormGradV3:2"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 48's swapping, swap out at [50], swap in at [135]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 48, among [<tf.Operation 'conv_pw_7_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_7_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_7_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_7_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_7_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_7_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_7_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_7_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_7_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_7_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_7_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_7_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_7_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_7_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_7_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_7_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_7_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_7_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_7_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_7_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_7_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_7_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_7_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_7_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_7_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_7_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_7_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_7_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_7_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_7_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_7_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_7_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_7_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_7_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_7_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_7_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_7_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_7_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_7_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_7_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch:0"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch:0"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_7_bn/cond/FusedBatchNormV3_1/ReadVariableOp:0", shape=(512,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_8_relu/Relu6' type=Relu6>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/conv_pw_7_relu/Relu6"
+op: "Relu6"
+input: "training/RMSprop/gradients/conv_pw_7_bn/cond/Merge"
+input: "^loss/mul"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_7_bn/cond/FusedBatchNormV3_1_grad/FusedBatchNormGradV3' type=FusedBatchNormGradV3>]
+[STR DEBUG] Processing layer 49's swapping, swap out at [51], swap in at [134]
+[STR DEBUG] Cannot find swap-out control nodes for layer 49, use the first op name: "conv_dw_8_bn/cond_1/pred_id"
+op: "Identity"
+input: "keras_learning_phase"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_7_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_7_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_7_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_8_bn/cond_1/pred_id' type=Identity>]
+[STR DEBUG] Processing layer 50's swapping, swap out at [52], swap in at [133]
+[STR DEBUG] Find swapout ops: name: "conv_dw_8_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_8_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_8_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_8_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 133, use the last op name: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_dw_8_bn/cond/FusedBatchNormV3_1_grad/FusedBatchNormGradV3"
+op: "FusedBatchNormGradV3"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_dw_8_bn/cond/Merge_grad/Switch:1"
+input: "training/RMSprop/gradients/conv_dw_8_bn/cond/FusedBatchNormV3_1/Switch"
+input: "conv_dw_8_bn/cond/ReadVariableOp_2"
+input: "conv_dw_8_bn/cond/FusedBatchNormV3_1/ReadVariableOp"
+input: "conv_dw_8_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1"
+input: "training/RMSprop/gradients/conv_dw_8_bn/cond/FusedBatchNormV3_1:5"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "U"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "epsilon"
+  value {
+    f: 0.0010000000474974513
+  }
+}
+attr {
+  key: "is_training"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Processing layer 51's swapping, swap out at [53], swap in at [132]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 51, among [<tf.Operation 'conv_dw_8_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_dw_8_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_dw_8_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_8_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_dw_8_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_8_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_dw_8_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_8_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_8_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_8_bn/cond/Const' type=Const>, <tf.Operation 'conv_dw_8_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_dw_8_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_8_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_8_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_8_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_dw_8_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_dw_8_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_8_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_dw_8_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_dw_8_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_8_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_8_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_dw_8_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_8_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_dw_8_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_8_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_dw_8_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_8_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_8_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_8_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_dw_8_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_8_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_dw_8_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_dw_8_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_8_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_dw_8_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_dw_8_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_dw_8_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_dw_8_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_8_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_8_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_dw_8_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_dw_8_bn/cond_1/Switch' type=Switch>]
+[STR DEBUG] Choose op that have outputs: name: "conv_dw_8_bn/cond_1/Switch"
+op: "Switch"
+input: "keras_learning_phase"
+input: "keras_learning_phase"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_8_bn/cond_1/Switch"
+op: "Switch"
+input: "keras_learning_phase"
+input: "keras_learning_phase"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_8_bn/cond_1/Switch:0", shape=(), dtype=bool), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_8_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 52's swapping, swap out at [54], swap in at [131]
+[STR DEBUG] Cannot find swap-out control nodes for layer 52, use the first op name: "conv_pw_8_bn/AssignMovingAvg/AssignSubVariableOp"
+op: "AssignSubVariableOp"
+input: "conv_pw_8_bn/moving_mean"
+input: "conv_pw_8_bn/AssignMovingAvg/mul"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_8_bn/moving_mean"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_8_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_8_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_8_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_8_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>]
+[STR DEBUG] Processing layer 53's swapping, swap out at [55], swap in at [130]
+[STR DEBUG] Find swapout ops: name: "conv_pw_8_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_8_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_8_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_8_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 130, use the last op name: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_8_bn/cond/FusedBatchNormV3/Switch_grad/Merge"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_8_bn/cond/FusedBatchNormV3/Switch_grad/Switch"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_8_bn/cond/FusedBatchNormV3/Switch_grad/Switch_1:1"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 54's swapping, swap out at [56], swap in at [129]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 54, among [<tf.Operation 'conv_pw_8_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_8_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_8_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_8_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_8_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_8_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_8_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_8_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_8_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_8_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_8_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_8_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_8_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_8_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_8_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_8_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_8_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_8_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_8_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_8_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_8_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_8_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_8_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_8_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_8_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_8_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_8_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_8_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_8_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_8_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_8_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_8_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_8_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_8_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_8_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_8_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_8_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_8_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_8_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_8_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_8_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_8_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_8_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_8_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_8_bn/AssignMovingAvg/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_8_bn/moving_mean"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_8_bn/AssignMovingAvg/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_8_bn/moving_mean"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_8_bn/AssignMovingAvg/ReadVariableOp:0", shape=(512,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_9_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 55's swapping, swap out at [57], swap in at [128]
+[STR DEBUG] Cannot find swap-out control nodes for layer 55, use the first op name: "conv_dw_9_bn/AssignMovingAvg_1/AssignSubVariableOp"
+op: "AssignSubVariableOp"
+input: "conv_dw_9_bn/moving_variance"
+input: "conv_dw_9_bn/AssignMovingAvg_1/mul"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_9_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_8_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_8_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_8_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_9_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>]
+[STR DEBUG] Processing layer 56's swapping, swap out at [58], swap in at [127]
+[STR DEBUG] Find swapout ops: name: "conv_dw_9_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_9_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_9_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_9_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 127, use the last op name: "training/RMSprop/gradients/conv_dw_9_bn/cond/FusedBatchNormV3_1/Switch"
+op: "Switch"
+input: "training/RMSprop/gradients/conv_dw_9/depthwise"
+input: "conv_dw_9_bn/cond/pred_id"
+input: "^loss/mul"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_9/depthwise"
+    }
+  }
+}
+
+[STR DEBUG] Processing layer 57's swapping, swap out at [59], swap in at [126]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 57, among [<tf.Operation 'conv_dw_9_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_dw_9_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_dw_9_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_dw_9_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_9_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_dw_9_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_9_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_dw_9_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_9_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_9_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_dw_9_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_9_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_9_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_9_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_dw_9_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_9_bn/cond/Const' type=Const>, <tf.Operation 'conv_dw_9_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_9_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_9_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_dw_9_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_9_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_dw_9_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_9_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_dw_9_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_dw_9_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_9_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_9_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_9_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_9_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_dw_9_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_dw_9_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_dw_9_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_dw_9_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_dw_9_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_dw_9_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_dw_9_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_dw_9_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_9_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_9_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_dw_9_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_dw_9_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_dw_9_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_dw_9_bn/AssignMovingAvg_1/mul' type=Mul>]
+[STR DEBUG] Choose op that have outputs: name: "conv_dw_9_bn/AssignMovingAvg_1/mul"
+op: "Mul"
+input: "conv_dw_9_bn/AssignMovingAvg_1/sub_1"
+input: "conv_dw_9_bn/AssignMovingAvg_1/sub"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_9_bn/moving_variance"
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_9_bn/AssignMovingAvg_1/mul"
+op: "Mul"
+input: "conv_dw_9_bn/AssignMovingAvg_1/sub_1"
+input: "conv_dw_9_bn/AssignMovingAvg_1/sub"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_9_bn/moving_variance"
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_9_bn/AssignMovingAvg_1/mul:0", shape=(512,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_9_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 58's swapping, swap out at [60], swap in at [125]
+[STR DEBUG] Cannot find swap-out control nodes for layer 58, use the first op name: "conv_pw_9_bn/gamma/Initializer/ones"
+op: "Const"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_9_bn/gamma"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+        dim {
+          size: 512
+        }
+      }
+      float_val: 1.0
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_9_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_9_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_9_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_9_bn/gamma/Initializer/ones' type=Const>]
+[STR DEBUG] Processing layer 59's swapping, swap out at [61], swap in at [124]
+[STR DEBUG] Find swapout ops: name: "conv_pw_9_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_9_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_9_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_9_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 124, use the last op name: "training/RMSprop/gradients/gradients/conv_pw_9_bn/cond/ReadVariableOp_3/Switch_grad/cond_grad"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_9_bn/cond/FusedBatchNormV3_1_grad/FusedBatchNormGradV3:2"
+input: "training/RMSprop/gradients/gradients/zeros_33"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 60's swapping, swap out at [62], swap in at [123]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 60, among [<tf.Operation 'conv_pw_9_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_9_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_9_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_9_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_9_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_9_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_9_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_9_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_9_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_9_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_9_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_9_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_9_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_9_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_9_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_9_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_9_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_9_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_9_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_9_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_9_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_9_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_9_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_9_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_9_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_9_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_9_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_9_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_9_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_9_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_9_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_9_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_9_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_9_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_9_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_9_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_9_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_9_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_9_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_9_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_9_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_9_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_9_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_9_bn/AssignMovingAvg_1/ReadVariableOp_1"
+op: "ReadVariableOp"
+input: "conv_pw_9_bn/moving_variance"
+input: "^conv_pw_9_bn/AssignMovingAvg_1/AssignSubVariableOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_9_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_9_bn/AssignMovingAvg_1/ReadVariableOp_1"
+op: "ReadVariableOp"
+input: "conv_pw_9_bn/moving_variance"
+input: "^conv_pw_9_bn/AssignMovingAvg_1/AssignSubVariableOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_9_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_9_bn/AssignMovingAvg_1/ReadVariableOp_1:0", shape=(512,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_10_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 61's swapping, swap out at [63], swap in at [122]
+[STR DEBUG] Cannot find swap-out control nodes for layer 61, use the first op name: "conv_dw_10_bn/cond/switch_t"
+op: "Identity"
+input: "conv_dw_10_bn/cond/Switch:1"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_9_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_9_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_9_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_10_bn/cond/switch_t' type=Identity>]
+[STR DEBUG] Processing layer 62's swapping, swap out at [64], swap in at [121]
+[STR DEBUG] Find swapout ops: name: "conv_dw_10_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_10_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_10_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_10_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 121, use the last op name: "training/RMSprop/gradients/gradients/conv_dw_10_bn/cond/ReadVariableOp_1/Switch_grad/cond_grad"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/zeros_31"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_dw_10_bn/cond/FusedBatchNormV3_grad/FusedBatchNormGradV3:2"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 63's swapping, swap out at [65], swap in at [120]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 63, among [<tf.Operation 'conv_dw_10_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_dw_10_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_10_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_dw_10_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_10_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_dw_10_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_10_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_10_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_dw_10_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_10_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/cond/Const' type=Const>, <tf.Operation 'conv_dw_10_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_10_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_10_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_dw_10_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_dw_10_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_10_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_dw_10_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_10_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_10_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_dw_10_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_10_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_dw_10_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_10_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_dw_10_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_10_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_10_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_10_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_dw_10_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_10_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_dw_10_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_dw_10_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_dw_10_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_dw_10_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_dw_10_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_dw_10_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_10_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_10_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_dw_10_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_dw_10_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_dw_10_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_dw_10_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_dw_10_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_dw_10_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_dw_10_bn/AssignMovingAvg_1/mul"
+op: "Mul"
+input: "conv_dw_10_bn/AssignMovingAvg_1/sub_1"
+input: "conv_dw_10_bn/AssignMovingAvg_1/sub"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_10_bn/moving_variance"
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_10_bn/AssignMovingAvg_1/mul"
+op: "Mul"
+input: "conv_dw_10_bn/AssignMovingAvg_1/sub_1"
+input: "conv_dw_10_bn/AssignMovingAvg_1/sub"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_10_bn/moving_variance"
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_10_bn/AssignMovingAvg_1/mul:0", shape=(512,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_10_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 64's swapping, swap out at [66], swap in at [119]
+[STR DEBUG] Cannot find swap-out control nodes for layer 64, use the first op name: "conv_pw_10_bn/beta"
+op: "VarHandleOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_10_bn/beta"
+    }
+  }
+}
+attr {
+  key: "container"
+  value {
+    s: ""
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "shape"
+  value {
+    shape {
+      dim {
+        size: 512
+      }
+    }
+  }
+}
+attr {
+  key: "shared_name"
+  value {
+    s: "conv_pw_10_bn/beta"
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_10_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_10_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_10_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_10_bn/beta' type=VarHandleOp>]
+[STR DEBUG] Processing layer 65's swapping, swap out at [67], swap in at [118]
+[STR DEBUG] Find swapout ops: name: "conv_pw_10_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_10_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_10_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_10_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 118, use the last op name: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_10_bn/cond/FusedBatchNormV3_1/Switch_grad/Switch_1"
+op: "Switch"
+input: "training/RMSprop/gradients/gradients/zeros_like_85"
+input: "conv_pw_10_bn/cond/pred_id"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 66's swapping, swap out at [68], swap in at [117]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 66, among [<tf.Operation 'conv_pw_10_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_10_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_10_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_10_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_10_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_10_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_10_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_10_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_10_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_10_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_10_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_10_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_10_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_10_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_10_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_10_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_10_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_10_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_10_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_10_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_10_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_10_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_10_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_10_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_10_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_10_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_10_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_10_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_10_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_10_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_10_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_10_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_10_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_10_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_10_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_10_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_10_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_10_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_10_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_10_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_10_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_10_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_10_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_10_bn/AssignMovingAvg_1/ReadVariableOp_1"
+op: "ReadVariableOp"
+input: "conv_pw_10_bn/moving_variance"
+input: "^conv_pw_10_bn/AssignMovingAvg_1/AssignSubVariableOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_10_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_10_bn/AssignMovingAvg_1/ReadVariableOp_1"
+op: "ReadVariableOp"
+input: "conv_pw_10_bn/moving_variance"
+input: "^conv_pw_10_bn/AssignMovingAvg_1/AssignSubVariableOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_10_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_10_bn/AssignMovingAvg_1/ReadVariableOp_1:0", shape=(512,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_11_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 67's swapping, swap out at [69], swap in at [116]
+[STR DEBUG] Cannot find swap-out control nodes for layer 67, use the first op name: "conv_dw_11_bn/beta"
+op: "VarHandleOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_11_bn/beta"
+    }
+  }
+}
+attr {
+  key: "container"
+  value {
+    s: ""
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "shape"
+  value {
+    shape {
+      dim {
+        size: 512
+      }
+    }
+  }
+}
+attr {
+  key: "shared_name"
+  value {
+    s: "conv_dw_11_bn/beta"
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_10_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_10_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_10_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_11_bn/beta' type=VarHandleOp>]
+[STR DEBUG] Processing layer 68's swapping, swap out at [70], swap in at [115]
+[STR DEBUG] Find swapout ops: name: "conv_dw_11_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_11_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_11_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_11_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 115, use the last op name: "training/RMSprop/gradients/gradients/conv_dw_11_bn/cond/ReadVariableOp_2/Switch_grad/cond_grad"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_dw_11_bn/cond/FusedBatchNormV3_1_grad/FusedBatchNormGradV3:1"
+input: "training/RMSprop/gradients/gradients/zeros_20"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 69's swapping, swap out at [71], swap in at [114]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 69, among [<tf.Operation 'conv_dw_11_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_dw_11_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_11_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_dw_11_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_dw_11_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_dw_11_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_11_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_11_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_dw_11_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_11_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_dw_11_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_11_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_11_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_dw_11_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_11_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_dw_11_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_11_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_dw_11_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_dw_11_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_11_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_11_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_11_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_dw_11_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_dw_11_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_11_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_dw_11_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_dw_11_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_dw_11_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_dw_11_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_dw_11_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_11_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_dw_11_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_11_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_dw_11_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_dw_11_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_dw_11_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_11_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_11_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_dw_11_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_11_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_11_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_11_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_11_bn/cond/Const' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "conv_dw_11_bn/cond/Const"
+op: "Const"
+input: "^conv_dw_11_bn/cond/switch_t"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+        dim {
+        }
+      }
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_11_bn/cond/Const"
+op: "Const"
+input: "^conv_dw_11_bn/cond/switch_t"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+        dim {
+        }
+      }
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_11_bn/cond/Const:0", shape=(0,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_11_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 70's swapping, swap out at [72], swap in at [113]
+[STR DEBUG] Cannot find swap-out control nodes for layer 70, use the first op name: "conv_pw_11_bn/moving_variance/Initializer/ones"
+op: "Const"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_11_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+        dim {
+          size: 512
+        }
+      }
+      float_val: 1.0
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_11_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_11_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_11_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_11_bn/moving_variance/Initializer/ones' type=Const>]
+[STR DEBUG] Processing layer 71's swapping, swap out at [73], swap in at [112]
+[STR DEBUG] Find swapout ops: name: "conv_pw_11_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_11_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_11_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_11_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 112, use the last op name: "training/RMSprop/gradients/conv_pw_11_bn/cond/Merge"
+op: "Merge"
+input: "training/RMSprop/gradients/conv_pw_11_bn/cond/FusedBatchNormV3_1"
+input: "training/RMSprop/gradients/conv_pw_11_bn/cond/FusedBatchNormV3"
+input: "^loss/mul"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 72's swapping, swap out at [74], swap in at [111]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 72, among [<tf.Operation 'conv_pw_11_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_11_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_11_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_11_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_11_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_11_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_11_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_11_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_11_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_11_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_11_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_11_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_11_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_11_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_11_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_11_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_11_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_11_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_11_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_11_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_11_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_11_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_11_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_11_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_11_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_11_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_11_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_11_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_11_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_11_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_11_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_11_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_11_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_11_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_11_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_11_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_11_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_11_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_11_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_11_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_11_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_11_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_11_bn/cond/Const' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_11_bn/cond/Const"
+op: "Const"
+input: "^conv_pw_11_bn/cond/switch_t"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+        dim {
+        }
+      }
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 72, use the first op name: "conv_pad_12/Pad/paddings"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+        dim {
+          size: 4
+        }
+        dim {
+          size: 2
+        }
+      }
+      tensor_content: "\000\000\000\000\000\000\000\000\000\000\000\000\001\000\000\000\000\000\000\000\001\000\000\000\000\000\000\000\000\000\000\000"
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_11_bn/cond/Const"
+op: "Const"
+input: "^conv_pw_11_bn/cond/switch_t"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+        dim {
+        }
+      }
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_11_bn/cond/Const:0", shape=(0,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pad_12/Pad/paddings' type=Const>]
+[STR DEBUG] Processing layer 73's swapping, swap out at [75], swap in at [110]
+[STR DEBUG] Find swapout ops: name: "conv_pw_11_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_11_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_11_relu/Relu6:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_12_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 110, use the last op name: "training/RMSprop/gradients/conv_pad_12/Pad"
+op: "Pad"
+input: "training/RMSprop/gradients/conv_pw_11_relu/Relu6"
+input: "conv_pad_12/Pad/paddings"
+input: "^loss/mul"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tpaddings"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 74's swapping, swap out at [76], swap in at [109]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 74, among [<tf.Operation 'conv_pad_12/Pad/paddings' type=Const>, <tf.Operation 'conv_pad_12/Pad' type=Pad>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pad_12/Pad"
+op: "Pad"
+input: "conv_pw_11_relu/Relu6"
+input: "conv_pad_12/Pad/paddings"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tpaddings"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 74, use the first op name: "conv_dw_12_bn/cond_1/switch_t"
+op: "Identity"
+input: "conv_dw_12_bn/cond_1/Switch:1"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pad_12/Pad"
+op: "Pad"
+input: "conv_pw_11_relu/Relu6"
+input: "conv_pad_12/Pad/paddings"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tpaddings"
+  value {
+    type: DT_INT32
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pad_12/Pad:0", shape=(?, 15, 15, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_12_bn/cond_1/switch_t' type=Identity>]
+[STR DEBUG] Processing layer 75's swapping, swap out at [77], swap in at [108]
+[STR DEBUG] Find swapout ops: name: "conv_dw_12_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_12_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_12_relu/Relu6:0", shape=(?, 7, 7, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_12_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 108, use the last op name: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_dw_12_bn/cond/FusedBatchNormV3_grad/FusedBatchNormGradV3"
+op: "FusedBatchNormGradV3"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_dw_12_bn/cond/Merge_grad/Switch_1:1"
+input: "training/RMSprop/gradients/conv_dw_12_bn/cond/FusedBatchNormV3/Switch:1"
+input: "conv_dw_12_bn/cond/ReadVariableOp"
+input: "training/RMSprop/gradients/conv_dw_12_bn/cond/FusedBatchNormV3:3"
+input: "training/RMSprop/gradients/conv_dw_12_bn/cond/FusedBatchNormV3:4"
+input: "training/RMSprop/gradients/conv_dw_12_bn/cond/FusedBatchNormV3:5"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "U"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "epsilon"
+  value {
+    f: 0.0010000000474974513
+  }
+}
+attr {
+  key: "is_training"
+  value {
+    b: true
+  }
+}
+
+[STR DEBUG] Processing layer 76's swapping, swap out at [78], swap in at [107]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 76, among [<tf.Operation 'conv_dw_12_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_dw_12_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_12_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_12_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_12_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_dw_12_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_12_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_dw_12_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_dw_12_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_dw_12_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_dw_12_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_dw_12_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_dw_12_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_dw_12_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_12_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_dw_12_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_12_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_dw_12_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_dw_12_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_dw_12_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_12_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_dw_12_bn/cond/Const' type=Const>, <tf.Operation 'conv_dw_12_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_12_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_dw_12_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_12_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_12_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_12_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_12_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_dw_12_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_12_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_12_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_dw_12_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_dw_12_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_12_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_dw_12_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_dw_12_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_12_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_12_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_dw_12_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_12_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_12_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_12_bn/cond/switch_f' type=Identity>]
+[STR DEBUG] Choose op that have outputs: name: "conv_dw_12_bn/cond/switch_f"
+op: "Identity"
+input: "conv_dw_12_bn/cond/Switch"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_12_bn/cond/switch_f"
+op: "Identity"
+input: "conv_dw_12_bn/cond/Switch"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_12_bn/cond/switch_f:0", shape=(), dtype=bool), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_12_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 77's swapping, swap out at [79], swap in at [106]
+[STR DEBUG] Cannot find swap-out control nodes for layer 77, use the first op name: "conv_pw_12_bn/cond_1/switch_t"
+op: "Identity"
+input: "conv_pw_12_bn/cond_1/Switch:1"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_12_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_12_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_12_relu/Relu6:0", shape=(?, 7, 7, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_12_bn/cond_1/switch_t' type=Identity>]
+[STR DEBUG] Processing layer 78's swapping, swap out at [80], swap in at [105]
+[STR DEBUG] Find swapout ops: name: "conv_pw_12_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_12_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_12_relu/Relu6:0", shape=(?, 7, 7, 1024), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_12_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 105, use the last op name: "training/RMSprop/gradients/gradients/conv_pw_12_bn/cond/ReadVariableOp_1/Switch_grad/cond_grad"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/zeros_11"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_12_bn/cond/FusedBatchNormV3_grad/FusedBatchNormGradV3:2"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 79's swapping, swap out at [81], swap in at [104]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 79, among [<tf.Operation 'conv_pw_12_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_12_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_12_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_12_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_12_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_12_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_12_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_12_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_12_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_12_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_12_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_12_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_12_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_12_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_12_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_12_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_12_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_12_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_12_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_12_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_12_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_12_bn/gamma/Initializer/ones/shape_as_tensor' type=Const>, <tf.Operation 'conv_pw_12_bn/gamma/Initializer/ones/Const' type=Const>, <tf.Operation 'conv_pw_12_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_12_bn/gamma/Initializer/ones' type=Fill>, <tf.Operation 'conv_pw_12_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_12_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_12_bn/beta/Initializer/zeros/shape_as_tensor' type=Const>, <tf.Operation 'conv_pw_12_bn/beta/Initializer/zeros/Const' type=Const>, <tf.Operation 'conv_pw_12_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_12_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_12_bn/beta/Initializer/zeros' type=Fill>, <tf.Operation 'conv_pw_12_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_12_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_12_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_12_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_12_bn/moving_mean/Initializer/zeros/shape_as_tensor' type=Const>, <tf.Operation 'conv_pw_12_bn/moving_mean/Initializer/zeros/Const' type=Const>, <tf.Operation 'conv_pw_12_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_12_bn/moving_mean/Initializer/zeros' type=Fill>, <tf.Operation 'conv_pw_12_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_12_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_12_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_12_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_12_bn/moving_variance/Initializer/ones/shape_as_tensor' type=Const>, <tf.Operation 'conv_pw_12_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_12_bn/moving_variance/Initializer/ones/Const' type=Const>, <tf.Operation 'conv_pw_12_bn/moving_variance/Initializer/ones' type=Fill>, <tf.Operation 'conv_pw_12_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_12_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_12_bn/moving_variance/Assign' type=AssignVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_12_bn/moving_variance/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_12_bn/moving_variance"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_12_bn/moving_variance/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_12_bn/moving_variance"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_12_bn/moving_variance/Read/ReadVariableOp:0", shape=(1024,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_13_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 80's swapping, swap out at [82], swap in at [103]
+[STR DEBUG] Cannot find swap-out control nodes for layer 80, use the first op name: "conv_dw_13_bn/cond_1/switch_t"
+op: "Identity"
+input: "conv_dw_13_bn/cond_1/Switch:1"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_12_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_12_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_12_relu/Relu6:0", shape=(?, 7, 7, 1024), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_13_bn/cond_1/switch_t' type=Identity>]
+[STR DEBUG] Processing layer 81's swapping, swap out at [83], swap in at [102]
+[STR DEBUG] Find swapout ops: name: "conv_dw_13_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_13_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_13_relu/Relu6:0", shape=(?, 7, 7, 1024), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_13_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 102, use the last op name: "training/RMSprop/gradients/conv_dw_13_bn/cond/Merge"
+op: "Merge"
+input: "training/RMSprop/gradients/conv_dw_13_bn/cond/FusedBatchNormV3_1"
+input: "training/RMSprop/gradients/conv_dw_13_bn/cond/FusedBatchNormV3"
+input: "^loss/mul"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 82's swapping, swap out at [84], swap in at [101]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 82, among [<tf.Operation 'conv_dw_13_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_dw_13_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_13_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_13_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_13_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_dw_13_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_13_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_dw_13_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_dw_13_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_dw_13_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_dw_13_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_dw_13_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_dw_13_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_dw_13_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_13_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_dw_13_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_13_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_dw_13_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_dw_13_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_dw_13_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_13_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/gamma/Initializer/ones/shape_as_tensor' type=Const>, <tf.Operation 'conv_dw_13_bn/gamma/Initializer/ones/Const' type=Const>, <tf.Operation 'conv_dw_13_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_dw_13_bn/gamma/Initializer/ones' type=Fill>, <tf.Operation 'conv_dw_13_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_13_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/cond/Const' type=Const>, <tf.Operation 'conv_dw_13_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_dw_13_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_13_bn/beta/Initializer/zeros/shape_as_tensor' type=Const>, <tf.Operation 'conv_dw_13_bn/beta/Initializer/zeros/Const' type=Const>, <tf.Operation 'conv_dw_13_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_dw_13_bn/beta/Initializer/zeros' type=Fill>, <tf.Operation 'conv_dw_13_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_13_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_dw_13_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_13_bn/moving_mean/Initializer/zeros/shape_as_tensor' type=Const>, <tf.Operation 'conv_dw_13_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_dw_13_bn/moving_mean/Initializer/zeros/Const' type=Const>, <tf.Operation 'conv_dw_13_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_dw_13_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_dw_13_bn/moving_mean/Initializer/zeros' type=Fill>, <tf.Operation 'conv_dw_13_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_13_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_dw_13_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_13_bn/moving_variance/Initializer/ones/shape_as_tensor' type=Const>, <tf.Operation 'conv_dw_13_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_dw_13_bn/moving_variance/Initializer/ones/Const' type=Const>, <tf.Operation 'conv_dw_13_bn/moving_variance/Initializer/ones' type=Fill>, <tf.Operation 'conv_dw_13_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_13_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_13_bn/moving_variance/Assign' type=AssignVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_dw_13_bn/moving_variance/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_dw_13_bn/moving_variance"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_13_bn/moving_variance/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_dw_13_bn/moving_variance"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_13_bn/moving_variance/Read/ReadVariableOp:0", shape=(1024,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_13_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 83's swapping, swap out at [85], swap in at [100]
+[STR DEBUG] Cannot find swap-out control nodes for layer 83, use the first op name: "conv_pw_13_bn/cond_1/switch_t"
+op: "Identity"
+input: "conv_pw_13_bn/cond_1/Switch:1"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_13_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_13_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_13_relu/Relu6:0", shape=(?, 7, 7, 1024), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_13_bn/cond_1/switch_t' type=Identity>]
+[STR DEBUG] Processing layer 84's swapping, swap out at [86], swap in at [99]
+[STR DEBUG] Find swapout ops: name: "conv_pw_13_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_13_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_13_relu/Relu6:0", shape=(?, 7, 7, 1024), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_13_relu/Relu6' type=Relu6>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 99, use the last op name: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_13_bn/cond/FusedBatchNormV3/Switch_grad/Merge"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_13_bn/cond/FusedBatchNormV3/Switch_grad/Switch"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_pw_13_bn/cond/FusedBatchNormV3/Switch_grad/Switch_1:1"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 85's swapping, swap out at [88], swap in at [98]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 85, among [<tf.Operation 'conv_pw_13_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_13_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_13_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_13_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_13_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_13_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_13_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_13_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_13_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_13_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_13_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_13_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_13_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_13_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_13_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_13_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_13_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_13_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_13_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_13_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_13_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_13_bn/gamma/Initializer/ones/shape_as_tensor' type=Const>, <tf.Operation 'conv_pw_13_bn/gamma/Initializer/ones/Const' type=Const>, <tf.Operation 'conv_pw_13_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_13_bn/gamma/Initializer/ones' type=Fill>, <tf.Operation 'conv_pw_13_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_13_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_13_bn/beta/Initializer/zeros/shape_as_tensor' type=Const>, <tf.Operation 'conv_pw_13_bn/beta/Initializer/zeros/Const' type=Const>, <tf.Operation 'conv_pw_13_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_13_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_13_bn/beta/Initializer/zeros' type=Fill>, <tf.Operation 'conv_pw_13_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_13_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_13_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_13_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_13_bn/moving_mean/Initializer/zeros/shape_as_tensor' type=Const>, <tf.Operation 'conv_pw_13_bn/moving_mean/Initializer/zeros/Const' type=Const>, <tf.Operation 'conv_pw_13_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_13_bn/moving_mean/Initializer/zeros' type=Fill>, <tf.Operation 'conv_pw_13_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_13_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_13_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_13_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_13_bn/moving_variance/Initializer/ones/shape_as_tensor' type=Const>, <tf.Operation 'conv_pw_13_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_13_bn/moving_variance/Initializer/ones/Const' type=Const>, <tf.Operation 'conv_pw_13_bn/moving_variance/Initializer/ones' type=Fill>, <tf.Operation 'conv_pw_13_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_13_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_13_bn/moving_variance/Assign' type=AssignVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_13_bn/moving_variance/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_13_bn/moving_variance"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 85, use the first op name: "reshape_1/strided_slice/stack"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+        dim {
+          size: 1
+        }
+      }
+      int_val: 0
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_13_bn/moving_variance/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_13_bn/moving_variance"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_13_bn/moving_variance/Read/ReadVariableOp:0", shape=(1024,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'reshape_1/strided_slice/stack' type=Const>]
+[STR DEBUG] Processing layer 87's swapping, swap out at [89], swap in at [96]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 87, among [<tf.Operation 'global_average_pooling2d/Mean/reduction_indices' type=Const>, <tf.Operation 'global_average_pooling2d/Mean' type=Mean>]
+[STR DEBUG] Choose op that have outputs: name: "global_average_pooling2d/Mean"
+op: "Mean"
+input: "conv_pw_13_relu/Relu6"
+input: "global_average_pooling2d/Mean/reduction_indices"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "keep_dims"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 87, use the first op name: "dropout/cond/switch_t"
+op: "Identity"
+input: "dropout/cond/Switch:1"
+attr {
+  key: "T"
+  value {
+    type: DT_BOOL
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "global_average_pooling2d/Mean"
+op: "Mean"
+input: "conv_pw_13_relu/Relu6"
+input: "global_average_pooling2d/Mean/reduction_indices"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "keep_dims"
+  value {
+    b: false
+  }
+}
+, 
+	choose swap tensor Tensor("global_average_pooling2d/Mean:0", shape=(?, 1024), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'dropout/cond/switch_t' type=Identity>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 96, use the last op name: "training/RMSprop/gradients/reshape_1/Reshape"
+op: "Reshape"
+input: "training/RMSprop/gradients/global_average_pooling2d/Mean"
+input: "training/RMSprop/gradients/reshape_1/Reshape/shape"
+input: "^loss/mul"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 88's swapping, swap out at [90], swap in at [95]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 88, among [<tf.Operation 'reshape_1/strided_slice/stack' type=Const>, <tf.Operation 'reshape_1/strided_slice/stack_1' type=Const>, <tf.Operation 'reshape_1/Shape' type=Shape>, <tf.Operation 'reshape_1/strided_slice/stack_2' type=Const>, <tf.Operation 'reshape_1/Reshape' type=Reshape>, <tf.Operation 'reshape_1/strided_slice' type=StridedSlice>, <tf.Operation 'reshape_1/Reshape/shape/1' type=Const>, <tf.Operation 'reshape_1/Reshape/shape/2' type=Const>, <tf.Operation 'reshape_1/Reshape/shape/3' type=Const>, <tf.Operation 'reshape_1/Reshape/shape' type=Pack>]
+[STR DEBUG] Choose op that have outputs: name: "reshape_1/Reshape/shape"
+op: "Pack"
+input: "reshape_1/strided_slice"
+input: "reshape_1/Reshape/shape/1"
+input: "reshape_1/Reshape/shape/2"
+input: "reshape_1/Reshape/shape/3"
+attr {
+  key: "N"
+  value {
+    i: 4
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "axis"
+  value {
+    i: 0
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 88, use the first op name: "conv_preds/kernel/Initializer/random_uniform/max"
+op: "Const"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_preds/kernel"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+      }
+      float_val: 0.0761755108833313
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "reshape_1/Reshape/shape"
+op: "Pack"
+input: "reshape_1/strided_slice"
+input: "reshape_1/Reshape/shape/1"
+input: "reshape_1/Reshape/shape/2"
+input: "reshape_1/Reshape/shape/3"
+attr {
+  key: "N"
+  value {
+    i: 4
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "axis"
+  value {
+    i: 0
+  }
+}
+, 
+	choose swap tensor Tensor("reshape_1/Reshape/shape:0", shape=(4,), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'conv_preds/kernel/Initializer/random_uniform/max' type=Const>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 95, use the last op name: "training/RMSprop/gradients/dropout/cond/Identity"
+op: "Identity"
+input: "training/RMSprop/gradients/dropout/cond/Identity/Switch:0"
+input: "^loss/mul"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 89's swapping, swap out at [91], swap in at [94]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 89, among [<tf.Operation 'dropout/cond/switch_t' type=Identity>, <tf.Operation 'dropout/cond/dropout/rate' type=Const>, <tf.Operation 'dropout/cond/Switch' type=Switch>, <tf.Operation 'dropout/cond/switch_f' type=Identity>, <tf.Operation 'dropout/cond/pred_id' type=Identity>, <tf.Operation 'dropout/cond/dropout/random_uniform/min' type=Const>, <tf.Operation 'dropout/cond/dropout/random_uniform/max' type=Const>, <tf.Operation 'dropout/cond/dropout/Shape' type=Shape>, <tf.Operation 'dropout/cond/dropout/random_uniform/RandomUniform' type=RandomUniform>, <tf.Operation 'dropout/cond/dropout/truediv/x' type=Const>, <tf.Operation 'dropout/cond/dropout/random_uniform/sub' type=Sub>, <tf.Operation 'dropout/cond/dropout/sub/x' type=Const>, <tf.Operation 'dropout/cond/dropout/random_uniform' type=Add>, <tf.Operation 'dropout/cond/dropout/Shape/Switch' type=Switch>, <tf.Operation 'dropout/cond/dropout/random_uniform/mul' type=Mul>, <tf.Operation 'dropout/cond/dropout/sub' type=Sub>, <tf.Operation 'dropout/cond/dropout/GreaterEqual' type=GreaterEqual>, <tf.Operation 'dropout/cond/dropout/truediv' type=RealDiv>, <tf.Operation 'dropout/cond/Identity' type=Identity>, <tf.Operation 'dropout/cond/dropout/mul' type=Mul>, <tf.Operation 'dropout/cond/dropout/mul_1' type=Mul>, <tf.Operation 'dropout/cond/dropout/Cast' type=Cast>, <tf.Operation 'dropout/cond/Merge' type=Merge>, <tf.Operation 'dropout/cond/Identity/Switch' type=Switch>]
+[STR DEBUG] Choose op that have outputs: name: "dropout/cond/Identity/Switch"
+op: "Switch"
+input: "reshape_1/Reshape"
+input: "dropout/cond/pred_id"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@reshape_1/Reshape"
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 89, use the first op name: "reshape_2/strided_slice/stack"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+        dim {
+          size: 1
+        }
+      }
+      int_val: 0
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "dropout/cond/Identity/Switch"
+op: "Switch"
+input: "reshape_1/Reshape"
+input: "dropout/cond/pred_id"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@reshape_1/Reshape"
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("dropout/cond/Identity/Switch:0", shape=(?, 1, 1, 1024), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'reshape_2/strided_slice/stack' type=Const>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 94, use the last op name: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/conv_preds/BiasAdd_grad/BiasAddGrad"
+op: "BiasAddGrad"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/reshape_2/Reshape_grad/Reshape"
+input: "^loss/mul"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+
+[STR DEBUG] Processing layer 90's swapping, swap out at [92], swap in at [93]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 90, among [<tf.Operation 'conv_preds/kernel/Initializer/random_uniform/max' type=Const>, <tf.Operation 'conv_preds/kernel' type=VarHandleOp>, <tf.Operation 'conv_preds/kernel/Initializer/random_uniform/RandomUniform' type=RandomUniform>, <tf.Operation 'conv_preds/kernel/Initializer/random_uniform/sub' type=Sub>, <tf.Operation 'conv_preds/kernel/Initializer/random_uniform' type=Add>, <tf.Operation 'conv_preds/kernel/Initializer/random_uniform/mul' type=Mul>, <tf.Operation 'conv_preds/kernel/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_preds/kernel/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_preds/kernel/Assign' type=AssignVariableOp>, <tf.Operation 'conv_preds/bias/Initializer/zeros' type=Const>, <tf.Operation 'conv_preds/bias' type=VarHandleOp>, <tf.Operation 'conv_preds/bias/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_preds/bias/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_preds/bias/Assign' type=AssignVariableOp>, <tf.Operation 'conv_preds/BiasAdd' type=BiasAdd>, <tf.Operation 'conv_preds/Conv2D' type=Conv2D>, <tf.Operation 'conv_preds/BiasAdd/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_preds/Conv2D/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_preds/dilation_rate' type=Const>, <tf.Operation 'conv_preds/kernel/Initializer/random_uniform/shape' type=Const>, <tf.Operation 'conv_preds/kernel/Initializer/random_uniform/min' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "conv_preds/kernel/Initializer/random_uniform/min"
+op: "Const"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_preds/kernel"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+      }
+      float_val: -0.0761755108833313
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_preds/kernel/Initializer/random_uniform/min"
+op: "Const"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_preds/kernel"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+      }
+      float_val: -0.0761755108833313
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("conv_preds/kernel/Initializer/random_uniform/min:0", shape=(), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'act_softmax/Softmax' type=Softmax>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 93, use the last op name: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/reshape_2/Reshape_grad/Reshape"
+op: "Reshape"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/loss/act_softmax_loss/softmax_cross_entropy_with_logits/Reshape_grad/Reshape"
+input: "training/RMSprop/gradients/gradients/training/RMSprop/gradients/reshape_2/Reshape_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+  1/118 [..............................] - ETA: 41:52 - loss: 2.4454 - acc: 0.0882  2/118 [..............................] - ETA: 22:20 - loss: 3.0252 - acc: 0.1059  3/118 [..............................] - ETA: 15:43 - loss: 2.9528 - acc: 0.1147  4/118 [>.............................] - ETA: 12:27 - loss: 2.8353 - acc: 0.1213  5/118 [>.............................] - ETA: 10:29 - loss: 2.7394 - acc: 0.1247  6/118 [>.............................] - ETA: 9:10 - loss: 2.6501 - acc: 0.1363   7/118 [>.............................] - ETA: 8:10 - loss: 2.5842 - acc: 0.1458  8/118 [=>............................] - ETA: 7:28 - loss: 2.5328 - acc: 0.1493  9/118 [=>............................] - ETA: 6:55 - loss: 2.4771 - acc: 0.1605 10/118 [=>............................] - ETA: 6:28 - loss: 2.4210 - acc: 0.1712 11/118 [=>............................] - ETA: 6:06 - loss: 2.3853 - acc: 0.1778 12/118 [==>...........................] - ETA: 5:46 - loss: 2.3535 - acc: 0.1853 13/118 [==>...........................] - ETA: 5:30 - loss: 2.3284 - acc: 0.1923 14/118 [==>...........................] - ETA: 5:17 - loss: 2.2947 - acc: 0.2019 15/118 [==>...........................] - ETA: 5:05 - loss: 2.2695 - acc: 0.2055 16/118 [===>..........................] - ETA: 4:55 - loss: 2.2569 - acc: 0.2099 17/118 [===>..........................] - ETA: 4:46 - loss: 2.2472 - acc: 0.2130 18/118 [===>..........................] - ETA: 4:38 - loss: 2.2226 - acc: 0.2198 19/118 [===>..........................] - ETA: 4:30 - loss: 2.2011 - acc: 0.2260 20/118 [====>.........................] - ETA: 4:23 - loss: 2.1847 - acc: 0.2291 21/118 [====>.........................] - ETA: 4:17 - loss: 2.1676 - acc: 0.2347 22/118 [====>.........................] - ETA: 4:11 - loss: 2.1520 - acc: 0.2376 23/118 [====>.........................] - ETA: 4:05 - loss: 2.1357 - acc: 0.2425 24/118 [=====>........................] - ETA: 3:59 - loss: 2.1180 - acc: 0.2466 25/118 [=====>........................] - ETA: 3:55 - loss: 2.1050 - acc: 0.2494 26/118 [=====>........................] - ETA: 3:51 - loss: 2.0952 - acc: 0.2524 27/118 [=====>........................] - ETA: 3:47 - loss: 2.0820 - acc: 0.2557 28/118 [======>.......................] - ETA: 3:42 - loss: 2.0698 - acc: 0.2592 29/118 [======>.......................] - ETA: 3:38 - loss: 2.0634 - acc: 0.2618 30/118 [======>.......................] - ETA: 3:34 - loss: 2.0539 - acc: 0.2658 31/118 [======>.......................] - ETA: 3:31 - loss: 2.0408 - acc: 0.2692 32/118 [=======>......................] - ETA: 3:28 - loss: 2.0307 - acc: 0.2722 33/118 [=======>......................] - ETA: 3:24 - loss: 2.0206 - acc: 0.2748 34/118 [=======>......................] - ETA: 3:21 - loss: 2.0109 - acc: 0.2784 35/118 [=======>......................] - ETA: 3:18 - loss: 2.0024 - acc: 0.2806 36/118 [========>.....................] - ETA: 3:14 - loss: 1.9971 - acc: 0.2821 37/118 [========>.....................] - ETA: 3:11 - loss: 1.9885 - acc: 0.2852 38/118 [========>.....................] - ETA: 3:08 - loss: 1.9783 - acc: 0.2877 39/118 [========>.....................] - ETA: 3:06 - loss: 1.9704 - acc: 0.2898 40/118 [=========>....................] - ETA: 3:06 - loss: 1.9663 - acc: 0.2903 41/118 [=========>....................] - ETA: 3:03 - loss: 1.9604 - acc: 0.2914 42/118 [=========>....................] - ETA: 3:00 - loss: 1.9550 - acc: 0.2929 43/118 [=========>....................] - ETA: 2:57 - loss: 1.9476 - acc: 0.2947 44/118 [==========>...................] - ETA: 2:54 - loss: 1.9429 - acc: 0.2961 45/118 [==========>...................] - ETA: 2:54 - loss: 1.9355 - acc: 0.2982 46/118 [==========>...................] - ETA: 2:51 - loss: 1.9295 - acc: 0.2996 47/118 [==========>...................] - ETA: 2:50 - loss: 1.9231 - acc: 0.3021 48/118 [===========>..................] - ETA: 2:48 - loss: 1.9178 - acc: 0.3031 49/118 [===========>..................] - ETA: 2:45 - loss: 1.9120 - acc: 0.3047 50/118 [===========>..................] - ETA: 2:42 - loss: 1.9047 - acc: 0.3067 51/118 [===========>..................] - ETA: 2:39 - loss: 1.8993 - acc: 0.3083 52/118 [============>.................] - ETA: 2:36 - loss: 1.8955 - acc: 0.3095 53/118 [============>.................] - ETA: 2:36 - loss: 1.8922 - acc: 0.3102 54/118 [============>.................] - ETA: 2:33 - loss: 1.8866 - acc: 0.3119 55/118 [============>.................] - ETA: 2:30 - loss: 1.8810 - acc: 0.3134 56/118 [=============>................] - ETA: 2:27 - loss: 1.8746 - acc: 0.3160 57/118 [=============>................] - ETA: 2:26 - loss: 1.8682 - acc: 0.3176 58/118 [=============>................] - ETA: 2:23 - loss: 1.8619 - acc: 0.3204 59/118 [==============>...............] - ETA: 2:20 - loss: 1.8578 - acc: 0.3219 60/118 [==============>...............] - ETA: 2:19 - loss: 1.8557 - acc: 0.3229 61/118 [==============>...............] - ETA: 2:17 - loss: 1.8504 - acc: 0.3247 62/118 [==============>...............] - ETA: 2:14 - loss: 1.8460 - acc: 0.3268 63/118 [===============>..............] - ETA: 2:11 - loss: 1.8423 - acc: 0.3287 64/118 [===============>..............] - ETA: 2:08 - loss: 1.8375 - acc: 0.3299 65/118 [===============>..............] - ETA: 2:06 - loss: 1.8351 - acc: 0.3305 66/118 [===============>..............] - ETA: 2:03 - loss: 1.8325 - acc: 0.3313 67/118 [================>.............] - ETA: 2:02 - loss: 1.8294 - acc: 0.3321 68/118 [================>.............] - ETA: 1:59 - loss: 1.8258 - acc: 0.3331 69/118 [================>.............] - ETA: 1:57 - loss: 1.8211 - acc: 0.3347 70/118 [================>.............] - ETA: 1:54 - loss: 1.8180 - acc: 0.3359 71/118 [=================>............] - ETA: 1:51 - loss: 1.8149 - acc: 0.3369 72/118 [=================>............] - ETA: 1:49 - loss: 1.8129 - acc: 0.3375 73/118 [=================>............] - ETA: 1:46 - loss: 1.8103 - acc: 0.3384 74/118 [=================>............] - ETA: 1:44 - loss: 1.8068 - acc: 0.3393 75/118 [==================>...........] - ETA: 1:42 - loss: 1.8030 - acc: 0.3411 76/118 [==================>...........] - ETA: 1:40 - loss: 1.7996 - acc: 0.3422 77/118 [==================>...........] - ETA: 1:38 - loss: 1.7973 - acc: 0.3425 78/118 [==================>...........] - ETA: 1:36 - loss: 1.7938 - acc: 0.3434 79/118 [===================>..........] - ETA: 1:33 - loss: 1.7920 - acc: 0.3439 80/118 [===================>..........] - ETA: 1:30 - loss: 1.7898 - acc: 0.3449 81/118 [===================>..........] - ETA: 1:28 - loss: 1.7873 - acc: 0.3462 82/118 [===================>..........] - ETA: 1:25 - loss: 1.7848 - acc: 0.3476 83/118 [====================>.........] - ETA: 1:23 - loss: 1.7807 - acc: 0.3488 84/118 [====================>.........] - ETA: 1:20 - loss: 1.7787 - acc: 0.3492 85/118 [====================>.........] - ETA: 1:18 - loss: 1.7768 - acc: 0.3498 86/118 [====================>.........] - ETA: 1:16 - loss: 1.7731 - acc: 0.3506 87/118 [=====================>........] - ETA: 1:15 - loss: 1.7696 - acc: 0.3514 88/118 [=====================>........] - ETA: 1:13 - loss: 1.7663 - acc: 0.3526 89/118 [=====================>........] - ETA: 1:10 - loss: 1.7628 - acc: 0.3541 90/118 [=====================>........] - ETA: 1:08 - loss: 1.7591 - acc: 0.3553 91/118 [======================>.......] - ETA: 1:05 - loss: 1.7554 - acc: 0.3564 92/118 [======================>.......] - ETA: 1:03 - loss: 1.7524 - acc: 0.3578 93/118 [======================>.......] - ETA: 1:00 - loss: 1.7498 - acc: 0.3585 94/118 [======================>.......] - ETA: 58s - loss: 1.7464 - acc: 0.3598  95/118 [=======================>......] - ETA: 55s - loss: 1.7433 - acc: 0.3608 96/118 [=======================>......] - ETA: 53s - loss: 1.7409 - acc: 0.3617 97/118 [=======================>......] - ETA: 50s - loss: 1.7377 - acc: 0.3626 98/118 [=======================>......] - ETA: 48s - loss: 1.7347 - acc: 0.3635 99/118 [========================>.....] - ETA: 46s - loss: 1.7316 - acc: 0.3646100/118 [========================>.....] - ETA: 43s - loss: 1.7277 - acc: 0.3659101/118 [========================>.....] - ETA: 41s - loss: 1.7241 - acc: 0.3673102/118 [========================>.....] - ETA: 38s - loss: 1.7210 - acc: 0.3685103/118 [=========================>....] - ETA: 36s - loss: 1.7189 - acc: 0.3696104/118 [=========================>....] - ETA: 34s - loss: 1.7171 - acc: 0.3701105/118 [=========================>....] - ETA: 31s - loss: 1.7144 - acc: 0.3712106/118 [=========================>....] - ETA: 29s - loss: 1.7118 - acc: 0.3720107/118 [==========================>...] - ETA: 26s - loss: 1.7090 - acc: 0.3731108/118 [==========================>...] - ETA: 24s - loss: 1.7061 - acc: 0.3740109/118 [==========================>...] - ETA: 21s - loss: 1.7027 - acc: 0.3756110/118 [==========================>...] - ETA: 19s - loss: 1.7008 - acc: 0.3764111/118 [===========================>..] - ETA: 16s - loss: 1.6989 - acc: 0.3772112/118 [===========================>..] - ETA: 14s - loss: 1.6961 - acc: 0.3783113/118 [===========================>..] - ETA: 12s - loss: 1.6937 - acc: 0.3789114/118 [===========================>..] - ETA: 9s - loss: 1.6922 - acc: 0.3795 115/118 [============================>.] - ETA: 7s - loss: 1.6919 - acc: 0.3798116/118 [============================>.] - ETA: 4s - loss: 1.6897 - acc: 0.3804117/118 [============================>.] - ETA: 2s - loss: 1.6887 - acc: 0.3808  1/118 [..............................] - ETA: 2:52 - loss: 3.1074 - acc: 0.0765  2/118 [..............................] - ETA: 1:39 - loss: 3.1194 - acc: 0.0853  3/118 [..............................] - ETA: 1:17 - loss: 3.1054 - acc: 0.0902  4/118 [>.............................] - ETA: 1:06 - loss: 3.1130 - acc: 0.0897  5/118 [>.............................] - ETA: 1:01 - loss: 3.0969 - acc: 0.0994  6/118 [>.............................] - ETA: 58s - loss: 3.0979 - acc: 0.0995   7/118 [>.............................] - ETA: 56s - loss: 3.1107 - acc: 0.0962  8/118 [=>............................] - ETA: 54s - loss: 3.0948 - acc: 0.0993  9/118 [=>............................] - ETA: 52s - loss: 3.0952 - acc: 0.1000 10/118 [=>............................] - ETA: 50s - loss: 3.1077 - acc: 0.0991 11/118 [=>............................] - ETA: 49s - loss: 3.1042 - acc: 0.1011 12/118 [==>...........................] - ETA: 48s - loss: 3.1085 - acc: 0.1005 13/118 [==>...........................] - ETA: 47s - loss: 3.1101 - acc: 0.1014 14/118 [==>...........................] - ETA: 46s - loss: 3.1059 - acc: 0.1032 15/118 [==>...........................] - ETA: 45s - loss: 3.1188 - acc: 0.1016 16/118 [===>..........................] - ETA: 44s - loss: 3.1176 - acc: 0.1026 17/118 [===>..........................] - ETA: 43s - loss: 3.1062 - acc: 0.1021 18/118 [===>..........................] - ETA: 42s - loss: 3.1013 - acc: 0.1038 19/118 [===>..........................] - ETA: 41s - loss: 3.1007 - acc: 0.1036 20/118 [====>.........................] - ETA: 40s - loss: 3.0990 - acc: 0.1032 21/118 [====>.........................] - ETA: 39s - loss: 3.1014 - acc: 0.1034 22/118 [====>.........................] - ETA: 38s - loss: 3.0974 - acc: 0.1040 23/118 [====>.........................] - ETA: 37s - loss: 3.1031 - acc: 0.1029 24/118 [=====>........................] - ETA: 36s - loss: 3.1116 - acc: 0.1016 25/118 [=====>........................] - ETA: 36s - loss: 3.1094 - acc: 0.1013 26/118 [=====>........................] - ETA: 35s - loss: 3.1071 - acc: 0.1007 27/118 [=====>........................] - ETA: 34s - loss: 3.1063 - acc: 0.1012 28/118 [======>.......................] - ETA: 33s - loss: 3.1091 - acc: 0.1000 29/118 [======>.......................] - ETA: 33s - loss: 3.1133 - acc: 0.1000 30/118 [======>.......................] - ETA: 34s - loss: 3.1121 - acc: 0.1000118/118 [==============================] - 296s 3s/step - loss: 1.6875 - acc: 0.3814 - val_loss: 3.1121 - val_acc: 0.1000

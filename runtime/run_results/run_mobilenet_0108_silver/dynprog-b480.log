@@ -1,0 +1,801 @@
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/contrib/graph_editor/select.py:554: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 480), ('epochs', 1), ('model_name', 'MobileNet'), ('strategy', 'dynprog'), ('verbose', False)]
+Cannot find config for batch_size=480, use 400 instead
+Shape of x_train: (40000, 224, 224, 3), shape of x_test: (10000, 224, 224, 3)
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'swap', 'verbose': 'false', 'tags': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_400/layer_names'}, {'p': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_400/P-dynprog', 'q': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_400/Q-dynprog'}]
+[STR DEBUG] Processing layer 0's swapping, swap out at [1], swap in at [183]
+[STR DEBUG] Cannot find swap-out control nodes for layer 0, use the first op name: "conv1_pad/Pad/paddings"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+        dim {
+          size: 4
+        }
+        dim {
+          size: 2
+        }
+      }
+      tensor_content: "\000\000\000\000\000\000\000\000\000\000\000\000\001\000\000\000\000\000\000\000\001\000\000\000\000\000\000\000\000\000\000\000"
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "input_1"
+op: "Placeholder"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "shape"
+  value {
+    shape {
+      dim {
+        size: -1
+      }
+      dim {
+        size: 224
+      }
+      dim {
+        size: 224
+      }
+      dim {
+        size: 3
+      }
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("input_1:0", shape=(?, 224, 224, 3), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv1_pad/Pad/paddings' type=Const>]
+[STR DEBUG] Processing layer 9's swapping, swap out at [10], swap in at [174]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 9, among [<tf.Operation 'conv_pw_1_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_1_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_1_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_1_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_1_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_1_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_1_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_1_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_1_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_1_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_1_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_1_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_1_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_1_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_1_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_1_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_1_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_1_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_1_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_1_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_1_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_1_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_1_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_1_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_1_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_1_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_1_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_1_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_1_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_1_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_1_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_1_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_1_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_1_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_1_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_1_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_1_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_1_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_1_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_1_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_1_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_1_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_1_bn/moving_variance/Assign' type=AssignVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_1_bn/moving_variance/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_1_bn/moving_variance"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_1_bn/moving_variance/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_1_bn/moving_variance"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_1_bn/moving_variance/Read/ReadVariableOp:0", shape=(64,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_1_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 13's swapping, swap out at [14], swap in at [170]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 13, among [<tf.Operation 'conv_dw_2_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_2_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_2_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_dw_2_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_dw_2_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_2_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_dw_2_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_2_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_dw_2_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_dw_2_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_2_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_2_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_2_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_2_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_dw_2_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_dw_2_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_dw_2_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_dw_2_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_dw_2_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_dw_2_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_2_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_2_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_dw_2_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_dw_2_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_dw_2_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_dw_2_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_dw_2_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_2_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_2_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_dw_2_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_2_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_dw_2_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_dw_2_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_2_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_2_bn/cond/Const' type=Const>, <tf.Operation 'conv_dw_2_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_dw_2_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_2_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_2_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_dw_2_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_2_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_2_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_dw_2_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_2_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_dw_2_bn/moving_mean/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_dw_2_bn/moving_mean"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_2_bn/moving_mean/Read/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_dw_2_bn/moving_mean"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_2_bn/moving_mean/Read/ReadVariableOp:0", shape=(64,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_2_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 14's swapping, swap out at [15], swap in at [169]
+[STR DEBUG] Find swapout ops: name: "conv_dw_2_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_2_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_2_relu/Relu6:0", shape=(?, 56, 56, 64), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_2_relu/Relu6' type=Relu6>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/conv_pw_2_relu/Relu6_grad/Relu6Grad"
+op: "Relu6Grad"
+input: "training/RMSprop/gradients/gradients/conv_dw_3/depthwise_grad/DepthwiseConv2dNativeBackpropInput"
+input: "conv_pw_2_relu/Relu6"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/conv_dw_2_relu/Relu6_grad/Relu6Grad' type=Relu6Grad>, <tf.Operation 'training/RMSprop/gradients/gradients/conv_pw_2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 15's swapping, swap out at [16], swap in at [168]
+[STR DEBUG] Cannot find swap-out control nodes for layer 15, use the first op name: "conv_pw_2_bn/AssignMovingAvg_1/sub_1"
+op: "Sub"
+input: "conv_pw_2_bn/AssignMovingAvg_1/ReadVariableOp"
+input: "conv_pw_2_bn/cond/Merge_2"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_2_bn/moving_variance"
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_2_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_2_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_2_relu/Relu6:0", shape=(?, 56, 56, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_2_bn/AssignMovingAvg_1/sub_1' type=Sub>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 168, use the last op name: "training/RMSprop/gradients/gradients/conv_pw_2_bn/cond/FusedBatchNormV3_grad/FusedBatchNormGradV3"
+op: "FusedBatchNormGradV3"
+input: "training/RMSprop/gradients/gradients/conv_pw_2_bn/cond/Merge_grad/cond_grad:1"
+input: "conv_pw_2_bn/cond/FusedBatchNormV3/Switch:1"
+input: "conv_pw_2_bn/cond/ReadVariableOp"
+input: "conv_pw_2_bn/cond/FusedBatchNormV3:3"
+input: "conv_pw_2_bn/cond/FusedBatchNormV3:4"
+input: "conv_pw_2_bn/cond/FusedBatchNormV3:5"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "U"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "epsilon"
+  value {
+    f: 0.0010000000474974513
+  }
+}
+attr {
+  key: "is_training"
+  value {
+    b: true
+  }
+}
+
+[STR DEBUG] Processing layer 16's swapping, swap out at [17], swap in at [167]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 16, among [<tf.Operation 'conv_pw_2_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_2_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_2_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_2_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_2_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_2_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_2_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_2_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_2_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_2_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_2_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_2_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_2_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_2_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_2_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_2_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_2_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_2_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_2_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_2_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_2_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_2_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_2_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_2_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_2_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_2_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_2_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_2_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_2_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_2_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_2_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_2_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_2_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_2_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_2_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_2_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_2_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_2_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_2_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_2_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_2_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_2_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_2_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_2_bn/cond/ReadVariableOp' type=ReadVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_2_bn/cond/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_2_bn/cond/ReadVariableOp/Switch:1"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_2_bn/cond/ReadVariableOp"
+op: "ReadVariableOp"
+input: "conv_pw_2_bn/cond/ReadVariableOp/Switch:1"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_2_bn/cond/ReadVariableOp:0", shape=(128,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_2_relu/Relu6' type=Relu6>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/conv_pw_2_relu/Relu6_grad/Relu6Grad"
+op: "Relu6Grad"
+input: "training/RMSprop/gradients/gradients/conv_dw_3/depthwise_grad/DepthwiseConv2dNativeBackpropInput"
+input: "conv_pw_2_relu/Relu6"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/conv_pw_2_bn/cond/FusedBatchNormV3_grad/FusedBatchNormGradV3' type=FusedBatchNormGradV3>]
+[STR DEBUG] Processing layer 18's swapping, swap out at [19], swap in at [165]
+[STR DEBUG] Cannot find swap-out control nodes for layer 18, use the first op name: "conv_dw_3_bn/beta"
+op: "VarHandleOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_3_bn/beta"
+    }
+  }
+}
+attr {
+  key: "container"
+  value {
+    s: ""
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "shape"
+  value {
+    shape {
+      dim {
+        size: 128
+      }
+    }
+  }
+}
+attr {
+  key: "shared_name"
+  value {
+    s: "conv_dw_3_bn/beta"
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_3_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_3_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_3_relu/Relu6:0", shape=(?, 56, 56, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_3_bn/beta' type=VarHandleOp>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 165, use the last op name: "training/RMSprop/gradients/gradients/conv_dw_3_bn/cond/ReadVariableOp_3/Switch_grad/cond_grad"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/conv_dw_3_bn/cond/FusedBatchNormV3_1_grad/FusedBatchNormGradV3:2"
+input: "training/RMSprop/gradients/gradients/zeros_131"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 20's swapping, swap out at [21], swap in at [163]
+[STR DEBUG] Find swapout ops: name: "conv_dw_3_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_3_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_3_relu/Relu6:0", shape=(?, 56, 56, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_3_relu/Relu6' type=Relu6>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/conv_pw_3_relu/Relu6_grad/Relu6Grad"
+op: "Relu6Grad"
+input: "training/RMSprop/gradients/gradients/conv_pad_4/Pad_grad/Slice_1"
+input: "conv_pw_3_relu/Relu6"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/conv_pw_3/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/conv_dw_3_relu/Relu6_grad/Relu6Grad' type=Relu6Grad>]
+[STR DEBUG] Processing layer 22's swapping, swap out at [23], swap in at [161]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 22, among [<tf.Operation 'conv_pw_3_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_3_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_3_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_3_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_3_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_3_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_3_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_3_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_3_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_3_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_3_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_3_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_3_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_3_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_3_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_3_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_3_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_3_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_3_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_3_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_3_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_3_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_3_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_3_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_3_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_3_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_3_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_3_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_3_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_3_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_3_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_3_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_3_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_3_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_3_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_3_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_3_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_3_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_3_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_3_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_3_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_3_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_3_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_3_bn/AssignMovingAvg_1/ReadVariableOp_1"
+op: "ReadVariableOp"
+input: "conv_pw_3_bn/moving_variance"
+input: "^conv_pw_3_bn/AssignMovingAvg_1/AssignSubVariableOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_3_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_3_bn/AssignMovingAvg_1/ReadVariableOp_1"
+op: "ReadVariableOp"
+input: "conv_pw_3_bn/moving_variance"
+input: "^conv_pw_3_bn/AssignMovingAvg_1/AssignSubVariableOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_3_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_3_bn/AssignMovingAvg_1/ReadVariableOp_1:0", shape=(128,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_3_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 24's swapping, swap out at [25], swap in at [159]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 24, among [<tf.Operation 'conv_pad_4/Pad/paddings' type=Const>, <tf.Operation 'conv_pad_4/Pad' type=Pad>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pad_4/Pad"
+op: "Pad"
+input: "conv_pw_3_relu/Relu6"
+input: "conv_pad_4/Pad/paddings"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tpaddings"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pad_4/Pad"
+op: "Pad"
+input: "conv_pw_3_relu/Relu6"
+input: "conv_pad_4/Pad/paddings"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tpaddings"
+  value {
+    type: DT_INT32
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pad_4/Pad:0", shape=(?, 57, 57, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_4_relu/Relu6' type=Relu6>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/conv_dw_4_relu/Relu6_grad/Relu6Grad"
+op: "Relu6Grad"
+input: "training/RMSprop/gradients/gradients/conv_pw_4/Conv2D_grad/Conv2DBackpropInput"
+input: "conv_dw_4_relu/Relu6"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/conv_dw_4/depthwise_grad/DepthwiseConv2dNativeBackpropFilter' type=DepthwiseConv2dNativeBackpropFilter>]
+[STR DEBUG] Processing layer 26's swapping, swap out at [27], swap in at [157]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 26, among [<tf.Operation 'conv_dw_4_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_dw_4_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_dw_4_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_4_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_dw_4_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_4_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_4_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_4_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_dw_4_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_4_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/cond/Const' type=Const>, <tf.Operation 'conv_dw_4_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_4_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_4_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_dw_4_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_dw_4_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_4_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_dw_4_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_4_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_4_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_dw_4_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_4_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_dw_4_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_4_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_dw_4_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_4_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_4_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_4_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_dw_4_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_4_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_dw_4_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_dw_4_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_dw_4_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_dw_4_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_dw_4_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_dw_4_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_4_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_4_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_dw_4_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_dw_4_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_dw_4_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_dw_4_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_dw_4_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_4_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_dw_4_bn/AssignMovingAvg_1/ReadVariableOp_1"
+op: "ReadVariableOp"
+input: "conv_dw_4_bn/moving_variance"
+input: "^conv_dw_4_bn/AssignMovingAvg_1/AssignSubVariableOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_4_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_4_bn/AssignMovingAvg_1/ReadVariableOp_1"
+op: "ReadVariableOp"
+input: "conv_dw_4_bn/moving_variance"
+input: "^conv_dw_4_bn/AssignMovingAvg_1/AssignSubVariableOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_4_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_4_bn/AssignMovingAvg_1/ReadVariableOp_1:0", shape=(128,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_4_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 28's swapping, swap out at [29], swap in at [155]
+[STR DEBUG] Cannot find swap-out control nodes for layer 28, use the first op name: "conv_pw_4_bn/beta"
+op: "VarHandleOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_4_bn/beta"
+    }
+  }
+}
+attr {
+  key: "container"
+  value {
+    s: ""
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "shape"
+  value {
+    shape {
+      dim {
+        size: 256
+      }
+    }
+  }
+}
+attr {
+  key: "shared_name"
+  value {
+    s: "conv_pw_4_bn/beta"
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_4_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_4_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_4_relu/Relu6:0", shape=(?, 28, 28, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_4_bn/beta' type=VarHandleOp>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 155, use the last op name: "training/RMSprop/gradients/gradients/conv_pw_4_bn/cond/ReadVariableOp_2/Switch_grad/cond_grad"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/conv_pw_4_bn/cond/FusedBatchNormV3_1_grad/FusedBatchNormGradV3:1"
+input: "training/RMSprop/gradients/gradients/zeros_112"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 29's swapping, swap out at [30], swap in at [154]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 29, among [<tf.Operation 'conv_pw_4_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_pw_4_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_4_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_pw_4_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_4_bn/cond/Const' type=Const>, <tf.Operation 'conv_pw_4_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_4_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_4_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_pw_4_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_4_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_4_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_pw_4_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_pw_4_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_pw_4_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_pw_4_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_4_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_pw_4_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_4_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_pw_4_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_pw_4_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_pw_4_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_pw_4_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_pw_4_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_pw_4_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_4_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_4_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_4_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_pw_4_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_pw_4_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_pw_4_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_pw_4_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_pw_4_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_pw_4_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_pw_4_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_pw_4_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_pw_4_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_pw_4_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_pw_4_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_pw_4_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_pw_4_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_pw_4_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_pw_4_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_pw_4_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>]
+[STR DEBUG] Choose op that have outputs: name: "conv_pw_4_bn/AssignMovingAvg_1/ReadVariableOp_1"
+op: "ReadVariableOp"
+input: "conv_pw_4_bn/moving_variance"
+input: "^conv_pw_4_bn/AssignMovingAvg_1/AssignSubVariableOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_4_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_pw_4_bn/AssignMovingAvg_1/ReadVariableOp_1"
+op: "ReadVariableOp"
+input: "conv_pw_4_bn/moving_variance"
+input: "^conv_pw_4_bn/AssignMovingAvg_1/AssignSubVariableOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_pw_4_bn/moving_variance"
+    }
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_4_bn/AssignMovingAvg_1/ReadVariableOp_1:0", shape=(256,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_4_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 30's swapping, swap out at [31], swap in at [153]
+[STR DEBUG] Find swapout ops: name: "conv_pw_4_relu/Relu6"
+op: "Relu6"
+input: "conv_pw_4_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_pw_4_relu/Relu6:0", shape=(?, 28, 28, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_5_relu/Relu6' type=Relu6>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/conv_dw_5_relu/Relu6_grad/Relu6Grad"
+op: "Relu6Grad"
+input: "training/RMSprop/gradients/gradients/conv_pw_5/Conv2D_grad/Conv2DBackpropInput"
+input: "conv_dw_5_relu/Relu6"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/conv_dw_5/depthwise_grad/DepthwiseConv2dNativeBackpropFilter' type=DepthwiseConv2dNativeBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/conv_pw_4_relu/Relu6_grad/Relu6Grad' type=Relu6Grad>]
+[STR DEBUG] Processing layer 31's swapping, swap out at [32], swap in at [152]
+[STR DEBUG] Cannot find swap-out control nodes for layer 31, use the first op name: "conv_dw_5_bn/beta"
+op: "VarHandleOp"
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv_dw_5_bn/beta"
+    }
+  }
+}
+attr {
+  key: "container"
+  value {
+    s: ""
+  }
+}
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "shape"
+  value {
+    shape {
+      dim {
+        size: 256
+      }
+    }
+  }
+}
+attr {
+  key: "shared_name"
+  value {
+    s: "conv_dw_5_bn/beta"
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_5_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_5_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_5_relu/Relu6:0", shape=(?, 28, 28, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_5_bn/beta' type=VarHandleOp>]2022-01-07 16:02:30.338998: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 383.50MiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-07 16:02:30.339123: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 383.50MiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-07 16:02:30.339166: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.54GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-07 16:02:30.339186: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.54GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-07 16:02:30.339216: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 917.00MiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-07 16:02:30.339235: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 917.00MiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-07 16:02:40.339679: W tensorflow/core/common_runtime/bfc_allocator.cc:419] Allocator (GPU_0_bfc) ran out of memory trying to allocate 367.50MiB (rounded to 385351680).  Current allocation summary follows.
+2022-01-07 16:02:40.341417: W tensorflow/core/common_runtime/bfc_allocator.cc:424] ****************************************************************************************************
+2022-01-07 16:02:40.341482: W tensorflow/core/framework/op_kernel.cc:1651] OP_REQUIRES failed at constant_op.cc:172 : Resource exhausted: OOM when allocating tensor with shape[480,256,28,28] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+2022-01-07 16:02:50.341997: W tensorflow/core/common_runtime/bfc_allocator.cc:419] Allocator (GPU_0_bfc) ran out of memory trying to allocate 394.22MiB (rounded to 413368320).  Current allocation summary follows.
+2022-01-07 16:02:50.343052: W tensorflow/core/common_runtime/bfc_allocator.cc:424] ****************************************************************************************************
+2022-01-07 16:02:50.343087: W tensorflow/core/framework/op_kernel.cc:1651] OP_REQUIRES failed at pad_op.cc:122 : Resource exhausted: OOM when allocating tensor with shape[122880,29,29] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 152, use the last op name: "training/RMSprop/gradients/gradients/conv_dw_5_bn/cond/FusedBatchNormV3_1/Switch_grad/cond_grad"
+op: "Merge"
+input: "training/RMSprop/gradients/gradients/conv_dw_5_bn/cond/FusedBatchNormV3_1_grad/FusedBatchNormGradV3"
+input: "training/RMSprop/gradients/gradients/zeros_104"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 32's swapping, swap out at [33], swap in at [151]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 32, among [<tf.Operation 'conv_dw_5_bn/beta' type=VarHandleOp>, <tf.Operation 'conv_dw_5_bn/beta/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_5_bn/cond/switch_f' type=Identity>, <tf.Operation 'conv_dw_5_bn/cond/Const_1' type=Const>, <tf.Operation 'conv_dw_5_bn/beta/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/cond/switch_t' type=Identity>, <tf.Operation 'conv_dw_5_bn/beta/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_5_bn/moving_mean/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_5_bn/moving_mean' type=VarHandleOp>, <tf.Operation 'conv_dw_5_bn/moving_mean/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_5_bn/moving_mean/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/cond/Switch' type=Switch>, <tf.Operation 'conv_dw_5_bn/moving_mean/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_5_bn/moving_variance/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_5_bn/moving_variance' type=VarHandleOp>, <tf.Operation 'conv_dw_5_bn/moving_variance/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_5_bn/moving_variance/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/cond/pred_id' type=Identity>, <tf.Operation 'conv_dw_5_bn/moving_variance/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_5_bn/cond_1/switch_t' type=Identity>, <tf.Operation 'conv_dw_5_bn/cond_1/Const' type=Const>, <tf.Operation 'conv_dw_5_bn/cond/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/cond/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/cond/FusedBatchNormV3' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_5_bn/cond/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_5_bn/cond/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_5_bn/cond_1/switch_f' type=Identity>, <tf.Operation 'conv_dw_5_bn/cond_1/Switch' type=Switch>, <tf.Operation 'conv_dw_5_bn/cond/FusedBatchNormV3_1' type=FusedBatchNormV3>, <tf.Operation 'conv_dw_5_bn/cond/ReadVariableOp_2' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/cond/FusedBatchNormV3/Switch' type=Switch>, <tf.Operation 'conv_dw_5_bn/cond/ReadVariableOp_3' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/cond/FusedBatchNormV3_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/cond/ReadVariableOp_2/Switch' type=Switch>, <tf.Operation 'conv_dw_5_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/cond/ReadVariableOp_3/Switch' type=Switch>, <tf.Operation 'conv_dw_5_bn/cond/Merge' type=Merge>, <tf.Operation 'conv_dw_5_bn/cond/Merge_1' type=Merge>, <tf.Operation 'conv_dw_5_bn/cond/FusedBatchNormV3_1/ReadVariableOp/Switch' type=Switch>, <tf.Operation 'conv_dw_5_bn/cond/Merge_2' type=Merge>, <tf.Operation 'conv_dw_5_bn/cond/FusedBatchNormV3_1/ReadVariableOp_1/Switch' type=Switch>, <tf.Operation 'conv_dw_5_bn/cond/FusedBatchNormV3_1/Switch' type=Switch>, <tf.Operation 'conv_dw_5_bn/cond_1/pred_id' type=Identity>, <tf.Operation 'conv_dw_5_bn/cond_1/Const_1' type=Const>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg/sub/x' type=Const>, <tf.Operation 'conv_dw_5_bn/cond_1/Merge' type=Merge>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg_1/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg/sub' type=Sub>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg/mul' type=Mul>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg/sub_1' type=Sub>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg_1/sub/x' type=Const>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg_1/mul' type=Mul>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg_1/sub_1' type=Sub>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg_1/sub' type=Sub>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg_1/AssignSubVariableOp' type=AssignSubVariableOp>, <tf.Operation 'conv_dw_5_bn/AssignMovingAvg_1/ReadVariableOp_1' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/gamma/Initializer/ones' type=Const>, <tf.Operation 'conv_dw_5_bn/gamma' type=VarHandleOp>, <tf.Operation 'conv_dw_5_bn/gamma/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv_dw_5_bn/gamma/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv_dw_5_bn/gamma/Assign' type=AssignVariableOp>, <tf.Operation 'conv_dw_5_bn/beta/Initializer/zeros' type=Const>, <tf.Operation 'conv_dw_5_bn/cond/Const' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "conv_dw_5_bn/cond/Const"
+op: "Const"
+input: "^conv_dw_5_bn/cond/switch_t"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+        dim {
+        }
+      }
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv_dw_5_bn/cond/Const"
+op: "Const"
+input: "^conv_dw_5_bn/cond/switch_t"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_FLOAT
+      tensor_shape {
+        dim {
+        }
+      }
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_5_bn/cond/Const:0", shape=(0,), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_dw_5_relu/Relu6' type=Relu6>]
+[STR DEBUG] Processing layer 33's swapping, swap out at [34], swap in at [150]
+[STR DEBUG] Find swapout ops: name: "conv_dw_5_relu/Relu6"
+op: "Relu6"
+input: "conv_dw_5_bn/cond/Merge"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("conv_dw_5_relu/Relu6:0", shape=(?, 28, 28, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv_pw_5_relu/Relu6' type=Relu6>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/conv_pw_5_relu/Relu6_grad/Relu6Grad"
+op: "Relu6Grad"
+input: "training/RMSprop/gradients/gradients/conv_pad_6/Pad_grad/Slice_1"
+input: "conv_pw_5_relu/Relu6"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/conv_dw_5_relu/Relu6_grad/Relu6Grad' type=Relu6Grad>, <tf.Operation 'training/RMSprop/gradients/gradients/conv_pw_5/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+Traceback (most recent call last):
+  File "../run_training.py", line 83, in <module>
+    verbose=1)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 728, in fit
+    use_multiprocessing=use_multiprocessing)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 603, in fit
+    steps_name='steps_per_epoch')
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 265, in model_iteration
+    batch_outs = batch_function(*batch_data)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 1021, in train_on_batch
+    outputs = self.train_function(ins)  # pylint: disable=not-callable
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/backend.py", line 3476, in __call__
+    run_metadata=self.run_metadata)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/client/session.py", line 1472, in __call__
+    run_metadata_ptr)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: 2 root error(s) found.
+  (0) Resource exhausted: OOM when allocating tensor with shape[480,256,28,28] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node training/RMSprop/gradients/gradients/zeros_98}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+	 [[loss/mul/_505]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+  (1) Resource exhausted: OOM when allocating tensor with shape[480,256,28,28] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node training/RMSprop/gradients/gradients/zeros_98}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+0 successful operations.
+0 derived errors ignored.

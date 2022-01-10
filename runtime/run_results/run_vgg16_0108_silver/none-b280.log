@@ -1,0 +1,52 @@
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+2022-01-08 20:19:18.425117: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.31GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 20:19:18.425174: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.31GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 20:19:20.626250: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.90GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 20:19:20.626303: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.90GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 20:19:20.669065: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.78GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 280), ('epochs', 1), ('model_name', 'VGG16'), ('strategy', 'none'), ('verbose', False)]
+Cannot find config for batch_size=280, use 250 instead
+Using original tensorflow without memory optimization
+Shape of x_train: (40000, 224, 224, 3), shape of x_test: (10000, 224, 224, 3)
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'none', 'verbose': 'false'}]
+[STR DEBUG] Solution type none doesn't has corresponding optimizations, run normal training
+  1/143 [..............................] - ETA: 1:00:44 - loss: 2.3375 - acc: 0.07862022-01-08 20:19:26.940243: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.78GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 20:19:26.941366: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.78GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 20:19:26.942367: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.83GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 20:19:26.942565: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.91GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+  2/143 [..............................] - ETA: 32:27 - loss: 4256477.6687 - acc: 0.10892022-01-08 20:19:28.335558: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.88GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+  3/143 [..............................] - ETA: 22:55 - loss: 2837691.4952 - acc: 0.1024  4/143 [..............................] - ETA: 18:12 - loss: 2128282.4368 - acc: 0.1009  5/143 [>.............................] - ETA: 15:17 - loss: 1702823.9784 - acc: 0.0964  6/143 [>.............................] - ETA: 13:22 - loss: 1419025.4327 - acc: 0.0982  7/143 [>.............................] - ETA: 12:02 - loss: 1216308.8756 - acc: 0.0974  8/143 [>.............................] - ETA: 11:02 - loss: 1064273.2068 - acc: 0.0996  9/143 [>.............................] - ETA: 10:12 - loss: 946021.3322 - acc: 0.0996 2022-01-08 20:19:52.296039: W tensorflow/core/common_runtime/bfc_allocator.cc:419] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.35GiB (rounded to 3596615680).  Current allocation summary follows.
+2022-01-08 20:19:52.297006: W tensorflow/core/common_runtime/bfc_allocator.cc:424] ***_____________**____***____________*********************************_*****************__*___***x_*
+2022-01-08 20:19:52.297055: W tensorflow/core/framework/op_kernel.cc:1651] OP_REQUIRES failed at conv_grad_input_ops.cc:1063 : Resource exhausted: OOM when allocating tensor with shape[280,64,224,224] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+Traceback (most recent call last):
+  File "../run_training.py", line 83, in <module>
+    verbose=1)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 728, in fit
+    use_multiprocessing=use_multiprocessing)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 603, in fit
+    steps_name='steps_per_epoch')
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 265, in model_iteration
+    batch_outs = batch_function(*batch_data)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 1021, in train_on_batch
+    outputs = self.train_function(ins)  # pylint: disable=not-callable
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/backend.py", line 3476, in __call__
+    run_metadata=self.run_metadata)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/client/session.py", line 1472, in __call__
+    run_metadata_ptr)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[280,64,224,224] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node training/RMSprop/gradients/gradients/block1_conv2/Conv2D_grad/Conv2DBackpropInput}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+

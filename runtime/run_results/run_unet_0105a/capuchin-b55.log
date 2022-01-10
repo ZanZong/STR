@@ -1,0 +1,39 @@
+WARNING:tensorflow:From ../run_training.py:27: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From ../run_training.py:27: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From ../run_training.py:27: The name tf.GPUOptions is deprecated. Please use tf.compat.v1.GPUOptions instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 55), ('epochs', 1), ('model_name', 'vgg_unet'), ('strategy', 'capuchin'), ('verbose', False)]
+Cannot find config for batch_size=55, use 40 instead
+There are 367 and 367 images downloaded for train and test
+Verifying train dataset
+  0%|          | 0/367 [00:00<?, ?it/s]  3%|▎         | 12/367 [00:00<00:03, 115.53it/s]  7%|▋         | 25/367 [00:00<00:02, 121.95it/s] 10%|█         | 38/367 [00:00<00:03, 106.43it/s] 14%|█▍        | 51/367 [00:00<00:02, 112.85it/s] 17%|█▋        | 63/367 [00:00<00:02, 105.79it/s] 20%|██        | 75/367 [00:00<00:02, 109.18it/s] 24%|██▍       | 88/367 [00:00<00:02, 115.09it/s] 28%|██▊       | 102/367 [00:00<00:02, 120.16it/s] 31%|███▏      | 115/367 [00:00<00:02, 121.71it/s] 35%|███▍      | 128/367 [00:01<00:01, 123.51it/s] 38%|███▊      | 141/367 [00:01<00:01, 123.99it/s] 42%|████▏     | 154/367 [00:01<00:01, 125.34it/s] 46%|████▋     | 170/367 [00:01<00:01, 134.90it/s] 51%|█████     | 186/367 [00:01<00:01, 141.59it/s] 55%|█████▍    | 201/367 [00:01<00:01, 127.96it/s] 59%|█████▊    | 215/367 [00:01<00:01, 128.10it/s] 62%|██████▏   | 229/367 [00:01<00:01, 127.39it/s] 66%|██████▌   | 242/367 [00:01<00:00, 127.01it/s] 70%|██████▉   | 256/367 [00:02<00:00, 128.00it/s] 73%|███████▎  | 269/367 [00:02<00:00, 127.96it/s] 77%|███████▋  | 282/367 [00:02<00:00, 127.99it/s] 81%|████████  | 297/367 [00:02<00:00, 132.88it/s] 85%|████████▌ | 313/367 [00:02<00:00, 140.39it/s] 90%|████████▉ | 329/367 [00:02<00:00, 145.58it/s] 94%|█████████▍| 345/367 [00:02<00:00, 147.71it/s] 98%|█████████▊| 361/367 [00:02<00:00, 150.74it/s]100%|██████████| 367/367 [00:02<00:00, 129.70it/s]
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/str_strategy.py:122: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1424: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+2022-01-05 02:31:16.647988: W tensorflow/core/common_runtime/bfc_allocator.cc:419] Allocator (GPU_0_bfc) ran out of memory trying to allocate 537.11MiB (rounded to 563200000).  Current allocation summary follows.
+2022-01-05 02:31:16.648495: W tensorflow/core/common_runtime/bfc_allocator.cc:424] ********************************_*************************_*****************************************
+2022-01-05 02:31:16.648562: W tensorflow/core/framework/op_kernel.cc:1651] OP_REQUIRES failed at cast_op.cc:109 : Resource exhausted: OOM when allocating tensor with shape[55,51200,50] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+2022-01-05 02:31:16.648584: W tensorflow/core/common_runtime/bfc_allocator.cc:419] Allocator (GPU_0_bfc) ran out of memory trying to allocate 537.11MiB (rounded to 563200000).  Current allocation summary follows.
+2022-01-05 02:31:16.649288: W tensorflow/core/common_runtime/bfc_allocator.cc:424] ********************************_*************************_*****************************************
+2022-01-05 02:31:16.649335: W tensorflow/core/framework/op_kernel.cc:1651] OP_REQUIRES failed at cwise_ops_common.cc:82 : Resource exhausted: OOM when allocating tensor with shape[55,51200,50] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc

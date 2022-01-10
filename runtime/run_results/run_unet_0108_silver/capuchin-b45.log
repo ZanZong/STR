@@ -1,0 +1,333 @@
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 45), ('epochs', 1), ('model_name', 'vgg_unet'), ('strategy', 'capuchin'), ('verbose', False)]
+Cannot find config for batch_size=45, use 40 instead
+There are 367 and 367 images downloaded for train and test
+Verifying train dataset
+  0%|          | 0/367 [00:00<?, ?it/s]  2%|▏         | 8/367 [00:00<00:04, 75.94it/s]  5%|▌         | 20/367 [00:00<00:03, 99.05it/s]  9%|▉         | 33/367 [00:00<00:02, 112.03it/s] 13%|█▎        | 47/367 [00:00<00:02, 120.09it/s] 16%|█▋        | 60/367 [00:00<00:02, 123.23it/s] 20%|█▉        | 73/367 [00:00<00:02, 125.30it/s] 23%|██▎       | 86/367 [00:00<00:02, 126.66it/s] 27%|██▋       | 100/367 [00:00<00:02, 128.83it/s] 31%|███▏      | 115/367 [00:00<00:01, 132.91it/s] 36%|███▌      | 133/367 [00:01<00:01, 144.60it/s] 41%|████      | 151/367 [00:01<00:01, 152.44it/s] 46%|████▌     | 169/367 [00:01<00:01, 158.64it/s] 51%|█████     | 187/367 [00:01<00:01, 163.16it/s] 56%|█████▌    | 204/367 [00:01<00:00, 164.74it/s] 60%|██████    | 222/367 [00:01<00:00, 166.88it/s] 65%|██████▌   | 239/367 [00:01<00:00, 167.66it/s] 70%|███████   | 257/367 [00:01<00:00, 169.20it/s] 75%|███████▍  | 275/367 [00:01<00:00, 169.87it/s] 80%|███████▉  | 293/367 [00:01<00:00, 171.28it/s] 85%|████████▍ | 311/367 [00:02<00:00, 170.98it/s] 90%|████████▉ | 329/367 [00:02<00:00, 172.03it/s] 95%|█████████▍| 347/367 [00:02<00:00, 171.59it/s] 99%|█████████▉| 365/367 [00:02<00:00, 170.71it/s]100%|██████████| 367/367 [00:02<00:00, 152.93it/s]
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/str_strategy.py:122: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1424: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+Dataset verified! 
+Starting Epoch  0
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'hybrid', 'verbose': 'false', 'tags': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/vgg_unet_40/layer_names'}, {'r': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/vgg_unet_40/R-capuchin', 'p': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/vgg_unet_40/P-capuchin', 'q': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/vgg_unet_40/Q-capuchin'}]
+[STR DEBUG] Processing layer 28's swapping, swap out at [30], swap in at [41]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 28, among [<tf.Operation 'up_sampling2d_2/strided_slice/stack' type=Const>, <tf.Operation 'up_sampling2d_2/Const' type=Const>, <tf.Operation 'up_sampling2d_2/strided_slice/stack_2' type=Const>, <tf.Operation 'up_sampling2d_2/Shape' type=Shape>, <tf.Operation 'up_sampling2d_2/strided_slice/stack_1' type=Const>, <tf.Operation 'up_sampling2d_2/resize/ResizeNearestNeighbor' type=ResizeNearestNeighbor>, <tf.Operation 'up_sampling2d_2/strided_slice' type=StridedSlice>, <tf.Operation 'up_sampling2d_2/mul' type=Mul>]
+[STR DEBUG] Choose op that have outputs: name: "up_sampling2d_2/mul"
+op: "Mul"
+input: "up_sampling2d_2/strided_slice"
+input: "up_sampling2d_2/Const"
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 28, use the first op name: "zero_padding2d_3/Pad/paddings"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+        dim {
+          size: 4
+        }
+        dim {
+          size: 2
+        }
+      }
+      tensor_content: "\000\000\000\000\000\000\000\000\001\000\000\000\001\000\000\000\001\000\000\000\001\000\000\000\000\000\000\000\000\000\000\000"
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "up_sampling2d_2/mul"
+op: "Mul"
+input: "up_sampling2d_2/strided_slice"
+input: "up_sampling2d_2/Const"
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+, 
+	choose swap tensor Tensor("up_sampling2d_2/mul:0", shape=(2,), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'zero_padding2d_3/Pad/paddings' type=Const>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 41, use the last op name: "training/Adadelta/gradients/gradients/training/Adadelta/gradients/concatenate_2/concat_grad/Shape"
+op: "Shape"
+input: "training/Adadelta/gradients/up_sampling2d_2/resize/ResizeNearestNeighbor"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "out_type"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 29's swapping, swap out at [31], swap in at [40]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 29, among [<tf.Operation 'concatenate_2/concat/axis' type=Const>, <tf.Operation 'concatenate_2/concat' type=ConcatV2>]
+[STR DEBUG] Choose op that have outputs: name: "concatenate_2/concat"
+op: "ConcatV2"
+input: "up_sampling2d_2/resize/ResizeNearestNeighbor"
+input: "block1_pool/MaxPool"
+input: "concatenate_2/concat/axis"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 29, use the first op name: "conv2d_3/kernel/IsInitialized/VarIsInitializedOp"
+op: "VarIsInitializedOp"
+input: "conv2d_3/kernel"
+
+[STR DEBUG] Find swapout ops: name: "concatenate_2/concat"
+op: "ConcatV2"
+input: "up_sampling2d_2/resize/ResizeNearestNeighbor"
+input: "block1_pool/MaxPool"
+input: "concatenate_2/concat/axis"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+, 
+	choose swap tensor Tensor("concatenate_2/concat:0", shape=(?, 160, 320, 192), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'conv2d_3/kernel/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 40, use the last op name: "training/Adadelta/gradients/gradients/training/Adadelta/gradients/zero_padding2d_3/Pad_grad/Rank"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 4
+    }
+  }
+}
+
+[STR DEBUG] Processing layer 31's swapping, swap out at [34], swap in at [38]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 31, among [<tf.Operation 'conv2d_3/kernel/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv2d_3/kernel/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_3/kernel/Assign' type=AssignVariableOp>, <tf.Operation 'conv2d_3/bias/Initializer/zeros' type=Const>, <tf.Operation 'conv2d_3/bias' type=VarHandleOp>, <tf.Operation 'conv2d_3/bias/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv2d_3/bias/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_3/bias/Assign' type=AssignVariableOp>, <tf.Operation 'conv2d_3/Conv2D' type=Conv2D>, <tf.Operation 'conv2d_3/BiasAdd/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_3/BiasAdd' type=BiasAdd>, <tf.Operation 'conv2d_3/Conv2D/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_3/dilation_rate' type=Const>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/shape' type=Const>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/min' type=Const>, <tf.Operation 'conv2d_3/kernel' type=VarHandleOp>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/max' type=Const>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/RandomUniform' type=RandomUniform>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/sub' type=Sub>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform/mul' type=Mul>, <tf.Operation 'conv2d_3/kernel/Initializer/random_uniform' type=Add>]
+[STR DEBUG] Choose op that have outputs: name: "conv2d_3/kernel/Initializer/random_uniform"
+op: "Add"
+input: "conv2d_3/kernel/Initializer/random_uniform/mul"
+input: "conv2d_3/kernel/Initializer/random_uniform/min"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv2d_3/kernel"
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 31, use the first op name: "reshape/Reshape/shape"
+op: "Pack"
+input: "reshape/strided_slice"
+input: "reshape/Reshape/shape/1"
+input: "reshape/Reshape/shape/2"
+attr {
+  key: "N"
+  value {
+    i: 3
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "axis"
+  value {
+    i: 0
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv2d_3/kernel/Initializer/random_uniform"
+op: "Add"
+input: "conv2d_3/kernel/Initializer/random_uniform/mul"
+input: "conv2d_3/kernel/Initializer/random_uniform/min"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "_class"
+  value {
+    list {
+      s: "loc:@conv2d_3/kernel"
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("conv2d_3/kernel/Initializer/random_uniform:0", shape=(3, 3, 192, 64), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'reshape/Reshape/shape' type=Pack>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 38, use the last op name: "training/Adadelta/gradients/gradients/training/Adadelta/gradients/batch_normalization_3/cond/FusedBatchNormV3/Switch_grad/Switch"
+op: "Switch"
+input: "training/Adadelta/gradients/gradients/zeros_like_11"
+input: "batch_normalization_3/cond/pred_id"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 33's swapping, swap out at [35], swap in at [36]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 33, among [<tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/shape' type=Const>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/min' type=Const>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/max' type=Const>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/RandomUniform' type=RandomUniform>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/sub' type=Sub>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform' type=Add>, <tf.Operation 'conv2d_4/kernel/Initializer/random_uniform/mul' type=Mul>, <tf.Operation 'conv2d_4/kernel' type=VarHandleOp>, <tf.Operation 'conv2d_4/kernel/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv2d_4/kernel/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_4/kernel/Assign' type=AssignVariableOp>, <tf.Operation 'conv2d_4/bias/Initializer/zeros' type=Const>, <tf.Operation 'conv2d_4/bias' type=VarHandleOp>, <tf.Operation 'conv2d_4/bias/IsInitialized/VarIsInitializedOp' type=VarIsInitializedOp>, <tf.Operation 'conv2d_4/bias/Read/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_4/bias/Assign' type=AssignVariableOp>, <tf.Operation 'conv2d_4/Conv2D' type=Conv2D>, <tf.Operation 'conv2d_4/BiasAdd' type=BiasAdd>, <tf.Operation 'conv2d_4/BiasAdd/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_4/Conv2D/ReadVariableOp' type=ReadVariableOp>, <tf.Operation 'conv2d_4/dilation_rate' type=Const>]2022-01-07 18:30:54.522221: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.69GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-07 18:30:54.522274: W tensorflow/core/kernels/gpu_utils.cc:48] Failed to allocate memory for convolution redzone checking; skipping this check. This is benign and only means that we won't check cudnn for out-of-bounds reads and writes. This message will only be printed once.
+
+[STR DEBUG] Choose op that have outputs: name: "conv2d_4/dilation_rate"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+        dim {
+          size: 2
+        }
+      }
+      tensor_content: "\001\000\000\000\001\000\000\000"
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 33, use the first op name: "loss/activation_loss/Log"
+op: "Log"
+input: "loss/activation_loss/clip_by_value"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "conv2d_4/dilation_rate"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+        dim {
+          size: 2
+        }
+      }
+      tensor_content: "\001\000\000\000\001\000\000\000"
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("conv2d_4/dilation_rate:0", shape=(2,), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'loss/activation_loss/Log' type=Log>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 36, use the last op name: "training/Adadelta/gradients/reshape/Reshape"
+op: "Reshape"
+input: "training/Adadelta/gradients/conv2d_4/BiasAdd"
+input: "training/Adadelta/gradients/reshape/Reshape/shape"
+input: "^loss/mul"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+ 1/64 [..............................] - ETA: 27:06 - loss: 4.4001 - acc: 0.0086 2/64 [..............................] - ETA: 15:00 - loss: 4.3955 - acc: 0.0091 3/64 [>.............................] - ETA: 10:56 - loss: 4.4055 - acc: 0.0091 4/64 [>.............................] - ETA: 8:57 - loss: 4.4059 - acc: 0.0090  5/64 [=>............................] - ETA: 7:41 - loss: 4.3986 - acc: 0.0091 6/64 [=>............................] - ETA: 6:49 - loss: 4.3969 - acc: 0.0090 7/64 [==>...........................] - ETA: 6:11 - loss: 4.3968 - acc: 0.0090 8/64 [==>...........................] - ETA: 5:42 - loss: 4.3981 - acc: 0.0091 9/64 [===>..........................] - ETA: 5:22 - loss: 4.3985 - acc: 0.009110/64 [===>..........................] - ETA: 5:02 - loss: 4.3941 - acc: 0.009111/64 [====>.........................] - ETA: 4:45 - loss: 4.3967 - acc: 0.009212/64 [====>.........................] - ETA: 4:32 - loss: 4.3968 - acc: 0.009213/64 [=====>........................] - ETA: 4:22 - loss: 4.3935 - acc: 0.009214/64 [=====>........................] - ETA: 4:10 - loss: 4.3914 - acc: 0.009215/64 [======>.......................] - ETA: 4:00 - loss: 4.3925 - acc: 0.009216/64 [======>.......................] - ETA: 3:50 - loss: 4.3911 - acc: 0.009217/64 [======>.......................] - ETA: 3:41 - loss: 4.3915 - acc: 0.009218/64 [=======>......................] - ETA: 3:33 - loss: 4.3895 - acc: 0.009219/64 [=======>......................] - ETA: 3:26 - loss: 4.3897 - acc: 0.009320/64 [========>.....................] - ETA: 3:18 - loss: 4.3901 - acc: 0.009321/64 [========>.....................] - ETA: 3:13 - loss: 4.3879 - acc: 0.009322/64 [=========>....................] - ETA: 3:06 - loss: 4.3856 - acc: 0.009323/64 [=========>....................] - ETA: 2:59 - loss: 4.3862 - acc: 0.009324/64 [==========>...................] - ETA: 2:53 - loss: 4.3847 - acc: 0.009425/64 [==========>...................] - ETA: 2:47 - loss: 4.3850 - acc: 0.009326/64 [===========>..................] - ETA: 2:42 - loss: 4.3832 - acc: 0.009427/64 [===========>..................] - ETA: 2:36 - loss: 4.3832 - acc: 0.009428/64 [============>.................] - ETA: 2:31 - loss: 4.3834 - acc: 0.009429/64 [============>.................] - ETA: 2:25 - loss: 4.3817 - acc: 0.009430/64 [=============>................] - ETA: 2:21 - loss: 4.3803 - acc: 0.009431/64 [=============>................] - ETA: 2:16 - loss: 4.3797 - acc: 0.009432/64 [==============>...............] - ETA: 2:11 - loss: 4.3791 - acc: 0.009533/64 [==============>...............] - ETA: 2:06 - loss: 4.3787 - acc: 0.009534/64 [==============>...............] - ETA: 2:02 - loss: 4.3777 - acc: 0.009535/64 [===============>..............] - ETA: 1:57 - loss: 4.3768 - acc: 0.009536/64 [===============>..............] - ETA: 1:52 - loss: 4.3767 - acc: 0.009537/64 [================>.............] - ETA: 1:48 - loss: 4.3755 - acc: 0.009638/64 [================>.............] - ETA: 1:43 - loss: 4.3746 - acc: 0.009639/64 [=================>............] - ETA: 1:39 - loss: 4.3736 - acc: 0.009640/64 [=================>............] - ETA: 1:35 - loss: 4.3729 - acc: 0.009641/64 [==================>...........] - ETA: 1:31 - loss: 4.3726 - acc: 0.009642/64 [==================>...........] - ETA: 1:26 - loss: 4.3720 - acc: 0.009643/64 [===================>..........] - ETA: 1:22 - loss: 4.3707 - acc: 0.009744/64 [===================>..........] - ETA: 1:18 - loss: 4.3708 - acc: 0.009745/64 [====================>.........] - ETA: 1:14 - loss: 4.3697 - acc: 0.009746/64 [====================>.........] - ETA: 1:10 - loss: 4.3686 - acc: 0.009747/64 [=====================>........] - ETA: 1:06 - loss: 4.3674 - acc: 0.009748/64 [=====================>........] - ETA: 1:02 - loss: 4.3668 - acc: 0.009749/64 [=====================>........] - ETA: 58s - loss: 4.3663 - acc: 0.0097 50/64 [======================>.......] - ETA: 54s - loss: 4.3658 - acc: 0.009751/64 [======================>.......] - ETA: 50s - loss: 4.3648 - acc: 0.009852/64 [=======================>......] - ETA: 46s - loss: 4.3645 - acc: 0.009853/64 [=======================>......] - ETA: 42s - loss: 4.3637 - acc: 0.009854/64 [========================>.....] - ETA: 38s - loss: 4.3625 - acc: 0.009855/64 [========================>.....] - ETA: 34s - loss: 4.3614 - acc: 0.009856/64 [=========================>....] - ETA: 30s - loss: 4.3609 - acc: 0.009957/64 [=========================>....] - ETA: 26s - loss: 4.3605 - acc: 0.009958/64 [==========================>...] - ETA: 22s - loss: 4.3597 - acc: 0.009959/64 [==========================>...] - ETA: 19s - loss: 4.3585 - acc: 0.009960/64 [===========================>..] - ETA: 15s - loss: 4.3583 - acc: 0.009961/64 [===========================>..] - ETA: 11s - loss: 4.3577 - acc: 0.009962/64 [============================>.] - ETA: 7s - loss: 4.3565 - acc: 0.0100 63/64 [============================>.] - ETA: 3s - loss: 4.3554 - acc: 0.010064/64 [==============================] - 243s 4s/step - loss: 4.3547 - acc: 0.0100
+Finished Epoch 0

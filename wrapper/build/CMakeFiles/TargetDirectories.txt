@@ -1,3 +1,0 @@
-/home/zongzan/dist_dnn_training/STR/wrapper/build/CMakeFiles/rebuild_cache.dir
-/home/zongzan/dist_dnn_training/STR/wrapper/build/CMakeFiles/edit_cache.dir
-/home/zongzan/dist_dnn_training/STR/wrapper/build/CMakeFiles/test_module.dir

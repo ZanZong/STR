@@ -1,0 +1,173 @@
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/contrib/graph_editor/select.py:554: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+2022-01-08 18:37:12.595763: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.68GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 18:37:12.595978: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.68GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 260), ('epochs', 1), ('model_name', 'VGG16'), ('strategy', 'dynprog'), ('verbose', False)]
+Cannot find config for batch_size=260, use 250 instead
+Shape of x_train: (40000, 224, 224, 3), shape of x_test: (10000, 224, 224, 3)
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'swap', 'verbose': 'false', 'tags': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/layer_names'}, {'p': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/P-dynprog', 'q': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/Q-dynprog'}]
+[STR DEBUG] Processing layer 2's swapping, swap out at [3], swap in at [41]
+[STR DEBUG] Find swapout ops: name: "block1_conv2/Relu"
+op: "Relu"
+input: "block1_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block1_conv2/Relu:0", shape=(?, 224, 224, 64), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block1_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block1_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block1_conv2/Relu"
+input: "block1_pool/MaxPool"
+input: "training/RMSprop/gradients/gradients/block2_conv1/Conv2D_grad/Conv2DBackpropInput"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block1_conv2/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 5's swapping, swap out at [6], swap in at [38]
+[STR DEBUG] Find swapout ops: name: "block2_conv2/Relu"
+op: "Relu"
+input: "block2_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block2_conv2/Relu:0", shape=(?, 112, 112, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block2_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block2_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block2_conv2/Relu"
+input: "block2_pool/MaxPool"
+input: "training/RMSprop/gradients/gradients/block3_conv1/Conv2D_grad/Conv2DBackpropInput"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block2_conv2/Relu_grad/ReluGrad' type=ReluGrad>]
+  1/154 [..............................] - ETA: 1:34:01 - loss: 2.3804 - acc: 0.09232022-01-08 18:37:21.120424: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.51GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+  2/154 [..............................] - ETA: 50:58 - loss: 4274139.1902 - acc: 0.10582022-01-08 18:37:24.514434: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.51GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+  3/154 [..............................] - ETA: 36:30 - loss: 2849431.2185 - acc: 0.1013  4/154 [..............................] - ETA: 29:12 - loss: 2137122.1168 - acc: 0.1048  5/154 [..............................] - ETA: 24:45 - loss: 1709717.9243 - acc: 0.10082022-01-08 18:37:34.189565: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.51GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+  6/154 [>.............................] - ETA: 21:47 - loss: 1424828.3637 - acc: 0.1038  7/154 [>.............................] - ETA: 19:39 - loss: 1221282.2467 - acc: 0.10332022-01-08 18:37:40.815823: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.51GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+  8/154 [>.............................] - ETA: 18:20 - loss: 1068623.2605 - acc: 0.1029  9/154 [>.............................] - ETA: 17:04 - loss: 949887.5983 - acc: 0.1017  10/154 [>.............................] - ETA: 15:59 - loss: 854899.1221 - acc: 0.10272022-01-08 18:37:50.882703: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.51GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 18:37:50.884207: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.51GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+ 11/154 [=>............................] - ETA: 15:08 - loss: 777181.2726 - acc: 0.10242022-01-08 18:37:54.163523: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.51GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+ 12/154 [=>............................] - ETA: 14:24 - loss: 712416.4389 - acc: 0.10322022-01-08 18:37:57.363092: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.51GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+ 13/154 [=>............................] - ETA: 13:47 - loss: 657615.3521 - acc: 0.1024 14/154 [=>............................] - ETA: 13:13 - loss: 610642.9914 - acc: 0.1016 15/154 [=>............................] - ETA: 12:51 - loss: 569933.6120 - acc: 0.1067 16/154 [==>...........................] - ETA: 12:35 - loss: 534312.9053 - acc: 0.1096 17/154 [==>...........................] - ETA: 12:11 - loss: 502882.8697 - acc: 0.1079 18/154 [==>...........................] - ETA: 11:49 - loss: 474945.0608 - acc: 0.1060 19/154 [==>...........................] - ETA: 11:29 - loss: 449948.0736 - acc: 0.1053 20/154 [==>...........................] - ETA: 11:17 - loss: 427450.7848 - acc: 0.1052 21/154 [===>..........................] - ETA: 11:01 - loss: 407096.0946 - acc: 0.1053 22/154 [===>..........................] - ETA: 10:47 - loss: 388591.8324 - acc: 0.1051 23/154 [===>..........................] - ETA: 10:34 - loss: 371696.6357 - acc: 0.1037 24/154 [===>..........................] - ETA: 10:22 - loss: 356209.3718 - acc: 0.1040 25/154 [===>..........................] - ETA: 10:10 - loss: 341961.0886 - acc: 0.1049 26/154 [====>.........................] - ETA: 9:58 - loss: 328808.8279 - acc: 0.1046  27/154 [====>.........................] - ETA: 9:46 - loss: 316630.8084 - acc: 0.1043 28/154 [====>.........................] - ETA: 9:38 - loss: 305322.6475 - acc: 0.1038 29/154 [====>.........................] - ETA: 9:31 - loss: 294794.3595 - acc: 0.1056 30/154 [====>.........................] - ETA: 9:22 - loss: 284967.9572 - acc: 0.1085 31/154 [=====>........................] - ETA: 9:15 - loss: 275775.5155 - acc: 0.1091 32/154 [=====>........................] - ETA: 9:05 - loss: 267157.6018 - acc: 0.1090 33/154 [=====>........................] - ETA: 8:56 - loss: 259062.0086 - acc: 0.1087 34/154 [=====>........................] - ETA: 8:47 - loss: 251442.6053 - acc: 0.1087 35/154 [=====>........................] - ETA: 8:38 - loss: 244258.6050 - acc: 0.1086 36/154 [======>.......................] - ETA: 8:30 - loss: 237473.7079 - acc: 0.1076 37/154 [======>.......................] - ETA: 8:25 - loss: 231055.5619 - acc: 0.1077 38/154 [======>.......................] - ETA: 8:17 - loss: 224975.2128 - acc: 0.1085 39/154 [======>.......................] - ETA: 8:11 - loss: 219206.6765 - acc: 0.1084 40/154 [======>.......................] - ETA: 8:05 - loss: 213726.5670 - acc: 0.1086 41/154 [======>.......................] - ETA: 7:57 - loss: 208513.7797 - acc: 0.1088 42/154 [=======>......................] - ETA: 7:51 - loss: 203549.2195 - acc: 0.1103 43/154 [=======>......................] - ETA: 7:45 - loss: 198815.6029 - acc: 0.1092 44/154 [=======>......................] - ETA: 7:39 - loss: 194297.1188 - acc: 0.1092 45/154 [=======>......................] - ETA: 7:33 - loss: 189979.4562 - acc: 0.1083 46/154 [=======>......................] - ETA: 7:28 - loss: 185849.5181 - acc: 0.1077 47/154 [========>.....................] - ETA: 7:22 - loss: 181895.3221 - acc: 0.1070 48/154 [========>.....................] - ETA: 7:16 - loss: 178105.8842 - acc: 0.1072 49/154 [========>.....................] - ETA: 7:11 - loss: 174471.1172 - acc: 0.1070 50/154 [========>.....................] - ETA: 7:05 - loss: 170981.7409 - acc: 0.1070 51/154 [========>.....................] - ETA: 7:00 - loss: 167629.2028 - acc: 0.1073 52/154 [=========>....................] - ETA: 6:56 - loss: 164405.6084 - acc: 0.1075 53/154 [=========>....................] - ETA: 6:51 - loss: 161303.6636 - acc: 0.1070 54/154 [=========>....................] - ETA: 6:45 - loss: 158316.6015 - acc: 0.1065 55/154 [=========>....................] - ETA: 6:39 - loss: 155438.1597 - acc: 0.1067 56/154 [=========>....................] - ETA: 6:33 - loss: 152662.5191 - acc: 0.1073 57/154 [==========>...................] - ETA: 6:29 - loss: 149984.2697 - acc: 0.1076 58/154 [==========>...................] - ETA: 6:25 - loss: 147398.3736 - acc: 0.1072 59/154 [==========>...................] - ETA: 6:21 - loss: 144900.1360 - acc: 0.1067 60/154 [==========>...................] - ETA: 6:16 - loss: 142485.1721 - acc: 0.1069 61/154 [==========>...................] - ETA: 6:11 - loss: 140149.3874 - acc: 0.1066 62/154 [===========>..................] - ETA: 6:07 - loss: 137888.9505 - acc: 0.1066 63/154 [===========>..................] - ETA: 6:02 - loss: 135700.2736 - acc: 0.1060 64/154 [===========>..................] - ETA: 5:57 - loss: 133579.9927 - acc: 0.1063 65/154 [===========>..................] - ETA: 5:52 - loss: 131524.9513 - acc: 0.1058 66/154 [===========>..................] - ETA: 5:48 - loss: 129532.1842 - acc: 0.1053 67/154 [============>.................] - ETA: 5:43 - loss: 127598.9023 - acc: 0.1051 68/154 [============>.................] - ETA: 5:38 - loss: 125722.4843 - acc: 0.1053 69/154 [============>.................] - ETA: 5:34 - loss: 123900.4527 - acc: 0.1049 70/154 [============>.................] - ETA: 5:29 - loss: 122130.4791 - acc: 0.1049 71/154 [============>.................] - ETA: 5:25 - loss: 120410.3639 - acc: 0.1053 72/154 [=============>................] - ETA: 5:20 - loss: 118738.0294 - acc: 0.1054 73/154 [=============>................] - ETA: 5:16 - loss: 117111.5118 - acc: 0.1063 74/154 [=============>................] - ETA: 5:12 - loss: 115528.9915 - acc: 0.1064 75/154 [=============>................] - ETA: 5:08 - loss: 113988.6356 - acc: 0.10562022-01-08 18:42:10.217432: W tensorflow/core/common_runtime/bfc_allocator.cc:419] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.63GiB (rounded to 2825912320).  Current allocation summary follows.
+2022-01-08 18:42:10.218389: W tensorflow/core/common_runtime/bfc_allocator.cc:424] ************____**x________**_______***_________*_____*************__**_*************_____*___***x_*
+2022-01-08 18:42:10.218436: W tensorflow/core/framework/op_kernel.cc:1651] OP_REQUIRES failed at conv_grad_input_ops.cc:1063 : Resource exhausted: OOM when allocating tensor with shape[220,64,224,224] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+Traceback (most recent call last):
+  File "../run_training.py", line 83, in <module>
+    verbose=1)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 728, in fit
+    use_multiprocessing=use_multiprocessing)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 603, in fit
+    steps_name='steps_per_epoch')
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 265, in model_iteration
+    batch_outs = batch_function(*batch_data)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 1021, in train_on_batch
+    outputs = self.train_function(ins)  # pylint: disable=not-callable
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/backend.py", line 3476, in __call__
+    run_metadata=self.run_metadata)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/client/session.py", line 1472, in __call__
+    run_metadata_ptr)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[220,64,224,224] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node training/RMSprop/gradients/gradients/block1_conv2/Conv2D_grad/Conv2DBackpropInput}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+

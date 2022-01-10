@@ -1,0 +1,188 @@
+WARNING:tensorflow:From ../run_training.py:27: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From ../run_training.py:27: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From ../run_training.py:27: The name tf.GPUOptions is deprecated. Please use tf.compat.v1.GPUOptions instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 60), ('epochs', 1), ('model_name', 'vgg_unet'), ('strategy', 'dynprog'), ('verbose', False)]
+Cannot find config for batch_size=60, use 40 instead
+There are 367 and 367 images downloaded for train and test
+Verifying train dataset
+  0%|          | 0/367 [00:00<?, ?it/s]  4%|▎         | 13/367 [00:00<00:02, 124.25it/s]  7%|▋         | 26/367 [00:00<00:02, 125.22it/s] 11%|█         | 39/367 [00:00<00:02, 126.83it/s] 14%|█▍        | 53/367 [00:00<00:02, 129.21it/s] 18%|█▊        | 66/367 [00:00<00:02, 129.13it/s] 23%|██▎       | 83/367 [00:00<00:02, 140.09it/s] 27%|██▋       | 99/367 [00:00<00:01, 145.84it/s] 32%|███▏      | 116/367 [00:00<00:01, 151.28it/s] 36%|███▌      | 132/367 [00:00<00:01, 151.36it/s] 40%|████      | 148/367 [00:01<00:01, 152.58it/s] 45%|████▍     | 164/367 [00:01<00:01, 154.76it/s] 49%|████▉     | 180/367 [00:01<00:01, 155.22it/s] 54%|█████▎    | 197/367 [00:01<00:01, 158.01it/s] 58%|█████▊    | 214/367 [00:01<00:00, 159.54it/s] 63%|██████▎   | 230/367 [00:01<00:00, 159.48it/s] 67%|██████▋   | 247/367 [00:01<00:00, 160.21it/s] 72%|███████▏  | 264/367 [00:01<00:00, 161.74it/s] 77%|███████▋  | 281/367 [00:01<00:00, 160.84it/s] 81%|████████  | 298/367 [00:01<00:00, 161.89it/s] 86%|████████▌ | 315/367 [00:02<00:00, 161.81it/s] 90%|█████████ | 332/367 [00:02<00:00, 161.46it/s] 95%|█████████▌| 349/367 [00:02<00:00, 160.63it/s]100%|█████████▉| 366/367 [00:02<00:00, 159.93it/s]100%|██████████| 367/367 [00:02<00:00, 153.18it/s]
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1424: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/contrib/graph_editor/select.py:554: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+2022-01-05 02:35:17.955553: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.54GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-05 02:35:17.955666: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.54GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-05 02:35:27.956584: W tensorflow/core/common_runtime/bfc_allocator.cc:419] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.20GiB (rounded to 2359296000).  Current allocation summary follows.
+2022-01-05 02:35:27.957638: W tensorflow/core/common_runtime/bfc_allocator.cc:424] *******************************_*****__******______*************************************************
+2022-01-05 02:35:27.957704: W tensorflow/core/framework/op_kernel.cc:1651] OP_REQUIRES failed at concat_op.cc:153 : Resource exhausted: OOM when allocating tensor with shape[60,192,160,320] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+Dataset verified! 
+Starting Epoch  0
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'swap', 'verbose': 'true', 'tags': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/layer_names'}, {'p': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/P-dynprog', 'q': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/Q-dynprog'}]
+[STR DEBUG] Use swap strategy of DYNPROG
+[STR DEBUG] Processing layer 2's swapping, swap out at [3], swap in at [41]
+[STR DEBUG] Find swapout ops: name: "block1_conv2/Relu"
+op: "Relu"
+input: "block1_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block1_conv2/Relu:0", shape=(?, 320, 640, 64), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block1_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "training/Adadelta/gradients/gradients/block1_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block1_conv2/Relu"
+input: "block1_pool/MaxPool"
+input: "training/Adadelta/gradients/gradients/AddN_17"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/Adadelta/gradients/gradients/block1_conv2/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 5's swapping, swap out at [6], swap in at [38]
+[STR DEBUG] Find swapout ops: name: "block2_conv2/Relu"
+op: "Relu"
+input: "block2_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block2_conv2/Relu:0", shape=(?, 160, 320, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block2_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "training/Adadelta/gradients/gradients/block2_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block2_conv2/Relu"
+input: "block2_pool/MaxPool"
+input: "training/Adadelta/gradients/gradients/AddN_16"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/Adadelta/gradients/gradients/block2_conv2/Relu_grad/ReluGrad' type=ReluGrad>]
+Traceback (most recent call last):
+  File "../run_training.py", line 68, in <module>
+    epochs=1)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/keras_segmentation-0.2.0remat-py3.6.egg/keras_segmentation/train.py", line 106, in train
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 1301, in fit_generator
+    steps_name='steps_per_epoch')
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 265, in model_iteration
+    batch_outs = batch_function(*batch_data)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/training.py", line 1021, in train_on_batch
+    outputs = self.train_function(ins)  # pylint: disable=not-callable
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/backend.py", line 3476, in __call__
+    run_metadata=self.run_metadata)
+  File "/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/client/session.py", line 1472, in __call__
+    run_metadata_ptr)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: 2 root error(s) found.
+  (0) Resource exhausted: OOM when allocating tensor with shape[60,192,160,320] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node concatenate_2/concat}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+	 [[loss/mul/_439]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+  (1) Resource exhausted: OOM when allocating tensor with shape[60,192,160,320] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node concatenate_2/concat}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+0 successful operations.
+0 derived errors ignored.

@@ -1,0 +1,817 @@
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/contrib/graph_editor/select.py:554: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 230), ('epochs', 1), ('model_name', 'VGG16'), ('strategy', 'str'), ('verbose', False)]
+Cannot find config for batch_size=230, use 250 instead
+Shape of x_train: (40000, 224, 224, 3), shape of x_test: (10000, 224, 224, 3)
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'hybrid', 'verbose': 'false', 'tags': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/layer_names'}, {'r': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/R', 'p': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/P', 'q': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/VGG16_250/PrunedQ'}]
+[STR DEBUG] Processing layer 0's swapping, swap out at [1], swap in at [43]
+[STR DEBUG] Find swapout ops: name: "input_1"
+op: "Placeholder"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "shape"
+  value {
+    shape {
+      dim {
+        size: -1
+      }
+      dim {
+        size: 224
+      }
+      dim {
+        size: 224
+      }
+      dim {
+        size: 3
+      }
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("input_1:0", shape=(?, 224, 224, 3), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block1_conv1/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block1_conv1/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block1_conv2/Conv2D_grad/Conv2DBackpropInput"
+input: "block1_conv1/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block1_conv1/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 1's swapping, swap out at [3], swap in at [8, 41]
+[STR DEBUG] Find swapout ops: name: "block1_conv1/Relu"
+op: "Relu"
+input: "block1_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block1_conv1/Relu:0", shape=(?, 224, 224, 64), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block1_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "block3_conv2/Relu"
+op: "Relu"
+input: "block3_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block1_conv1/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block1_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block1_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block1_conv2/Relu"
+input: "block1_pool/MaxPool"
+input: "training/RMSprop/gradients/gradients/block2_conv1/Conv2D_grad/Conv2DBackpropInput"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block1_conv1/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block1_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 3's swapping, swap out at [4], swap in at [40]
+[STR DEBUG] Find swapout ops: name: "block1_pool/MaxPool"
+op: "MaxPool"
+input: "block1_conv2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("block1_pool/MaxPool:0", shape=(?, 112, 112, 64), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block2_conv1/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block2_conv1/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block2_conv2/Conv2D_grad/Conv2DBackpropInput"
+input: "block2_conv1/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block1_pool/MaxPool_grad/MaxPoolGrad' type=MaxPoolGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block2_conv1/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 4's swapping, swap out at [6], swap in at [11, 38]
+[STR DEBUG] Find swapout ops: name: "block2_conv1/Relu"
+op: "Relu"
+input: "block2_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block2_conv1/Relu:0", shape=(?, 112, 112, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block2_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "block4_conv1/Relu"
+op: "Relu"
+input: "block4_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block2_conv1/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block2_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block2_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block2_conv2/Relu"
+input: "block2_pool/MaxPool"
+input: "training/RMSprop/gradients/gradients/block3_conv1/Conv2D_grad/Conv2DBackpropInput"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block2_conv1/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block2_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 6's swapping, swap out at [7], swap in at [37]
+[STR DEBUG] Find swapout ops: name: "block2_pool/MaxPool"
+op: "MaxPool"
+input: "block2_conv2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("block2_pool/MaxPool:0", shape=(?, 56, 56, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block3_conv1/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block3_conv1/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block3_conv2/Conv2D_grad/Conv2DBackpropInput"
+input: "block3_conv1/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block2_pool/MaxPool_grad/MaxPoolGrad' type=MaxPoolGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block3_conv1/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 7's swapping, swap out at [8], swap in at [36]
+[STR DEBUG] Find swapout ops: name: "block3_conv1/Relu"
+op: "Relu"
+input: "block3_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block3_conv1/Relu:0", shape=(?, 56, 56, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block3_conv2/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block3_conv2/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block3_conv3/Conv2D_grad/Conv2DBackpropInput"
+input: "block3_conv2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block3_conv1/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block3_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 8's swapping, swap out at [10], swap in at [14, 34]
+[STR DEBUG] Find swapout ops: name: "block3_conv2/Relu"
+op: "Relu"
+input: "block3_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block3_conv2/Relu:0", shape=(?, 56, 56, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block3_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "block4_pool/MaxPool"
+op: "MaxPool"
+input: "block4_conv3/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block3_conv2/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block3_conv3/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block3_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block3_conv3/Relu"
+input: "block3_pool/MaxPool"
+input: "training/RMSprop/gradients/gradients/block4_conv1/Conv2D_grad/Conv2DBackpropInput"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block3_conv2/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block3_conv3/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 10's swapping, swap out at [11], swap in at [33]
+[STR DEBUG] Find swapout ops: name: "block3_pool/MaxPool"
+op: "MaxPool"
+input: "block3_conv3/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("block3_pool/MaxPool:0", shape=(?, 28, 28, 256), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block4_conv1/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block4_conv1/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block4_conv2/Conv2D_grad/Conv2DBackpropInput"
+input: "block4_conv1/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block3_pool/MaxPool_grad/MaxPoolGrad' type=MaxPoolGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block4_conv1/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 11's swapping, swap out at [12], swap in at [32]
+[STR DEBUG] Find swapout ops: name: "block4_conv1/Relu"
+op: "Relu"
+input: "block4_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block4_conv1/Relu:0", shape=(?, 28, 28, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block4_conv2/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block4_conv2/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block4_conv3/Conv2D_grad/Conv2DBackpropInput"
+input: "block4_conv2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block4_conv1/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block4_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 12's swapping, swap out at [14], swap in at [30]
+[STR DEBUG] Find swapout ops: name: "block4_conv2/Relu"
+op: "Relu"
+input: "block4_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block4_conv2/Relu:0", shape=(?, 28, 28, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block4_pool/MaxPool' type=MaxPool>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block4_pool/MaxPool_grad/MaxPoolGrad"
+op: "MaxPoolGrad"
+input: "block4_conv3/Relu"
+input: "block4_pool/MaxPool"
+input: "training/RMSprop/gradients/gradients/block5_conv1/Conv2D_grad/Conv2DBackpropInput"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block4_conv3/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>, <tf.Operation 'training/RMSprop/gradients/gradients/block4_conv2/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Processing layer 14's swapping, swap out at [15], swap in at [29]
+[STR DEBUG] Find swapout ops: name: "block4_pool/MaxPool"
+op: "MaxPool"
+input: "block4_conv3/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "data_format"
+  value {
+    s: "NHWC"
+  }
+}
+attr {
+  key: "ksize"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+attr {
+  key: "padding"
+  value {
+    s: "VALID"
+  }
+}
+attr {
+  key: "strides"
+  value {
+    list {
+      i: 1
+      i: 2
+      i: 2
+      i: 1
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("block4_pool/MaxPool:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block5_conv1/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block5_conv1/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block5_conv2/Conv2D_grad/Conv2DBackpropInput"
+input: "block5_conv1/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block4_pool/MaxPool_grad/MaxPoolGrad' type=MaxPoolGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block5_conv1/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 15's swapping, swap out at [16], swap in at [28]
+[STR DEBUG] Find swapout ops: name: "block5_conv1/Relu"
+op: "Relu"
+input: "block5_conv1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block5_conv1/Relu:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'block5_conv2/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/block5_conv2/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/block5_conv3/Conv2D_grad/Conv2DBackpropInput"
+input: "block5_conv2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block5_conv1/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block5_conv2/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 16's swapping, swap out at [19], swap in at [25]
+[STR DEBUG] Cannot find swap-out control nodes for layer 16, use the first op name: "flatten/strided_slice/stack"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+        dim {
+          size: 1
+        }
+      }
+      int_val: 0
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "block5_conv2/Relu"
+op: "Relu"
+input: "block5_conv2/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("block5_conv2/Relu:0", shape=(?, 14, 14, 512), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'flatten/strided_slice/stack' type=Const>]2022-01-08 22:53:50.207089: W tensorflow/core/common_runtime/bfc_allocator.cc:239] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.77GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2022-01-08 22:53:50.207145: W tensorflow/core/kernels/gpu_utils.cc:48] Failed to allocate memory for convolution redzone checking; skipping this check. This is benign and only means that we won't check cudnn for out-of-bounds reads and writes. This message will only be printed once.
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 25, use the last op name: "training/RMSprop/gradients/gradients/flatten/Reshape_grad/Reshape"
+op: "Reshape"
+input: "training/RMSprop/gradients/gradients/fc1/MatMul_grad/MatMul"
+input: "training/RMSprop/gradients/gradients/flatten/Reshape_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/flatten/Reshape_grad/Reshape"
+op: "Reshape"
+input: "training/RMSprop/gradients/gradients/fc1/MatMul_grad/MatMul"
+input: "training/RMSprop/gradients/gradients/flatten/Reshape_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/block5_conv2/Relu_grad/ReluGrad' type=ReluGrad>, <tf.Operation 'training/RMSprop/gradients/gradients/block5_conv3/Conv2D_grad/Conv2DBackpropFilter' type=Conv2DBackpropFilter>]
+[STR DEBUG] Processing layer 19's swapping, swap out at [20], swap in at [24]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 19, among [<tf.Operation 'flatten/strided_slice/stack' type=Const>, <tf.Operation 'flatten/strided_slice/stack_1' type=Const>, <tf.Operation 'flatten/Shape' type=Shape>, <tf.Operation 'flatten/strided_slice/stack_2' type=Const>, <tf.Operation 'flatten/strided_slice' type=StridedSlice>, <tf.Operation 'flatten/Reshape/shape/1' type=Const>, <tf.Operation 'flatten/Reshape' type=Reshape>, <tf.Operation 'flatten/Reshape/shape' type=Pack>]
+[STR DEBUG] Choose op that have outputs: name: "flatten/Reshape/shape"
+op: "Pack"
+input: "flatten/strided_slice"
+input: "flatten/Reshape/shape/1"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "axis"
+  value {
+    i: 0
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "flatten/Reshape/shape"
+op: "Pack"
+input: "flatten/strided_slice"
+input: "flatten/Reshape/shape/1"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "axis"
+  value {
+    i: 0
+  }
+}
+, 
+	choose swap tensor Tensor("flatten/Reshape/shape:0", shape=(2,), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'fc1/Relu' type=Relu>]
+[STR DEBUG] Processing layer 20's swapping, swap out at [21], swap in at [23]
+[STR DEBUG] Find swapout ops: name: "fc1/Relu"
+op: "Relu"
+input: "fc1/BiasAdd"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("fc1/Relu:0", shape=(?, 4096), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'fc2/Relu' type=Relu>]
+[STR DEBUG] Add swap-in op at name: "training/RMSprop/gradients/gradients/fc2/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/RMSprop/gradients/gradients/predictions/MatMul_grad/MatMul"
+input: "fc2/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/RMSprop/gradients/gradients/fc2/MatMul_grad/MatMul_1' type=MatMul>, <tf.Operation 'training/RMSprop/gradients/gradients/fc1/Relu_grad/ReluGrad' type=ReluGrad>]
+[STR DEBUG] Cannot find swap-out operations for swap-in at layer 21, skipping
+  1/174 [..............................] - ETA: 1:05:52 - loss: 2.3272 - acc: 0.1391  2/174 [..............................] - ETA: 34:49 - loss: 5911549.6636 - acc: 0.1174  3/174 [..............................] - ETA: 24:25 - loss: 3941054.7088 - acc: 0.1159  4/174 [..............................] - ETA: 19:13 - loss: 2955838.9773 - acc: 0.1141  5/174 [..............................] - ETA: 16:05 - loss: 2365047.2287 - acc: 0.1078  6/174 [>.............................] - ETA: 13:59 - loss: 1970963.0663 - acc: 0.1029  7/174 [>.............................] - ETA: 12:30 - loss: 1689398.1135 - acc: 0.0969  8/174 [>.............................] - ETA: 11:22 - loss: 1478225.3452 - acc: 0.0962  9/174 [>.............................] - ETA: 10:29 - loss: 1313978.5371 - acc: 0.0976 10/174 [>.............................] - ETA: 9:46 - loss: 1182580.9296 - acc: 0.1004  11/174 [>.............................] - ETA: 9:11 - loss: 1075073.7863 - acc: 0.1012 12/174 [=>............................] - ETA: 8:42 - loss: 985484.4962 - acc: 0.1018  13/174 [=>............................] - ETA: 8:17 - loss: 909678.1736 - acc: 0.1017 14/174 [=>............................] - ETA: 7:55 - loss: 844701.3258 - acc: 0.1028 15/174 [=>............................] - ETA: 7:38 - loss: 788388.0578 - acc: 0.1017 16/174 [=>............................] - ETA: 7:20 - loss: 739113.9480 - acc: 0.1022 17/174 [=>............................] - ETA: 7:05 - loss: 695636.7928 - acc: 0.1000 18/174 [==>...........................] - ETA: 6:52 - loss: 656990.4320 - acc: 0.1012 19/174 [==>...........................] - ETA: 6:40 - loss: 622412.1096 - acc: 0.1000 20/174 [==>...........................] - ETA: 6:29 - loss: 591291.6190 - acc: 0.0996 21/174 [==>...........................] - ETA: 6:20 - loss: 563134.9847 - acc: 0.1006 22/174 [==>...........................] - ETA: 6:10 - loss: 537538.0445 - acc: 0.1000 23/174 [==>...........................] - ETA: 6:02 - loss: 514166.9249 - acc: 0.1006 24/174 [===>..........................] - ETA: 5:54 - loss: 492743.3996 - acc: 0.1011 25/174 [===>..........................] - ETA: 5:47 - loss: 473033.7552 - acc: 0.1024 26/174 [===>..........................] - ETA: 5:40 - loss: 454840.2380 - acc: 0.1018 27/174 [===>..........................] - ETA: 5:33 - loss: 437994.3885 - acc: 0.1024 28/174 [===>..........................] - ETA: 5:27 - loss: 422351.8138 - acc: 0.1030 29/174 [====>.........................] - ETA: 5:22 - loss: 407788.0369 - acc: 0.1042 30/174 [====>.........................] - ETA: 5:17 - loss: 394195.1787 - acc: 0.1039 31/174 [====>.........................] - ETA: 5:11 - loss: 381479.2787 - acc: 0.1049 32/174 [====>.........................] - ETA: 5:06 - loss: 369558.1243 - acc: 0.1046 33/174 [====>.........................] - ETA: 5:01 - loss: 358359.4628 - acc: 0.1043 34/174 [====>.........................] - ETA: 4:57 - loss: 347819.5459 - acc: 0.1038 35/174 [=====>........................] - ETA: 4:52 - loss: 337881.9096 - acc: 0.1037 36/174 [=====>........................] - ETA: 4:48 - loss: 328496.3646 - acc: 0.1034 37/174 [=====>........................] - ETA: 4:44 - loss: 319618.1471 - acc: 0.1045 38/174 [=====>........................] - ETA: 4:40 - loss: 311207.2030 - acc: 0.1049 39/174 [=====>........................] - ETA: 4:36 - loss: 303227.5892 - acc: 0.1056 40/174 [=====>........................] - ETA: 4:33 - loss: 295646.9569 - acc: 0.1065 41/174 [======>.......................] - ETA: 4:29 - loss: 288436.1108 - acc: 0.1086 42/174 [======>.......................] - ETA: 4:26 - loss: 281568.6419 - acc: 0.1083 43/174 [======>.......................] - ETA: 4:22 - loss: 275020.5870 - acc: 0.1093 44/174 [======>.......................] - ETA: 4:19 - loss: 268770.3803 - acc: 0.1087 45/174 [======>.......................] - ETA: 4:16 - loss: 262797.7572 - acc: 0.1090 46/174 [======>.......................] - ETA: 4:13 - loss: 257084.8253 - acc: 0.1083 47/174 [=======>......................] - ETA: 4:10 - loss: 251614.9850 - acc: 0.1080 48/174 [=======>......................] - ETA: 4:07 - loss: 246373.0541 - acc: 0.1075 49/174 [=======>......................] - ETA: 4:04 - loss: 241345.0794 - acc: 0.1072 50/174 [=======>......................] - ETA: 4:01 - loss: 236518.2238 - acc: 0.1072 51/174 [=======>......................] - ETA: 3:58 - loss: 231880.6566 - acc: 0.1066 52/174 [=======>......................] - ETA: 3:55 - loss: 227421.4574 - acc: 0.1066 53/174 [========>.....................] - ETA: 3:52 - loss: 223130.5299 - acc: 0.1066 54/174 [========>.....................] - ETA: 3:49 - loss: 218998.5252 - acc: 0.1078 55/174 [========>.....................] - ETA: 3:47 - loss: 215016.7763 - acc: 0.1078 56/174 [========>.....................] - ETA: 3:44 - loss: 211177.2357 - acc: 0.1079 57/174 [========>.....................] - ETA: 3:42 - loss: 207472.4120 - acc: 0.1082 58/174 [=========>....................] - ETA: 3:39 - loss: 203895.3410 - acc: 0.1077 59/174 [=========>....................] - ETA: 3:37 - loss: 200439.5267 - acc: 0.1074 60/174 [=========>....................] - ETA: 3:34 - loss: 197098.9073 - acc: 0.1070 61/174 [=========>....................] - ETA: 3:32 - loss: 193867.8152 - acc: 0.1069 62/174 [=========>....................] - ETA: 3:29 - loss: 190740.9517 - acc: 0.1069 63/174 [=========>....................] - ETA: 3:27 - loss: 187713.3544 - acc: 0.1069 64/174 [==========>...................] - ETA: 3:25 - loss: 184780.3689 - acc: 0.1075 65/174 [==========>...................] - ETA: 3:22 - loss: 181937.6290 - acc: 0.1078 66/174 [==========>...................] - ETA: 3:20 - loss: 179181.0324 - acc: 0.1092 67/174 [==========>...................] - ETA: 3:18 - loss: 176506.7220 - acc: 0.1098 68/174 [==========>...................] - ETA: 3:15 - loss: 173911.0683 - acc: 0.1098 69/174 [==========>...................] - ETA: 3:13 - loss: 171390.6562 - acc: 0.1092 70/174 [===========>..................] - ETA: 3:11 - loss: 168942.2546 - acc: 0.1091 71/174 [===========>..................] - ETA: 3:08 - loss: 166562.8188 - acc: 0.1090 72/174 [===========>..................] - ETA: 3:06 - loss: 164249.4783 - acc: 0.1087 73/174 [===========>..................] - ETA: 3:04 - loss: 161999.5170 - acc: 0.1084 74/174 [===========>..................] - ETA: 3:02 - loss: 159810.3651 - acc: 0.1089 75/174 [===========>..................] - ETA: 3:00 - loss: 157679.5947 - acc: 0.1092 76/174 [============>.................] - ETA: 2:57 - loss: 155604.8935 - acc: 0.1091 77/174 [============>.................] - ETA: 2:55 - loss: 153584.0805 - acc: 0.1091 78/174 [============>.................] - ETA: 2:53 - loss: 151615.0830 - acc: 0.1100 79/174 [============>.................] - ETA: 2:51 - loss: 149695.9329 - acc: 0.1104 80/174 [============>.................] - ETA: 2:49 - loss: 147824.7666 - acc: 0.1106 81/174 [============>.................] - ETA: 2:47 - loss: 145999.7978 - acc: 0.1111 82/174 [=============>................] - ETA: 2:45 - loss: 144219.3403 - acc: 0.1120 83/174 [=============>................] - ETA: 2:43 - loss: 142481.7864 - acc: 0.1125 84/174 [=============>................] - ETA: 2:41 - loss: 140785.6025 - acc: 0.1125 85/174 [=============>................] - ETA: 2:39 - loss: 139129.3284 - acc: 0.1121 86/174 [=============>................] - ETA: 2:37 - loss: 137511.5721 - acc: 0.1123 87/174 [==============>...............] - ETA: 2:35 - loss: 135931.0092 - acc: 0.1123 88/174 [==============>...............] - ETA: 2:33 - loss: 134386.3649 - acc: 0.1122 89/174 [==============>...............] - ETA: 2:31 - loss: 132876.4317 - acc: 0.1120 90/174 [==============>...............] - ETA: 2:29 - loss: 131400.0524 - acc: 0.1121 91/174 [==============>...............] - ETA: 2:27 - loss: 129956.1211 - acc: 0.1126 92/174 [==============>...............] - ETA: 2:24 - loss: 128543.5795 - acc: 0.1124 93/174 [===============>..............] - ETA: 2:23 - loss: 127161.4151 - acc: 0.1126 94/174 [===============>..............] - ETA: 2:21 - loss: 125808.6582 - acc: 0.1129 95/174 [===============>..............] - ETA: 2:19 - loss: 124484.3806 - acc: 0.1125 96/174 [===============>..............] - ETA: 2:17 - loss: 123187.6916 - acc: 0.1128 97/174 [===============>..............] - ETA: 2:15 - loss: 121917.7488 - acc: 0.1132 98/174 [===============>..............] - ETA: 2:22 - loss: 120673.7136 - acc: 0.1132 99/174 [================>.............] - ETA: 2:20 - loss: 119454.8102 - acc: 0.1134100/174 [================>.............] - ETA: 2:18 - loss: 118260.2860 - acc: 0.1135101/174 [================>.............] - ETA: 2:16 - loss: 117089.4150 - acc: 0.1133102/174 [================>.............] - ETA: 2:13 - loss: 115941.5021 - acc: 0.1130103/174 [================>.............] - ETA: 2:11 - loss: 114815.8789 - acc: 0.1126104/174 [================>.............] - ETA: 2:09 - loss: 113711.9025 - acc: 0.1128105/174 [=================>............] - ETA: 2:07 - loss: 112628.9540 - acc: 0.1125106/174 [=================>............] - ETA: 2:05 - loss: 111566.4384 - acc: 0.1125107/174 [=================>............] - ETA: 2:03 - loss: 110523.7829 - acc: 0.1121108/174 [=================>............] - ETA: 2:01 - loss: 109500.4357 - acc: 0.1124109/174 [=================>............] - ETA: 1:59 - loss: 108495.8716 - acc: 0.1122110/174 [=================>............] - ETA: 1:57 - loss: 107509.5664 - acc: 0.1119111/174 [==================>...........] - ETA: 1:55 - loss: 106541.0325 - acc: 0.1118112/174 [==================>...........] - ETA: 1:53 - loss: 105589.7939 - acc: 0.1119113/174 [==================>...........] - ETA: 1:51 - loss: 104655.3913 - acc: 0.1117114/174 [==================>...........] - ETA: 1:49 - loss: 103737.3818 - acc: 0.1119115/174 [==================>...........] - ETA: 1:47 - loss: 102835.3376 - acc: 0.1120116/174 [===================>..........] - ETA: 1:45 - loss: 101948.8459 - acc: 0.1122117/174 [===================>..........] - ETA: 1:43 - loss: 101077.5079 - acc: 0.1123118/174 [===================>..........] - ETA: 1:41 - loss: 100220.9382 - acc: 0.1124119/174 [===================>..........] - ETA: 1:40 - loss: 99378.7649 - acc: 0.1124 120/174 [===================>..........] - ETA: 1:38 - loss: 98550.6277 - acc: 0.1122121/174 [===================>..........] - ETA: 1:36 - loss: 97736.1789 - acc: 0.1119122/174 [====================>.........] - ETA: 1:34 - loss: 96935.0814 - acc: 0.1120123/174 [====================>.........] - ETA: 1:32 - loss: 96147.0163 - acc: 0.1119124/174 [====================>.........] - ETA: 1:30 - loss: 95371.6558 - acc: 0.1115125/174 [====================>.........] - ETA: 1:28 - loss: 94608.7010 - acc: 0.1112126/174 [====================>.........] - ETA: 1:26 - loss: 93857.8565 - acc: 0.1109127/174 [====================>.........] - ETA: 1:24 - loss: 93118.8364 - acc: 0.1109128/174 [=====================>........] - ETA: 1:22 - loss: 92391.3635 - acc: 0.1109129/174 [=====================>........] - ETA: 1:20 - loss: 91675.1692 - acc: 0.1108130/174 [=====================>........] - ETA: 1:18 - loss: 90969.9933 - acc: 0.1107131/174 [=====================>........] - ETA: 1:17 - loss: 90275.5834 - acc: 0.1108132/174 [=====================>........] - ETA: 1:15 - loss: 89591.6949 - acc: 0.1107133/174 [=====================>........] - ETA: 1:13 - loss: 88918.0905 - acc: 0.1106134/174 [======================>.......] - ETA: 1:11 - loss: 88254.5398 - acc: 0.1108135/174 [======================>.......] - ETA: 1:09 - loss: 87600.8199 - acc: 0.1107136/174 [======================>.......] - ETA: 1:07 - loss: 86956.7131 - acc: 0.1108137/174 [======================>.......] - ETA: 1:05 - loss: 86322.0094 - acc: 0.1105138/174 [======================>.......] - ETA: 1:03 - loss: 85696.5042 - acc: 0.1105139/174 [======================>.......] - ETA: 1:02 - loss: 85079.9999 - acc: 0.1107140/174 [=======================>......] - ETA: 1:00 - loss: 84472.3020 - acc: 0.1110141/174 [=======================>......] - ETA: 58s - loss: 83873.2241 - acc: 0.1111 142/174 [=======================>......] - ETA: 56s - loss: 83282.5838 - acc: 0.1110143/174 [=======================>......] - ETA: 54s - loss: 82700.2054 - acc: 0.1108144/174 [=======================>......] - ETA: 52s - loss: 82125.9144 - acc: 0.1107145/174 [========================>.....] - ETA: 51s - loss: 81559.5447 - acc: 0.1106146/174 [========================>.....] - ETA: 49s - loss: 81000.9334 - acc: 0.1106147/174 [========================>.....] - ETA: 47s - loss: 80449.9222 - acc: 0.1103148/174 [========================>.....] - ETA: 45s - loss: 79906.3572 - acc: 0.1106149/174 [========================>.....] - ETA: 43s - loss: 79370.0887 - acc: 0.1108150/174 [========================>.....] - ETA: 42s - loss: 78840.9701 - acc: 0.1107151/174 [=========================>....] - ETA: 40s - loss: 78318.8597 - acc: 0.1105152/174 [=========================>....] - ETA: 38s - loss: 77803.6191 - acc: 0.1107153/174 [=========================>....] - ETA: 36s - loss: 77295.1138 - acc: 0.1107154/174 [=========================>....] - ETA: 34s - loss: 76793.2125 - acc: 0.1108155/174 [=========================>....] - ETA: 33s - loss: 76297.7871 - acc: 0.1112156/174 [=========================>....] - ETA: 31s - loss: 75808.7135 - acc: 0.1112157/174 [==========================>...] - ETA: 29s - loss: 75325.8700 - acc: 0.1114158/174 [==========================>...] - ETA: 27s - loss: 74849.1420 - acc: 0.1116159/174 [==========================>...] - ETA: 26s - loss: 74378.4071 - acc: 0.1116160/174 [==========================>...] - ETA: 24s - loss: 73913.5565 - acc: 0.1116161/174 [==========================>...] - ETA: 22s - loss: 73454.4803 - acc: 0.1115162/174 [==========================>...] - ETA: 20s - loss: 73001.0718 - acc: 0.1114163/174 [===========================>..] - ETA: 19s - loss: 72553.2264 - acc: 0.1119164/174 [===========================>..] - ETA: 17s - loss: 72110.8734 - acc: 0.1120165/174 [===========================>..] - ETA: 15s - loss: 71673.8520 - acc: 0.1119166/174 [===========================>..] - ETA: 13s - loss: 71242.0957 - acc: 0.1117167/174 [===========================>..] - ETA: 12s - loss: 70815.5101 - acc: 0.1116168/174 [===========================>..] - ETA: 10s - loss: 70394.0029 - acc: 0.1117169/174 [============================>.] - ETA: 8s - loss: 69977.4839 - acc: 0.1116 170/174 [============================>.] - ETA: 6s - loss: 69565.8651 - acc: 0.1115171/174 [============================>.] - ETA: 5s - loss: 69159.0606 - acc: 0.1117172/174 [============================>.] - ETA: 3s - loss: 68756.9863 - acc: 0.1116173/174 [============================>.] - ETA: 1s - loss: 68359.5603 - acc: 0.1118  1/174 [..............................] - ETA: 2:33 - loss: 2.2911 - acc: 0.1130  2/174 [..............................] - ETA: 1:58 - loss: 2.2822 - acc: 0.1348  3/174 [..............................] - ETA: 1:46 - loss: 2.2836 - acc: 0.1377  4/174 [..............................] - ETA: 1:42 - loss: 2.2831 - acc: 0.1359  5/174 [..............................] - ETA: 1:39 - loss: 2.2822 - acc: 0.1383  6/174 [>.............................] - ETA: 1:35 - loss: 2.2838 - acc: 0.1413  7/174 [>.............................] - ETA: 1:33 - loss: 2.2848 - acc: 0.1435  8/174 [>.............................] - ETA: 1:32 - loss: 2.2858 - acc: 0.1413  9/174 [>.............................] - ETA: 1:32 - loss: 2.2864 - acc: 0.1435 10/174 [>.............................] - ETA: 1:31 - loss: 2.2857 - acc: 0.1404 11/174 [>.............................] - ETA: 1:31 - loss: 2.2860 - acc: 0.1391 12/174 [=>............................] - ETA: 1:30 - loss: 2.2861 - acc: 0.1388 13/174 [=>............................] - ETA: 1:29 - loss: 2.2856 - acc: 0.1391 14/174 [=>............................] - ETA: 1:29 - loss: 2.2855 - acc: 0.1388 15/174 [=>............................] - ETA: 1:28 - loss: 2.2859 - acc: 0.1386 16/174 [=>............................] - ETA: 1:26 - loss: 2.2852 - acc: 0.1399 17/174 [=>............................] - ETA: 1:25 - loss: 2.2851 - acc: 0.1384 18/174 [==>...........................] - ETA: 1:24 - loss: 2.2854 - acc: 0.1382 19/174 [==>...........................] - ETA: 1:23 - loss: 2.2855 - acc: 0.1382 20/174 [==>...........................] - ETA: 1:22 - loss: 2.2851 - acc: 0.1417 21/174 [==>...........................] - ETA: 1:22 - loss: 2.2846 - acc: 0.1429 22/174 [==>...........................] - ETA: 1:21 - loss: 2.2841 - acc: 0.1451 23/174 [==>...........................] - ETA: 1:20 - loss: 2.2840 - acc: 0.1446 24/174 [===>..........................] - ETA: 1:19 - loss: 2.2840 - acc: 0.1455 25/174 [===>..........................] - ETA: 1:18 - loss: 2.2843 - acc: 0.1454 26/174 [===>..........................] - ETA: 1:18 - loss: 2.2846 - acc: 0.1458 27/174 [===>..........................] - ETA: 1:17 - loss: 2.2845 - acc: 0.1459 28/174 [===>..........................] - ETA: 1:16 - loss: 2.2845 - acc: 0.1457 29/174 [====>.........................] - ETA: 1:16 - loss: 2.2847 - acc: 0.1445 30/174 [====>.........................] - ETA: 1:15 - loss: 2.2847 - acc: 0.1454 31/174 [====>.........................] - ETA: 1:14 - loss: 2.2848 - acc: 0.1450 32/174 [====>.........................] - ETA: 1:14 - loss: 2.2849 - acc: 0.1448 33/174 [====>.........................] - ETA: 1:13 - loss: 2.2849 - acc: 0.1455 34/174 [====>.........................] - ETA: 1:13 - loss: 2.2846 - acc: 0.1463 35/174 [=====>........................] - ETA: 1:12 - loss: 2.2843 - acc: 0.1480 36/174 [=====>........................] - ETA: 1:12 - loss: 2.2844 - acc: 0.1489 37/174 [=====>........................] - ETA: 1:11 - loss: 2.2844 - acc: 0.1489 38/174 [=====>........................] - ETA: 1:11 - loss: 2.2844 - acc: 0.1492 39/174 [=====>........................] - ETA: 1:11 - loss: 2.2845 - acc: 0.1491 40/174 [=====>........................] - ETA: 1:10 - loss: 2.2845 - acc: 0.1486 41/174 [======>.......................] - ETA: 1:09 - loss: 2.2844 - acc: 0.1488 42/174 [======>.......................] - ETA: 1:09 - loss: 2.2844 - acc: 0.1481 43/174 [======>.......................] - ETA: 1:08 - loss: 2.2842 - acc: 0.1481 44/174 [======>.......................] - ETA: 1:15 - loss: 2.2843 - acc: 0.1480174/174 [==============================] - 325s 2s/step - loss: 67966.8965 - acc: 0.1120 - val_loss: 2.2843 - val_acc: 0.1480

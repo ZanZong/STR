@@ -1,0 +1,199 @@
+WARNING:tensorflow:From ../run_training.py:27: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From ../run_training.py:27: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From ../run_training.py:27: The name tf.GPUOptions is deprecated. Please use tf.compat.v1.GPUOptions instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 40), ('epochs', 1), ('model_name', 'vgg_unet'), ('strategy', 'checkmate'), ('verbose', False)]
+There are 367 and 367 images downloaded for train and test
+Verifying train dataset
+  0%|          | 0/367 [00:00<?, ?it/s]  4%|▎         | 13/367 [00:00<00:02, 123.72it/s]  7%|▋         | 26/367 [00:00<00:02, 126.10it/s] 11%|█         | 39/367 [00:00<00:02, 126.86it/s] 14%|█▍        | 53/367 [00:00<00:02, 129.14it/s] 18%|█▊        | 67/367 [00:00<00:02, 132.26it/s] 22%|██▏       | 82/367 [00:00<00:02, 137.59it/s] 27%|██▋       | 99/367 [00:00<00:01, 145.12it/s] 32%|███▏      | 116/367 [00:00<00:01, 151.18it/s] 36%|███▌      | 132/367 [00:00<00:01, 151.38it/s] 40%|████      | 148/367 [00:01<00:01, 152.69it/s] 45%|████▍     | 164/367 [00:01<00:01, 154.12it/s] 49%|████▉     | 180/367 [00:01<00:01, 154.41it/s] 53%|█████▎    | 196/367 [00:01<00:01, 155.57it/s] 58%|█████▊    | 212/367 [00:01<00:00, 155.84it/s] 62%|██████▏   | 228/367 [00:01<00:00, 155.38it/s] 66%|██████▋   | 244/367 [00:01<00:00, 155.40it/s] 71%|███████   | 260/367 [00:01<00:00, 156.05it/s] 75%|███████▌  | 276/367 [00:01<00:00, 156.04it/s] 80%|███████▉  | 293/367 [00:01<00:00, 157.34it/s] 84%|████████▍ | 309/367 [00:02<00:00, 156.06it/s] 89%|████████▊ | 325/367 [00:02<00:00, 156.36it/s] 93%|█████████▎| 341/367 [00:02<00:00, 156.25it/s] 97%|█████████▋| 357/367 [00:02<00:00, 155.03it/s]100%|██████████| 367/367 [00:02<00:00, 150.52it/s]
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/str_strategy.py:122: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1424: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+Dataset verified! 
+Starting Epoch  0
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'hybrid', 'verbose': 'false', 'tags': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_512/layer_names'}, {'r': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_512/R-approx', 'p': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_512/P-approx', 'q': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/MobileNet_512/Q-approx'}]
+[STR DEBUG] Processing layer 1's swapping, swap out at [2], swap in at [182]
+[STR DEBUG] Cannot find corresponding ops for layer_id 1
+[STR DEBUG] Processing layer 2's swapping, swap out at [3], swap in at [181]
+[STR DEBUG] Cannot find swap-out control nodes for layer 2 among []
+[STR DEBUG] Processing layer 3's swapping, swap out at [4], swap in at [180]
+[STR DEBUG] Cannot find corresponding ops for layer_id 3
+[STR DEBUG] Processing layer 4's swapping, swap out at [5], swap in at [179]
+[STR DEBUG] Cannot find corresponding ops for layer_id 4
+[STR DEBUG] Processing layer 5's swapping, swap out at [6], swap in at [178]
+[STR DEBUG] Cannot find corresponding ops for layer_id 5
+[STR DEBUG] Processing layer 6's swapping, swap out at [7], swap in at [177]
+[STR DEBUG] Cannot find corresponding ops for layer_id 6
+[STR DEBUG] Processing layer 7's swapping, swap out at [8], swap in at [176]
+[STR DEBUG] Cannot find corresponding ops for layer_id 7
+[STR DEBUG] Processing layer 8's swapping, swap out at [9], swap in at [175]
+[STR DEBUG] Cannot find corresponding ops for layer_id 8
+[STR DEBUG] Processing layer 9's swapping, swap out at [10], swap in at [173]
+[STR DEBUG] Cannot find corresponding ops for layer_id 9
+[STR DEBUG] Processing layer 11's swapping, swap out at [12], swap in at [172]
+[STR DEBUG] Cannot find corresponding ops for layer_id 11
+[STR DEBUG] Processing layer 12's swapping, swap out at [13], swap in at [171]
+[STR DEBUG] Cannot find corresponding ops for layer_id 12
+[STR DEBUG] Processing layer 13's swapping, swap out at [14], swap in at [170]
+[STR DEBUG] Cannot find corresponding ops for layer_id 13
+[STR DEBUG] Processing layer 14's swapping, swap out at [15], swap in at [169]
+[STR DEBUG] Cannot find corresponding ops for layer_id 14
+[STR DEBUG] Processing layer 15's swapping, swap out at [16], swap in at [168]
+[STR DEBUG] Cannot find corresponding ops for layer_id 15
+[STR DEBUG] Processing layer 16's swapping, swap out at [17], swap in at [167]
+[STR DEBUG] Cannot find corresponding ops for layer_id 16
+[STR DEBUG] Processing layer 17's swapping, swap out at [18], swap in at [166]
+[STR DEBUG] Cannot find corresponding ops for layer_id 17
+[STR DEBUG] Processing layer 18's swapping, swap out at [19], swap in at [165]
+[STR DEBUG] Cannot find corresponding ops for layer_id 18
+[STR DEBUG] Processing layer 19's swapping, swap out at [20], swap in at [164]
+[STR DEBUG] Cannot find corresponding ops for layer_id 19
+[STR DEBUG] Processing layer 20's swapping, swap out at [21], swap in at [163]
+[STR DEBUG] Cannot find corresponding ops for layer_id 20
+[STR DEBUG] Processing layer 21's swapping, swap out at [22], swap in at [162]
+[STR DEBUG] Cannot find corresponding ops for layer_id 21
+[STR DEBUG] Processing layer 22's swapping, swap out at [23], swap in at [159]
+[STR DEBUG] Cannot find corresponding ops for layer_id 22
+[STR DEBUG] Processing layer 24's swapping, swap out at [25], swap in at [158]
+[STR DEBUG] Cannot find corresponding ops for layer_id 24
+[STR DEBUG] Processing layer 26's swapping, swap out at [27], swap in at [157]
+[STR DEBUG] Cannot find corresponding ops for layer_id 26
+[STR DEBUG] Processing layer 27's swapping, swap out at [28], swap in at [156]
+[STR DEBUG] Cannot find corresponding ops for layer_id 27
+[STR DEBUG] Processing layer 28's swapping, swap out at [29], swap in at [155]
+[STR DEBUG] Cannot find corresponding ops for layer_id 28
+[STR DEBUG] Processing layer 29's swapping, swap out at [30], swap in at [154]
+[STR DEBUG] Cannot find corresponding ops for layer_id 29
+[STR DEBUG] Processing layer 30's swapping, swap out at [31], swap in at [153]
+[STR DEBUG] Cannot find corresponding ops for layer_id 30
+[STR DEBUG] Processing layer 31's swapping, swap out at [32], swap in at [152]
+[STR DEBUG] Cannot find corresponding ops for layer_id 31
+[STR DEBUG] Processing layer 32's swapping, swap out at [33], swap in at [151]
+[STR DEBUG] Cannot find corresponding ops for layer_id 32
+[STR DEBUG] Processing layer 33's swapping, swap out at [34], swap in at [150]
+[STR DEBUG] Cannot find corresponding ops for layer_id 33
+[STR DEBUG] Processing layer 34's swapping, swap out at [35], swap in at [149]
+[STR DEBUG] Cannot find corresponding ops for layer_id 34
+[STR DEBUG] Processing layer 35's swapping, swap out at [36], swap in at [147]
+[STR DEBUG] Cannot find corresponding ops for layer_id 35
+[STR DEBUG] Processing layer 37's swapping, swap out at [38], swap in at [146]
+[STR DEBUG] Cannot find corresponding ops for layer_id 37
+[STR DEBUG] Processing layer 38's swapping, swap out at [39], swap in at [145]
+[STR DEBUG] Cannot find corresponding ops for layer_id 38
+[STR DEBUG] Processing layer 39's swapping, swap out at [40], swap in at [144]
+[STR DEBUG] Cannot find corresponding ops for layer_id 39
+[STR DEBUG] Processing layer 40's swapping, swap out at [41], swap in at [143]
+[STR DEBUG] Cannot find corresponding ops for layer_id 40
+[STR DEBUG] Processing layer 41's swapping, swap out at [42], swap in at [142]
+[STR DEBUG] Cannot find corresponding ops for layer_id 41
+[STR DEBUG] Processing layer 42's swapping, swap out at [43], swap in at [141]
+[STR DEBUG] Cannot find corresponding ops for layer_id 42
+[STR DEBUG] Processing layer 43's swapping, swap out at [44], swap in at [140]
+[STR DEBUG] Cannot find corresponding ops for layer_id 43
+[STR DEBUG] Processing layer 44's swapping, swap out at [45], swap in at [139]
+[STR DEBUG] Cannot find corresponding ops for layer_id 44
+[STR DEBUG] Processing layer 45's swapping, swap out at [46], swap in at [138]
+[STR DEBUG] Cannot find corresponding ops for layer_id 45
+[STR DEBUG] Processing layer 46's swapping, swap out at [47], swap in at [137]
+[STR DEBUG] Cannot find corresponding ops for layer_id 46
+[STR DEBUG] Processing layer 47's swapping, swap out at [48], swap in at [136]
+[STR DEBUG] Cannot find corresponding ops for layer_id 47
+[STR DEBUG] Processing layer 48's swapping, swap out at [49], swap in at [135]
+[STR DEBUG] Cannot find corresponding ops for layer_id 48
+[STR DEBUG] Processing layer 49's swapping, swap out at [50], swap in at [134]
+[STR DEBUG] Cannot find corresponding ops for layer_id 49
+[STR DEBUG] Processing layer 50's swapping, swap out at [51], swap in at [133]
+[STR DEBUG] Cannot find corresponding ops for layer_id 50
+[STR DEBUG] Processing layer 51's swapping, swap out at [52], swap in at [132]
+[STR DEBUG] Cannot find corresponding ops for layer_id 51
+[STR DEBUG] Processing layer 52's swapping, swap out at [53], swap in at [131]
+[STR DEBUG] Cannot find corresponding ops for layer_id 52
+[STR DEBUG] Processing layer 53's swapping, swap out at [54], swap in at [130]
+[STR DEBUG] Cannot find corresponding ops for layer_id 53
+[STR DEBUG] Processing layer 54's swapping, swap out at [55], swap in at [129]
+[STR DEBUG] Cannot find corresponding ops for layer_id 54
+[STR DEBUG] Processing layer 55's swapping, swap out at [56], swap in at [128]
+[STR DEBUG] Cannot find corresponding ops for layer_id 55
+[STR DEBUG] Processing layer 56's swapping, swap out at [57], swap in at [127]
+[STR DEBUG] Cannot find corresponding ops for layer_id 56
+[STR DEBUG] Processing layer 57's swapping, swap out at [58], swap in at [126]
+[STR DEBUG] Cannot find corresponding ops for layer_id 57
+[STR DEBUG] Processing layer 58's swapping, swap out at [59], swap in at [125]
+[STR DEBUG] Cannot find corresponding ops for layer_id 58
+[STR DEBUG] Processing layer 59's swapping, swap out at [60], swap in at [124]
+[STR DEBUG] Cannot find corresponding ops for layer_id 59
+[STR DEBUG] Processing layer 60's swapping, swap out at [61], swap in at [123]
+[STR DEBUG] Cannot find corresponding ops for layer_id 60
+[STR DEBUG] Processing layer 61's swapping, swap out at [62], swap in at [122]
+[STR DEBUG] Cannot find corresponding ops for layer_id 61
+[STR DEBUG] Processing layer 62's swapping, swap out at [63], swap in at [121]
+[STR DEBUG] Cannot find corresponding ops for layer_id 62
+[STR DEBUG] Processing layer 63's swapping, swap out at [64], swap in at [120]
+[STR DEBUG] Cannot find corresponding ops for layer_id 63
+[STR DEBUG] Processing layer 64's swapping, swap out at [65], swap in at [119]
+[STR DEBUG] Cannot find corresponding ops for layer_id 64
+[STR DEBUG] Processing layer 65's swapping, swap out at [66], swap in at [118]
+[STR DEBUG] Cannot find corresponding ops for layer_id 65
+[STR DEBUG] Processing layer 66's swapping, swap out at [67], swap in at [117]
+[STR DEBUG] Cannot find corresponding ops for layer_id 66
+[STR DEBUG] Processing layer 67's swapping, swap out at [68], swap in at [116]
+[STR DEBUG] Cannot find corresponding ops for layer_id 67
+[STR DEBUG] Processing layer 68's swapping, swap out at [69], swap in at [115]
+[STR DEBUG] Cannot find corresponding ops for layer_id 68
+[STR DEBUG] Processing layer 69's swapping, swap out at [70], swap in at [114]
+[STR DEBUG] Cannot find corresponding ops for layer_id 69
+[STR DEBUG] Processing layer 70's swapping, swap out at [71], swap in at [113]
+[STR DEBUG] Cannot find corresponding ops for layer_id 70
+[STR DEBUG] Processing layer 71's swapping, swap out at [72], swap in at [112]
+[STR DEBUG] Cannot find corresponding ops for layer_id 71
+[STR DEBUG] Processing layer 72's swapping, swap out at [73], swap in at [110]
+[STR DEBUG] Cannot find corresponding ops for layer_id 72
+[STR DEBUG] Processing layer 74's swapping, swap out at [75], swap in at [109]
+[STR DEBUG] Cannot find corresponding ops for layer_id 74
+[STR DEBUG] Processing layer 75's swapping, swap out at [76], swap in at [108]
+[STR DEBUG] Cannot find corresponding ops for layer_id 75
+[STR DEBUG] Processing layer 76's swapping, swap out at [77], swap in at [107]
+[STR DEBUG] Cannot find corresponding ops for layer_id 76
+[STR DEBUG] Processing layer 77's swapping, swap out at [78], swap in at [106]
+[STR DEBUG] Cannot find corresponding ops for layer_id 77
+[STR DEBUG] Processing layer 78's swapping, swap out at [79], swap in at [105]
+[STR DEBUG] Cannot find corresponding ops for layer_id 78
+[STR DEBUG] Processing layer 79's swapping, swap out at [80], swap in at [104]
+[STR DEBUG] Cannot find corresponding ops for layer_id 79
+[STR DEBUG] Processing layer 80's swapping, swap out at [81], swap in at [103]
+[STR DEBUG] Cannot find corresponding ops for layer_id 80
+[STR DEBUG] Processing layer 81's swapping, swap out at [82], swap in at [102]
+[STR DEBUG] Cannot find corresponding ops for layer_id 81
+[STR DEBUG] Processing layer 82's swapping, swap out at [83], swap in at [101]
+[STR DEBUG] Cannot find corresponding ops for layer_id 82
+[STR DEBUG] Processing layer 83's swapping, swap out at [84], swap in at [100]
+[STR DEBUG] Cannot find corresponding ops for layer_id 83
+[STR DEBUG] Processing layer 84's swapping, swap out at [85], swap in at [99]
+[STR DEBUG] Cannot find corresponding ops for layer_id 84
+[STR DEBUG] Processing layer 85's swapping, swap out at [86], swap in at [95]
+[STR DEBUG] Cannot find corresponding ops for layer_id 85
+[STR DEBUG] Processing layer 89's swapping, swap out at [90], swap in at [93]
+[STR DEBUG] Cannot find corresponding ops for layer_id 89
+ 1/64 [..............................] - ETA: 28:13 - loss: 4.0994 - acc: 0.0360 2/64 [..............................] - ETA: 15:51 - loss: 4.0721 - acc: 0.0393 3/64 [>.............................] - ETA: 11:34 - loss: 4.0715 - acc: 0.0388 4/64 [>.............................] - ETA: 9:20 - loss: 4.0773 - acc: 0.0359  5/64 [=>............................] - ETA: 8:02 - loss: 4.0804 - acc: 0.0339 6/64 [=>............................] - ETA: 7:06 - loss: 4.0811 - acc: 0.0336 7/64 [==>...........................] - ETA: 6:23 - loss: 4.0872 - acc: 0.0324 8/64 [==>...........................] - ETA: 5:51 - loss: 4.0847 - acc: 0.0332 9/64 [===>..........................] - ETA: 5:26 - loss: 4.0864 - acc: 0.033010/64 [===>..........................] - ETA: 5:05 - loss: 4.0858 - acc: 0.033911/64 [====>.........................] - ETA: 4:47 - loss: 4.0805 - acc: 0.035312/64 [====>.........................] - ETA: 4:31 - loss: 4.0781 - acc: 0.036013/64 [=====>........................] - ETA: 4:18 - loss: 4.0768 - acc: 0.035914/64 [=====>........................] - ETA: 4:06 - loss: 4.0789 - acc: 0.035215/64 [======>.......................] - ETA: 3:55 - loss: 4.0786 - acc: 0.035116/64 [======>.......................] - ETA: 3:44 - loss: 4.0792 - acc: 0.035117/64 [======>.......................] - ETA: 3:35 - loss: 4.0795 - acc: 0.035218/64 [=======>......................] - ETA: 3:28 - loss: 4.0778 - acc: 0.035219/64 [=======>......................] - ETA: 3:19 - loss: 4.0783 - acc: 0.035820/64 [========>.....................] - ETA: 3:12 - loss: 4.0749 - acc: 0.036821/64 [========>.....................] - ETA: 3:05 - loss: 4.0731 - acc: 0.037622/64 [=========>....................] - ETA: 2:59 - loss: 4.0722 - acc: 0.037523/64 [=========>....................] - ETA: 2:52 - loss: 4.0727 - acc: 0.037324/64 [==========>...................] - ETA: 2:46 - loss: 4.0723 - acc: 0.037225/64 [==========>...................] - ETA: 2:40 - loss: 4.0719 - acc: 0.037326/64 [===========>..................] - ETA: 2:34 - loss: 4.0720 - acc: 0.037527/64 [===========>..................] - ETA: 2:29 - loss: 4.0708 - acc: 0.037728/64 [============>.................] - ETA: 2:24 - loss: 4.0710 - acc: 0.037929/64 [============>.................] - ETA: 2:19 - loss: 4.0681 - acc: 0.039130/64 [=============>................] - ETA: 2:14 - loss: 4.0664 - acc: 0.039931/64 [=============>................] - ETA: 2:09 - loss: 4.0651 - acc: 0.040132/64 [==============>...............] - ETA: 2:04 - loss: 4.0652 - acc: 0.039933/64 [==============>...............] - ETA: 2:00 - loss: 4.0649 - acc: 0.039934/64 [==============>...............] - ETA: 1:55 - loss: 4.0643 - acc: 0.040035/64 [===============>..............] - ETA: 1:50 - loss: 4.0645 - acc: 0.040136/64 [===============>..............] - ETA: 1:46 - loss: 4.0635 - acc: 0.040537/64 [================>.............] - ETA: 1:42 - loss: 4.0627 - acc: 0.040838/64 [================>.............] - ETA: 1:37 - loss: 4.0612 - acc: 0.041539/64 [=================>............] - ETA: 1:33 - loss: 4.0595 - acc: 0.042540/64 [=================>............] - ETA: 1:29 - loss: 4.0586 - acc: 0.042741/64 [==================>...........] - ETA: 1:25 - loss: 4.0575 - acc: 0.042942/64 [==================>...........] - ETA: 1:21 - loss: 4.0577 - acc: 0.042843/64 [===================>..........] - ETA: 1:17 - loss: 4.0563 - acc: 0.043144/64 [===================>..........] - ETA: 1:13 - loss: 4.0564 - acc: 0.043245/64 [====================>.........] - ETA: 1:09 - loss: 4.0554 - acc: 0.043646/64 [====================>.........] - ETA: 1:06 - loss: 4.0551 - acc: 0.043947/64 [=====================>........] - ETA: 1:02 - loss: 4.0537 - acc: 0.044648/64 [=====================>........] - ETA: 58s - loss: 4.0518 - acc: 0.0455 49/64 [=====================>........] - ETA: 54s - loss: 4.0511 - acc: 0.045950/64 [======================>.......] - ETA: 50s - loss: 4.0503 - acc: 0.046151/64 [======================>.......] - ETA: 47s - loss: 4.0501 - acc: 0.046152/64 [=======================>......] - ETA: 43s - loss: 4.0487 - acc: 0.046653/64 [=======================>......] - ETA: 39s - loss: 4.0487 - acc: 0.046654/64 [========================>.....] - ETA: 35s - loss: 4.0477 - acc: 0.047155/64 [========================>.....] - ETA: 32s - loss: 4.0473 - acc: 0.047356/64 [=========================>....] - ETA: 28s - loss: 4.0464 - acc: 0.047957/64 [=========================>....] - ETA: 24s - loss: 4.0446 - acc: 0.048758/64 [==========================>...] - ETA: 21s - loss: 4.0435 - acc: 0.049459/64 [==========================>...] - ETA: 17s - loss: 4.0426 - acc: 0.049660/64 [===========================>..] - ETA: 14s - loss: 4.0421 - acc: 0.049761/64 [===========================>..] - ETA: 10s - loss: 4.0412 - acc: 0.050162/64 [============================>.] - ETA: 7s - loss: 4.0411 - acc: 0.0502 63/64 [============================>.] - ETA: 3s - loss: 4.0400 - acc: 0.050864/64 [==============================] - 225s 4s/step - loss: 4.0394 - acc: 0.0511
+Finished Epoch 0

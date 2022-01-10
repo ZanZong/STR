@@ -1,0 +1,2 @@
+run str with approx and exact
+approx (miss used as exact before) has been fixed, exact hasn't

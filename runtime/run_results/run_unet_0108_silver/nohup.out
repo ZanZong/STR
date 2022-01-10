@@ -1,0 +1,15 @@
+run.sh: line 3: 30263 Aborted                 (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 30 --strategy chen-heurist > chen-heurist-b30.log 2>&1
+run.sh: line 10: 38630 Aborted                 (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 35 --strategy chen-heurist > chen-heurist-b35.log 2>&1
+run.sh: line 24:  6553 Aborted                 (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 45 --strategy chen-heurist > chen-heurist-b45.log 2>&1
+run.sh: line 32: 12643 Segmentation fault      (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 50 --strategy str > str-b50.log 2>&1
+run.sh: line 33: 13130 Segmentation fault      (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 50 --strategy dynprog > dynprog-b50.log 2>&1
+run.sh: line 37: 14673 Segmentation fault      (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 55 --strategy capuchin > capuchin-b55.log 2>&1
+run.sh: line 10: 14950 Aborted                 (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 20 --strategy chen-heurist > chen-heurist-b20.log 2>&1
+run.sh: line 18: 20316 Aborted                 (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 25 --strategy str > str-b25.log 2>&1
+run.sh: line 10:  1412 Aborted                 (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 20 --strategy capuchin > capuchin-b20.log 2>&1
+run.sh: line 22:  9561 Aborted                 (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 25 --strategy dynprog > dynprog-b25.log 2>&1
+run.sh: line 36: 17766 Aborted                 (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 35 --strategy str > str-b35.log 2>&1
+run.sh: line 60: 34844 Aborted                 (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 50 --strategy str > str-b50.log 2>&1
+run.sh: line 62: 35752 Segmentation fault      (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 50 --strategy dynprog > dynprog-b50.log 2>&1
+run.sh: line 67: 37767 Aborted                 (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 55 --strategy chen-heurist > chen-heurist-b55.log 2>&1
+run.sh: line 68: 42233 Segmentation fault      (core dumped) nohup python ../run_training.py --model-name vgg_unet --epoch 1 --batch-size 55 --strategy str > str-b55.log 2>&1
