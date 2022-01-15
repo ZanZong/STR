@@ -8,10 +8,12 @@ from tensorflow.python.platform import tf_logging as logging
 os.environ['TF_CPP_MIN_LOG_LEVEL']='1'
 logging.set_verbosity(logging.INFO)
 
-# import tensorboard
-# tensorboard.__version__
-# log_dir = "logs/fit-3node-origin"# + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-# tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
+import tensorboard
+tensorboard.__version__
+log_dir = "logs/fit-4node-origin"# + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir,
+                                                        histogram_freq=1,
+                                                        profile_batch=100)
 
 # turn on memory growth
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -81,8 +83,8 @@ def train_with_mnist():
                         batch_size=batch_size,
                         epochs=epochs,
                         verbose=1,
-                        validation_data=(x_test, y_test))
-                        # callbacks=[tensorboard_callback])
+                        validation_data=(x_test, y_test),
+                        callbacks=[tensorboard_callback])
     score = model.evaluate(x_test, y_test, verbose=0)
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])

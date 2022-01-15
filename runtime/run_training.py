@@ -33,6 +33,14 @@ from str_config import ConfigHandler
 # config.graph_options.rewrite_options.dependency_optimization = rewriter_config_pb2.RewriterConfig.OFF
 # K.set_session(tf.Session(config=config))
 
+# Tensorboard for profiling
+# import tensorboard
+# tensorboard.__version__
+# log_dir = "logs/fit-vgg16"# + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+# tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir,
+#                                                         histogram_freq=1,
+#                                                         profile_batch=100)
+
 def extract_params():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model-name', default="VGG16", help="VGG16, vgg_unet and MobileNet")
@@ -81,3 +89,4 @@ if __name__ == "__main__":
               epochs=args.epochs,
               validation_data=validation_generator,
               verbose=1)
+              # callbacks=[tensorboard_callback])
