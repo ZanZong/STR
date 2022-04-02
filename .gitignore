@@ -9,7 +9,6 @@ __pycache__/
 .pyc
 .class
 .DS_Store
-gradient-checkpointing-master/
-.vscode/
+.vscode
 sync.sh
 dataset/
