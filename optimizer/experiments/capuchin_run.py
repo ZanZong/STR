@@ -2,18 +2,18 @@ import argparse
 import numpy as np
 import shutil
 import pathlib
-from remat.core.dfgraph import DFGraph
-from remat.core.solvers.strategy_checkpoint_all import solve_checkpoint_all
-from remat.core.schedule import ScheduledResult
-from remat.core.utils.solver_common import gen_s_matrix_fixed_checkpoints, solve_r_opt
-from remat.core.enum_strategy import SolveStrategy
-from remat.core.utils.scheduler import schedule_from_rs
-from remat.core.utils.timer import Timer
+from stropt.core.dfgraph import DFGraph
+from stropt.core.solvers.strategy_checkpoint_all import solve_checkpoint_all
+from stropt.core.schedule import ScheduledResult
+from stropt.core.utils.solver_common import gen_s_matrix_fixed_checkpoints, solve_r_opt
+from stropt.core.enum_strategy import SolveStrategy
+from stropt.core.utils.scheduler import schedule_from_rs
+from stropt.core.utils.timer import Timer
 from experiments.common.definitions import remat_data_dir
 from experiments.common.load_keras_model import get_keras_model
 from experiments.common.profile.cost_model import CostModel
-from remat.tensorflow2.extraction import dfgraph_from_keras
-from remat.core.solvers.strategy_capuchin import Tensor, hybrid_policy
+from stropt.tensorflow2.extraction import dfgraph_from_keras
+from stropt.core.solvers.strategy_capuchin import Tensor, hybrid_policy
 
 
 def extract_params():

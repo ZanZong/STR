@@ -10,6 +10,9 @@ gast==0.2.2
 google-pasta==0.2.0
 grpcio==1.41.1
 gviz-api==1.10.0
+graphviz==0.17
+protobuf==3.19.4
+gurobipy==9.1.2
 h5py==3.1.0
 importlib-metadata==4.8.2
 iniconfig==1.1.1
@@ -20,6 +23,7 @@ Markdown==3.3.4
 networkx==2.5.1
 # numpy version must < 1.19.0
 numpy==1.18.5
+pandas==1.1.5
 opt-einsum==3.3.0
 packaging==21.3
 pluggy==1.0.0

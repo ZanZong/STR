@@ -12,3 +12,5 @@ __pycache__/
 .vscode
 sync.sh
 dataset/
+stropt.egg-info
+dist

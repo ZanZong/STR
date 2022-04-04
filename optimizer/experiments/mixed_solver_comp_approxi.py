@@ -10,32 +10,30 @@ from typing import Dict, List, Optional
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
+# import pandas as pd
 import ray
-import seaborn as sns
+# import seaborn as sns
 import tensorflow as tf
 from matplotlib.lines import Line2D
-from scipy.stats.mstats import gmean
 
 from experiments.common.definitions import remat_data_dir
 from experiments.common.graph_plotting import render_dfgraph
 from experiments.common.load_keras_model import MODEL_NAMES, get_keras_model, CHAIN_GRAPH_MODELS
 from experiments.common.profile.cost_model import CostModel
-from experiments.common.profile.platforms import PLATFORM_CHOICES, platform_memory, pretty_platform_name
+from experiments.common.profile.platforms import PLATFORM_CHOICES
 from experiments.common.ray_utils import get_futures
-from remat.core.dfgraph import DFGraph
-from remat.core.enum_strategy import SolveStrategy
-from remat.core.schedule import ScheduledResult
-from remat.core.solvers.strategy_approx_lp import solve_approx_lp_deterministic_sweep, \
-    solve_approx_lp_deterministic_rand_threshold, solve_approx_lp_deterministic_05_threshold, solve_approx_lp_randomized
-from remat.core.solvers.strategy_checkpoint_all import solve_checkpoint_all, solve_checkpoint_all_ap
-from remat.core.solvers.strategy_checkpoint_last import solve_checkpoint_last_node
-from remat.core.solvers.strategy_chen import solve_chen_sqrtn, solve_chen_greedy
-from remat.core.solvers.strategy_griewank import solve_griewank, clean_griewank_cache
-from remat.core.solvers.strategy_optimal_ilp import solve_ilp_gurobi
-from remat.core.solvers.strategy_hybrid_ilp import solve_hybrid_ilp
-from remat.core.solvers.strategy_hybrid_approxi import solve_hybrid_approximate_lp
-from remat.tensorflow2.extraction import dfgraph_from_keras
+from stropt.core.dfgraph import DFGraph
+from stropt.core.enum_strategy import SolveStrategy
+from stropt.core.schedule import ScheduledResult
+from stropt.core.solvers.strategy_approx_lp import solve_approx_lp_deterministic_05_threshold
+from stropt.core.solvers.strategy_checkpoint_all import solve_checkpoint_all, solve_checkpoint_all_ap
+from stropt.core.solvers.strategy_checkpoint_last import solve_checkpoint_last_node
+from stropt.core.solvers.strategy_chen import solve_chen_sqrtn, solve_chen_greedy
+from stropt.core.solvers.strategy_griewank import solve_griewank, clean_griewank_cache
+from stropt.core.solvers.strategy_optimal_ilp import solve_ilp_gurobi
+from stropt.core.solvers.strategy_hybrid_ilp import solve_hybrid_ilp
+from stropt.core.solvers.strategy_hybrid_approxi import solve_hybrid_approximate_lp
+from stropt.tensorflow2.extraction import dfgraph_from_keras
 
 # ILP solve params
 NUM_ILP_CORES = os.environ.get("ILP_CORES", 12)
@@ -379,8 +377,8 @@ if __name__ == "__main__":
     # Plot result_dict
     ####
     # todo save pandas results dict
-    sns.set()
-    sns.set_style("white")
+    # sns.set()
+    # sns.set_style("white")
 
     baseline_cpu = np.sum(list(g.cost_cpu.values()))
     fig, ax = plt.subplots(1, 1, figsize=(4, 4))

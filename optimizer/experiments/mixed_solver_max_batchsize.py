@@ -14,11 +14,11 @@ from experiments.common.graph_plotting import render_dfgraph, plot
 from experiments.common.load_keras_model import MODEL_NAMES, get_keras_model
 from experiments.common.profile.cost_model import CostModel
 from experiments.common.profile.platforms import PLATFORM_CHOICES, platform_memory
-from remat.core.solvers.strategy_hybrid_ilp import HybridILPSolver
-from remat.core.enum_strategy import SolveStrategy
-from remat.core.schedule import ScheduledResult
-from remat.core.utils.solver_common import SolverTarget
-from remat.tensorflow2.extraction import dfgraph_from_keras
+from stropt.core.solvers.strategy_hybrid_ilp import HybridILPSolver
+from stropt.core.enum_strategy import SolveStrategy
+from stropt.core.schedule import ScheduledResult
+from stropt.core.utils.solver_common import SolverTarget
+from stropt.tensorflow2.extraction import dfgraph_from_keras
 
 def extract_params():
     parser = argparse.ArgumentParser()

@@ -14,7 +14,7 @@ import scipy
 import scipy.stats
 import seaborn as sns
 
-from remat.core.utils.definitions import PathLike
+from stropt.core.utils.definitions import PathLike
 
 # BATCH_SIZES_LOAD = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
 BATCH_SIZES_LOAD = [32, 64, 128, 256, 512, 1024, 2048]

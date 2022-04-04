@@ -13,6 +13,7 @@ The project STR aims to help user train deep neural network models when the GPU 
 
 We recommend to use Anaconda to create a virtual environment with version 3.6. The python requirenments are listed in `requirements.txt`, which can be installed through:
 > pip install -r requirements.txt
+> pip install -e .
 
 # Run Experiments on TensorFlow
 We implement the prototype of STR on TensorFlow. First, we need to clone TensorFlow of the version we are using:
