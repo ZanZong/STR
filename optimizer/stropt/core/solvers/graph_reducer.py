@@ -2,7 +2,6 @@ import copy, logging
 from re import L
 import numpy as np
 from typing import Tuple
-from experiments.ray_test import T
 from stropt.core.dfgraph import DFGraph, EdgeList, Vertex
 
 logger = logging.getLogger("GraphReducer")

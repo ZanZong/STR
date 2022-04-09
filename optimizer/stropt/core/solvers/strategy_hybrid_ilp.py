@@ -291,9 +291,9 @@ class HybridILPSolver:
                                     self.m.addLConstr(self.Free_E[t, eidx] + self.R[t, j], GRB.LESS_EQUAL, 1)
                 #==end additional constraints
 
-        if self.model_file is not None and self.g.size < 200:  # skip for big models to save runtime
-            with Timer("Saving model", extra_data={'T': str(T), 'budget': str(budget)}):
-                self.m.write(self.model_file)
+        # if self.model_file is not None and self.g.size < 200:  # skip for big models to save runtime
+        #     with Timer("Saving model", extra_data={'T': str(T), 'budget': str(budget)}):
+        #         self.m.write(self.model_file)
         return None  # return value ensures ray remote call can be chained
 
     def solve(self):
@@ -407,12 +407,12 @@ def solve_hybrid_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = Non
         
         pruned_Qout = prun_q_opt(ilpsolver.swap_control, q, s)
         
-        if not check_compute_correctness(g, s, r):
-            # TODO check if there are some bugs usually doesn't show up
-            print("Need corrected again!!!!")
-            from stropt.core.utils.approximate_hybrid import fine_grained_approx
-            r, s, p_appro, pruned_Qout = fine_grained_approx(g=g, sc=ilpsolver.swap_control, \
-                    r=r, s=s, p=p, q=q, u=u, mem_budget=ilpsolver.budget*ilpsolver.ram_gcd)
+        # if not check_compute_correctness(g, s, r):
+        #     # TODO check if there are some bugs usually doesn't show up
+        #     print("Need corrected again!!!!")
+        #     from stropt.core.utils.approximate_hybrid import fine_grained_approx
+        #     r, s, p_appro, pruned_Qout = fine_grained_approx(g=g, sc=ilpsolver.swap_control, \
+        #             r=r, s=s, p=p, q=q, u=u, mem_budget=ilpsolver.budget*ilpsolver.ram_gcd)
 
         ilpsolver.format_matrix(r, "R")
         ilpsolver.format_matrix(s, "S")
@@ -421,9 +421,9 @@ def solve_hybrid_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = Non
         ilpsolver.format_matrix(p, "P")
         ilpsolver.format_matrix(q, "Q")
         ilpsolver.format_matrix(pruned_Qout, "PrunedQ")
-        swap_finish_mat, swap_start_mat = ilpsolver.dump_swap_finish_stage()
-        ilpsolver.format_matrix(swap_finish_mat, "SFMat")
-        ilpsolver.format_matrix(swap_start_mat, "SSMat")
+        # swap_finish_mat, swap_start_mat = ilpsolver.dump_swap_finish_stage()
+        # ilpsolver.format_matrix(swap_finish_mat, "SFMat")
+        # ilpsolver.format_matrix(swap_start_mat, "SSMat")
         ilp_feasible = True
     except ValueError as e:
         logging.exception(e)

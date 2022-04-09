@@ -82,7 +82,7 @@ class SwapControler:
 def prun_q_opt(sc: SwapControler, q: np.ndarray, s: np.ndarray):
     """We don't put swapping overhead (namely q) in the target,
     so useless swap-in may appear in q. This function for removing
-    1) swap-in which is not checkpointed at (finish_stage + 1).
+    swap-in which is not checkpointed at (finish_stage + 1).
     """
     T = q.shape[0]
     new_q = np.zeros((T, T), dtype=np.integer)

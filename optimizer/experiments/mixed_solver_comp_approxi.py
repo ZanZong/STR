@@ -32,7 +32,7 @@ from stropt.core.solvers.strategy_chen import solve_chen_sqrtn, solve_chen_greed
 from stropt.core.solvers.strategy_griewank import solve_griewank, clean_griewank_cache
 from stropt.core.solvers.strategy_optimal_ilp import solve_ilp_gurobi
 from stropt.core.solvers.strategy_hybrid_ilp import solve_hybrid_ilp
-from stropt.core.solvers.strategy_hybrid_approxi import solve_hybrid_approximate_lp
+from stropt.core.solvers.strategy_hybrid_approxi import solve_hybrid_approximate_lp, partioned_hybrid_appro_ilp
 from stropt.tensorflow2.extraction import dfgraph_from_keras
 
 # ILP solve params
@@ -216,6 +216,7 @@ if __name__ == "__main__":
     local_ilp_eval_points = list()
 
     # sweep chen's greedy baseline
+    '''
     logger.info(f"Running Chen's greedy baseline (APs only)")
     chen_sqrtn_noap = result_dict[SolveStrategy.CHEN_SQRTN_NOAP][0]
     greedy_eval_points = chen_sqrtn_noap.schedule_aux_data.activation_ram * (1. + np.arange(-1, 2, 0.01))
@@ -226,8 +227,9 @@ if __name__ == "__main__":
         logger.info(f"Running Chen's greedy baseline (no AP) as model is non-linear")
         futures = [remote_solve_chen_greedy(g, float(b), True) for b in greedy_eval_points]
         result_dict[SolveStrategy.CHEN_SQRTN_NOAP] = get_futures(list(futures), desc="Greedy (No AP)")
-
+    '''
     # sweep griewank baselines
+    '''
     if model_name in CHAIN_GRAPH_MODELS:
         logger.info(f"Running Griewank baseline (APs only)")
         clean_griewank_cache()
@@ -236,7 +238,7 @@ if __name__ == "__main__":
         remote_solve_griewank = ray.remote(num_cpus=1)(solve_griewank).remote
         futures = [remote_solve_griewank(g, float(b)) for b in griewank_eval_points]
         result_dict[SolveStrategy.GRIEWANK_LOGN] = get_futures(list(futures), desc="Griewank (APs only)")
-
+    '''
     # sweep optimal ilp baseline
     if not args.skip_ilp:
         ilp_log_base = log_base / "ilp_log"
@@ -295,41 +297,35 @@ if __name__ == "__main__":
         #     futures.append(future)
 
         # result_dict[SolveStrategy.MIXED_ILP_OPTIMAL].extend(get_futures(futures, desc="Local mixed optimal ILP sweep"))
-
+    
     approx_eval_points = list()
     if not args.skip_ilp:
         approx_eval_points.extend(local_ilp_eval_points)
-    logger.info(f"Evaluating LP approximation evaluation points: {approx_eval_points}")
-
-    # approx_eval_points = list(get_global_eval_points(g, result_dict))
-    # if not args.skip_ilp:
-    #     approx_eval_points.extend(list(local_ilp_eval_points))
     # logger.info(f"Evaluating LP approximation evaluation points: {approx_eval_points}")
-
-    # sweep LP rounding (deterministic w/ 0.5 threshold)
-    hybrid_approx = log_base / "lp_det_05"
-    hybrid_approx.mkdir(parents=True, exist_ok=True)
-    remote_lp_det_05 = ray.remote(num_cpus=NUM_ILP_CORES)(solve_approx_lp_deterministic_05_threshold).remote
-    futures = []
-    for b in approx_eval_points:
-        future = remote_lp_det_05(g, b, time_limit=args.ilp_time_limit, solver_cores=NUM_ILP_CORES,
-                                  write_log_file=hybrid_approx / f"lp_det_rand_{b}.log", print_to_console=False,
-                                  write_model_file=hybrid_approx / f"lp_det_rand_{b}.lp" if args.debug else None,
-                                  eps_noise=0, approx=False)
-        futures.append(future)
-    result_dict[SolveStrategy.APPROX_DET_ROUND_LP_05_THRESH] = get_futures(futures,
-                                                                           desc="LP approx det 0.5")
+    # hybrid_approx = log_base / "lp_det_05"
+    # hybrid_approx.mkdir(parents=True, exist_ok=True)
+    # remote_lp_det_05 = ray.remote(num_cpus=NUM_ILP_CORES)(solve_approx_lp_deterministic_05_threshold).remote
+    # futures = []
+    # for b in approx_eval_points:
+    #     future = remote_lp_det_05(g, b, time_limit=args.ilp_time_limit, solver_cores=NUM_ILP_CORES,
+    #                               write_log_file=hybrid_approx / f"lp_det_rand_{b}.log", print_to_console=False,
+    #                               write_model_file=hybrid_approx / f"lp_det_rand_{b}.lp" if args.debug else None,
+    #                               eps_noise=0, approx=False)
+    #     futures.append(future)
+    # result_dict[SolveStrategy.APPROX_DET_ROUND_LP_05_THRESH] = get_futures(futures,
+    #                                                                        desc="LP approx det 0.5")
 
     # hybrid LP approximate
     hybrid_approx = log_base / "lp_hybrid"
     hybrid_approx.mkdir(parents=True, exist_ok=True)
-    remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(solve_hybrid_approximate_lp).remote
+    # remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(solve_hybrid_approximate_lp).remote
+    remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(partioned_hybrid_appro_ilp).remote
     futures = []
     for b in approx_eval_points:
         future = remote_lp_hybrid_approx(g, b, time_limit=args.ilp_time_limit, solver_cores=NUM_ILP_CORES,
                                   write_log_file=hybrid_approx / f"lp_approx_hybrid_{b}.log", print_to_console=False,
                                   write_model_file=hybrid_approx / f"lp_approx_hybrid_{b}.lp" if args.debug else None,
-                                  eps_noise=0, approx=False)
+                                  eps_noise=0, approx=True)
         futures.append(future)
     result_dict[SolveStrategy.MIXED_ILP_APPROXIMATE] = get_futures(futures, desc="LP approx hybrid")
 

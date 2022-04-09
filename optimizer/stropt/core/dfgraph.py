@@ -50,7 +50,7 @@ class DFGraph:
     @property
     def cost_ram_fixed(self):
         """Get fixed memory costs for the model (parameters and their gradients)"""
-        return int(2 * self.cost_ram_parameters)
+        return int(2 * sum(self.cost_ram_parameters))
 
     def ram_gcd(self, *othervals):
         values = list(self.cost_ram.values())

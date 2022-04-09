@@ -54,7 +54,7 @@ def get_keras_model(model_name: str, input_shape: Optional[List[int]] = None):
         model = linear_model(i)
     elif model_name in KERAS_APPLICATION_MODEL_NAMES:
         model = eval("tf.keras.applications.{}".format(model_name))
-        model = model(input_shape=input_shape)
+        model = model(input_shape=input_shape, weights=None)
     elif model_name in SEGMENTATION_MODEL_NAMES:
         model = keras_segmentation.models.model_from_name[model_name]
         if input_shape is not None:

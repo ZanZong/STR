@@ -45,3 +45,5 @@ wrapt==1.13.3
 zipp==3.6.0
 opencv-python==4.5.4.60
 tqdm==4.62.3
+PyMetis==2020.1
+ray==1.11.0

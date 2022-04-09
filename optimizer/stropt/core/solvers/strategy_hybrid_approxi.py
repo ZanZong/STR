@@ -6,13 +6,13 @@ import numpy as np
 from stropt.core.dfgraph import DFGraph
 from stropt.core.enum_strategy import SolveStrategy, ImposedSchedule
 from stropt.core.schedule import ILPAuxData, ScheduledResult
-from stropt.core.solvers.graph_reducer import recovery, simplify
 from stropt.core.solvers.strategy_hybrid_ilp import HybridILPSolver
 from stropt.core.utils.swapping import SwapControler, prun_q_opt
 from stropt.core.utils.definitions import PathLike
 from stropt.core.utils.scheduler import schedule_from_rspq
 import stropt.core.utils.solver_common as solver_common
-from stropt.core.utils.approximate_hybrid import *
+from stropt.core.utils.approximate_hybrid import fine_grained_approx
+from stropt.core.utils.approximate_graph_par import graph_partition
 
 
 def solve_hybrid_approximate_lp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = None, approx=True,
@@ -20,7 +20,8 @@ def solve_hybrid_approximate_lp(g: DFGraph, budget: int, seed_s: Optional[np.nda
                      time_limit: Optional[int] = None, write_log_file: Optional[PathLike] = None, print_to_console=True,
                      write_model_file: Optional[PathLike] = None, eps_noise=0.01, solver_cores=os.cpu_count()):
     """
-    Memory-accurate solver with garbage collection.
+    Approximation solver with constraints relation, i.e., using the RecursiveSourceTracing algorithm.
+
     :param g: DFGraph -- graph definition extracted from model
     :param budget: int -- budget constraint for solving
     :param seed_s: np.ndarray -- optional parameter to set warm-start for solver, defaults to empty S
@@ -56,29 +57,15 @@ def solve_hybrid_approximate_lp(g: DFGraph, budget: int, seed_s: Optional[np.nda
         ilpsolver.format_matrix(q, "Q")
         # Approximation
         T = g.size
-        # Round p,q
-        # pick_row_max(mat=p, out_mat=p_)
-        # pick_row_max(mat=q, out_mat=q_)
-
-        # Filter s, then prun useless q
-        # s_ = (s >= VAR_THRESHOLD).astype(np.integer)
         r_appro, s_appro, p_appro, q_appro = fine_grained_approx(g=g, sc=ilpsolver.swap_control, \
                     r=r, s=s, p=p, q=q, u=u, mem_budget=ilpsolver.budget*ilpsolver.ram_gcd)
         # pruned_q = ilpsolver.prun_q_opt(q_, s_)
         # ilpsolver.format_matrix(pruned_q, "PrunedQ", approx_fmt="%i") # pruned_q is edited below
-
-        # r_appro, s_appro, p_appro, q_appro = approximate_lp(g=g, sc=ilpsolver.swap_control, \
-        #                     r=r_, s=s_, p=p_, q=pruned_q, u=u, mem_budget=ilpsolver.budget)
         
         ilpsolver.format_matrix(r_appro, "R_approx", approx_fmt="%i")
         ilpsolver.format_matrix(s_appro, "S_approx", approx_fmt="%i")
         ilpsolver.format_matrix(p_appro, "P_approx", approx_fmt="%i")
         ilpsolver.format_matrix(q_appro, "Q_approx", approx_fmt="%i")
-
-
-        # swap_finish_mat, swap_start_mat = ilpsolver.dump_swap_finish_stage()
-        # ilpsolver.format_matrix(swap_finish_mat, "SFMat")
-        # ilpsolver.format_matrix(swap_start_mat, "SSMat")
 
         ilp_feasible = True
     except ValueError as e:
@@ -103,16 +90,17 @@ def solve_hybrid_approximate_lp(g: DFGraph, budget: int, seed_s: Optional[np.nda
 
 
 
-def solve_graph_simplified_hybrid_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = None, approx=True,
+def partioned_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = None, approx='partition',
                      imposed_schedule: ImposedSchedule=ImposedSchedule.FULL_SCHEDULE, solve_r=False,
                      time_limit: Optional[int] = None, write_log_file: Optional[PathLike] = None, print_to_console=True,
                      write_model_file: Optional[PathLike] = None, eps_noise=0.01, solver_cores=os.cpu_count()):
     """
-    Memory-accurate solver with garbage collection.
+    Approximation with computational graph partitioning.
+
     :param g: DFGraph -- graph definition extracted from model
     :param budget: int -- budget constraint for solving
     :param seed_s: np.ndarray -- optional parameter to set warm-start for solver, defaults to empty S
-    :param approx: bool -- set true to return as soon as a solution is found that is within 1% of optimal
+    :param approx: 'partition' or 'relaxtion' -- two approximation strategies
     :param imposed_schedule -- selects a set of constraints on R and S that impose a schedule or require some nodes to be computed
     :param solve_r -- if set, solve for the optimal R 
     :param time_limit: int -- time limit for solving in seconds
@@ -132,14 +120,14 @@ def solve_graph_simplified_hybrid_ilp(g: DFGraph, budget: int, seed_s: Optional[
                   'StartNodeLimit': 10000000}
 
     ## TODO simplify graph
-    simplify()
+    graph_partition(g, mem_budget=budget)
+    return
     ilpsolver = HybridILPSolver(g, budget, gurobi_params=param_dict, seed_s=seed_s,
                           eps_noise=eps_noise, imposed_schedule=imposed_schedule,
-                          solve_r=solve_r, write_model_file=write_model_file)
+                          solve_r=solve_r, write_model_file=write_model_file, integral=False)
     ilpsolver.build_model()
     try:
         r, s, u, free_e, p, q = ilpsolver.solve()
-        
         pruned_Qout = prun_q_opt(ilpsolver.swap_control, q, s)
 
         ilpsolver.format_matrix(r, "R")
@@ -160,8 +148,7 @@ def solve_graph_simplified_hybrid_ilp(g: DFGraph, budget: int, seed_s: Optional[
     ilp_aux_data = ILPAuxData(U=u, Free_E=free_e, ilp_approx=approx, ilp_time_limit=time_limit, ilp_eps_noise=eps_noise,
                               ilp_num_constraints=ilpsolver.m.numConstrs, ilp_num_variables=ilpsolver.m.numVars,
                               ilp_imposed_schedule=imposed_schedule)
-    # TODO recover graph
-    recovery()
+    
     schedule, aux_data = schedule_from_rspq(g, r, s, pruned_Qout)
     return ScheduledResult(
         solve_strategy=SolveStrategy.MIXED_ILP_OPTIMAL,
