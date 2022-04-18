@@ -30,8 +30,8 @@ class DFGraph:
         self.edge_list = adj_to_edge_list(self.args, reverse_edge=True)
         self.node_names = node_names if node_names is not None else {}
         self.vloss = vloss
-        if self.vloss is not None and self.vloss not in self.node_names:
-            self.node_names[self.vloss] = "Loss"
+        # if self.vloss is not None and self.vloss not in self.node_names:
+        #     self.node_names[self.vloss] = "Loss"
         self.cost_cpu = cost_cpu if cost_cpu else {v: 1 for v in set(self.v + [self.vloss])}
         self.cost_ram = cost_ram if cost_ram else {v: 1 for v in set(self.v + [self.vloss])}
         self.cost_cpu_np = np.array([cost for _v, cost in sorted(self.cost_cpu.items())])

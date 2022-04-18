@@ -13,6 +13,7 @@ from stropt.core.utils.scheduler import schedule_from_rspq
 import stropt.core.utils.solver_common as solver_common
 from stropt.core.utils.approximate_hybrid import fine_grained_approx
 from stropt.core.utils.approximate_graph_par import graph_partition
+from stropt.core.solvers.graph_reducer import simplify, recover
 
 
 def solve_hybrid_approximate_lp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = None, approx=True,
@@ -90,7 +91,7 @@ def solve_hybrid_approximate_lp(g: DFGraph, budget: int, seed_s: Optional[np.nda
 
 
 
-def partioned_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = None, approx='partition',
+def reduced_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = None, approx='partition',
                      imposed_schedule: ImposedSchedule=ImposedSchedule.FULL_SCHEDULE, solve_r=False,
                      time_limit: Optional[int] = None, write_log_file: Optional[PathLike] = None, print_to_console=True,
                      write_model_file: Optional[PathLike] = None, eps_noise=0.01, solver_cores=os.cpu_count()):
@@ -120,42 +121,28 @@ def partioned_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndar
                   'StartNodeLimit': 10000000}
 
     ## TODO simplify graph
-    graph_partition(g, mem_budget=budget)
-    return
-    ilpsolver = HybridILPSolver(g, budget, gurobi_params=param_dict, seed_s=seed_s,
+    new_graph, fuse_handler = simplify(g, 64)
+    
+    ilpsolver = HybridILPSolver(new_graph, budget, gurobi_params=param_dict, seed_s=seed_s,
                           eps_noise=eps_noise, imposed_schedule=imposed_schedule,
-                          solve_r=solve_r, write_model_file=write_model_file, integral=False)
+                          solve_r=solve_r, write_model_file=write_model_file)
     ilpsolver.build_model()
     try:
         r, s, u, free_e, p, q = ilpsolver.solve()
         pruned_Qout = prun_q_opt(ilpsolver.swap_control, q, s)
+        rec_r, rec_p, rec_q = recover(g, r, s, p, pruned_Qout, fuse_handler)
 
-        ilpsolver.format_matrix(r, "R")
+        ilpsolver.format_matrix(rec_r, "R")
         ilpsolver.format_matrix(s, "S")
         ilpsolver.format_matrix(u, "U")
         ilpsolver.format_matrix(free_e, "Free_Eout")
-        ilpsolver.format_matrix(p, "P")
-        ilpsolver.format_matrix(q, "Q")
-        ilpsolver.format_matrix(pruned_Qout, "PrunedQ")
-        swap_finish_mat, swap_start_mat = ilpsolver.dump_swap_finish_stage()
-        ilpsolver.format_matrix(swap_finish_mat, "SFMat")
-        ilpsolver.format_matrix(swap_start_mat, "SSMat")
-        ilp_feasible = True
+        ilpsolver.format_matrix(rec_p, "P")
+        ilpsolver.format_matrix(rec_q, "Q")
+        # ilpsolver.format_matrix(pruned_Qout, "PrunedQ")
+        # swap_finish_mat, swap_start_mat = ilpsolver.dump_swap_finish_stage()
+        # ilpsolver.format_matrix(swap_finish_mat, "SFMat")
+        # ilpsolver.format_matrix(swap_start_mat, "SSMat")
     except ValueError as e:
         logging.exception(e)
         r, s, q, u, free_e, pruned_Qout = (None, None, None, None, None, None)
-        ilp_feasible = False
-    ilp_aux_data = ILPAuxData(U=u, Free_E=free_e, ilp_approx=approx, ilp_time_limit=time_limit, ilp_eps_noise=eps_noise,
-                              ilp_num_constraints=ilpsolver.m.numConstrs, ilp_num_variables=ilpsolver.m.numVars,
-                              ilp_imposed_schedule=imposed_schedule)
-    
-    schedule, aux_data = schedule_from_rspq(g, r, s, pruned_Qout)
-    return ScheduledResult(
-        solve_strategy=SolveStrategy.MIXED_ILP_OPTIMAL,
-        solver_budget=budget,
-        feasible=ilp_feasible,
-        schedule=schedule,
-        schedule_aux_data=aux_data,
-        solve_time_s=ilpsolver.solve_time,
-        ilp_aux_data=ilp_aux_data,
-    )
+    return None

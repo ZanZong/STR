@@ -1,6 +1,6 @@
 import argparse
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "6"
+os.environ["CUDA_VISIBLE_DEVICES"] = "4"
 # disable the log of tf c++ core
 os.environ['TF_CPP_MIN_LOG_LEVEL']='1'
 import tensorflow as tf
@@ -51,6 +51,7 @@ def extract_params():
     parser.add_argument("-b", "--batch-size", type=int, default=1)
     parser.add_argument('--verbose', action='store_true', help="If set, print STR log")
     parser.add_argument("--strategy", type=str, default="str", help="dynprog|str|str-app|checkmate|capuchin|chen-heurist|none")
+    parser.add_argument("--print-layer", action="store_false", help="set True if only want to print model layer names")
     _args = parser.parse_args()
     
     return _args
@@ -79,7 +80,13 @@ if __name__ == "__main__":
       train_generator, validation_generator, input_shape, classes = cifar10(args.batch_size, (224, 224), [40000, 10000])
       model = get_keras_model(model_name=args.model_name, input_shape=input_shape, 
                                   classes=classes, include_top=True, weights=None)
-    
+      if args.print_layer:
+        print("-- layers --")
+        for layer in model.layers:
+          print(layer.name)
+        print("------------")
+        exit()
+        
       # training
       model.compile(loss='categorical_crossentropy',
               optimizer=tf.keras.optimizers.RMSprop(),

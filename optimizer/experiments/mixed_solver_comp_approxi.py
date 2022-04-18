@@ -32,7 +32,7 @@ from stropt.core.solvers.strategy_chen import solve_chen_sqrtn, solve_chen_greed
 from stropt.core.solvers.strategy_griewank import solve_griewank, clean_griewank_cache
 from stropt.core.solvers.strategy_optimal_ilp import solve_ilp_gurobi
 from stropt.core.solvers.strategy_hybrid_ilp import solve_hybrid_ilp
-from stropt.core.solvers.strategy_hybrid_approxi import solve_hybrid_approximate_lp, partioned_hybrid_appro_ilp
+from stropt.core.solvers.strategy_hybrid_approxi import solve_hybrid_approximate_lp, reduced_hybrid_appro_ilp
 from stropt.tensorflow2.extraction import dfgraph_from_keras
 
 # ILP solve params
@@ -82,6 +82,7 @@ def extract_params():
     parser.add_argument('--skip-ilp', action='store_true', help="If set, skip running the ILP during evaluation.")
     parser.add_argument('--ilp-time-limit', type=int, default=3600, help="Time limit for individual ILP solves, in sec")
     parser.add_argument('--hide-points', action="store_true")
+    parser.add_argument('--appro-stgy', type=str, default='rst', help="Support 'rst', recursive source tracing and 'gr', graph reducing")
 
     _args = parser.parse_args()
     if _args.skip_ilp and len(_args.ilp_eval_points) > 0:
@@ -318,8 +319,10 @@ if __name__ == "__main__":
     # hybrid LP approximate
     hybrid_approx = log_base / "lp_hybrid"
     hybrid_approx.mkdir(parents=True, exist_ok=True)
-    # remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(solve_hybrid_approximate_lp).remote
-    remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(partioned_hybrid_appro_ilp).remote
+    if args.appro_stgy == 'rst':
+        remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(solve_hybrid_approximate_lp).remote
+    else:
+        remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(reduced_hybrid_appro_ilp).remote
     futures = []
     for b in approx_eval_points:
         future = remote_lp_hybrid_approx(g, b, time_limit=args.ilp_time_limit, solver_cores=NUM_ILP_CORES,
@@ -389,6 +392,8 @@ if __name__ == "__main__":
     export_prefix_min = {}
 
     for solve_strategy, results in result_dict.items():
+        if results is None:
+            continue
         # checkpoint last node has too high compute, checkpoint all is plotted later
         if solve_strategy in [SolveStrategy.CHECKPOINT_LAST_NODE, SolveStrategy.CHECKPOINT_ALL]:  continue
 

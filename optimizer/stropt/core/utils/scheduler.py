@@ -51,7 +51,8 @@ class ScheduleBuilder:
         out_reg = self.allocate_register(op_id)
         in_regs = {pred_id: self.live_registers[pred_id] for pred_id in self.g.predecessors(op_id)}
         eval_op = OperatorEvaluation(op_id, in_regs, out_reg, self.g.cost_cpu[op_id],
-                                     update_aux_vars=update_aux_vars, is_backwards=op_id not in self.g.vfwd)
+                                    update_aux_vars=update_aux_vars, is_backwards=op_id > self.g.vloss)
+                                    #  update_aux_vars=update_aux_vars, is_backwards=op_id not in self.g.vfwd)
         self.schedule.append(eval_op)
         self.total_cpu += self.g.cost_cpu[op_id]
         self.ram_timeline.append(self.current_mem())
