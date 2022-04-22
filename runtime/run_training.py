@@ -1,5 +1,6 @@
 import argparse
 import os
+from requests import options
 os.environ["CUDA_VISIBLE_DEVICES"] = "4"
 # disable the log of tf c++ core
 os.environ['TF_CPP_MIN_LOG_LEVEL']='1'
@@ -36,10 +37,13 @@ from str_config import ConfigHandler
 # Tensorboard for profiling
 # import tensorboard
 # tensorboard.__version__
-# log_dir = "logs/fit-vgg16"# + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+# log_dir = "logs/fit-resnet101"# + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 # tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir,
 #                                                         histogram_freq=1,
-#                                                         profile_batch=100)
+#                                                         profile_batch=10)
+from tensorflow.python.client import timeline
+run_options = tf.RunOptions(trace_level=tf.RunOptions.FULL_TRACE)
+run_metadata = tf.RunMetadata()
 
 def extract_params():
     parser = argparse.ArgumentParser()
@@ -51,7 +55,7 @@ def extract_params():
     parser.add_argument("-b", "--batch-size", type=int, default=1)
     parser.add_argument('--verbose', action='store_true', help="If set, print STR log")
     parser.add_argument("--strategy", type=str, default="str", help="dynprog|str|str-app|checkmate|capuchin|chen-heurist|none")
-    parser.add_argument("--print-layer", action="store_false", help="set True if only want to print model layer names")
+    parser.add_argument("--profile", type=bool, default=False, help="set True if only want to print model layer names")
     _args = parser.parse_args()
     
     return _args
@@ -75,20 +79,25 @@ if __name__ == "__main__":
               batch_size=args.batch_size,
               steps_per_epoch=64,
               epochs=1)
-     
+    
     else:
-      train_generator, validation_generator, input_shape, classes = cifar10(args.batch_size, (224, 224), [40000, 10000])
+      train_generator, validation_generator, input_shape, classes = cifar10(args.batch_size, (224, 224), [40000, 10000]) # max support 40000, 10000
       model = get_keras_model(model_name=args.model_name, input_shape=input_shape, 
                                   classes=classes, include_top=True, weights=None)
-      if args.print_layer:
-        print("-- layers --")
-        for layer in model.layers:
-          print(layer.name)
-        print("------------")
-        exit()
-        
+      if args.profile:
+        with open(f"layer_names_{args.model_name}", "w") as f:
+          for layer in model.layers:
+            f.write(layer.name + "\n")
+            
       # training
-      model.compile(loss='categorical_crossentropy',
+      if args.profile:
+        model.compile(loss='categorical_crossentropy',
+                optimizer=tf.keras.optimizers.RMSprop(),
+                metrics=['accuracy'], 
+                options=run_options, # for write out timeline.json
+                run_metadata=run_metadata)
+      else:
+        model.compile(loss='categorical_crossentropy',
               optimizer=tf.keras.optimizers.RMSprop(),
               metrics=['accuracy'])
       history = model.fit(
@@ -96,4 +105,8 @@ if __name__ == "__main__":
               epochs=args.epochs,
               validation_data=validation_generator,
               verbose=1)
-              # callbacks=[tensorboard_callback])
+      
+      if args.profile:
+        trace = timeline.Timeline(step_stats=run_metadata.step_stats)
+        with open(f"timeline-{args.model_name}-{args.batch_size}.json", "w") as f:
+          f.write(trace.generate_chrome_trace_format())

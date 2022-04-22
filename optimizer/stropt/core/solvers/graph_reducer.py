@@ -4,6 +4,7 @@ import numpy as np
 from typing import List, Tuple
 from stropt.core.dfgraph import DFGraph, EdgeList, Vertex
 from collections import defaultdict
+from stropt.core.utils.solver_common import gen_s_matrix_fixed_checkpoints
 
 logger = logging.getLogger("GraphReducer")
 
@@ -265,7 +266,8 @@ def simplify(g: DFGraph, target_n: int) -> Tuple[DFGraph, FuseHandler]:
     edge_count.append(1) # for last node without successor
     print(f"--- Edge count (len={len(edge_count)}):")
     # print(edge_count)
-    edge_weighted_cost = [tmp_g.cost_ram[i] * edge_count[i] for i in range(tmp_g.size)]
+    # edge_weighted_cost = [tmp_g.cost_ram[i] * edge_count[i] for i in range(tmp_g.size)]
+    edge_weighted_cost = [tmp_g.cost_ram[i] for i in range(tmp_g.size)]
     # Set loss node to inf to avoid node fusing
     edge_weighted_cost[g.vloss] = np.inf
     fuse_handler = FuseHandler(g=tmp_g, weight=edge_weighted_cost)
@@ -298,6 +300,7 @@ def recover(origin_g: DFGraph, r: np.ndarray, s: np.ndarray, p: np.ndarray, q: n
     for origin_v, new_v in handler.get_v2group().items():
         grouped[new_v].append(origin_v)
 
+    checkpointed = list()
     for t in range(NT):
         for i in range(t):
             mapped_nodes = grouped[i]
@@ -307,25 +310,35 @@ def recover(origin_g: DFGraph, r: np.ndarray, s: np.ndarray, p: np.ndarray, q: n
                     P_[node + 1, node] = 1
             if q[t, i] == 1:
                 # start swap in simultaneously at grouped[t] stage
-                first_stage_in_group = min(grouped[t])
+                # first_stage_in_group = min(grouped[t])
+                # for node in mapped_nodes:
+                #     Q_[first_stage_in_group, node] = 1
+                # start swap one-by-one
+                swap_stage = 0
                 for node in mapped_nodes:
-                    Q_[first_stage_in_group, node] = 1
+                    Q_[grouped[t][swap_stage], node] = 1
+                    if swap_stage < len(grouped[t]) - 1:
+                        swap_stage += 1
             if s[t, i] == 1:
                 for node in mapped_nodes:
                     for stage in grouped[t]:
                         S_[stage, node] = 1
-    # Fix R
-    # sdiff = S_[1:] - S_[:-1]
-    # R_[:-1] = R_[:-1] | (R_[:-1] < sdiff)
-    # adj = [[] for _ in range(T)]
-    # for (u, v) in origin_g.edge_list:
-    #     adj[v].append(u)
-    # # Swapping has been reflected on s
-    # for t in range(T):
-    #     for v in range(t, -1, -1):
-    #         for u in adj[v]:
-    #             if R_[t, v] > R_[t, u] + S_[t, u]:
-    #                 R_[t, u] = 1
+            if r[t, i] == 1:
+                checkpointed.extend(grouped[i])
+                
+    # Fix R and S
+    S_ = gen_s_matrix_fixed_checkpoints(origin_g, list(set(checkpointed)))
+    sdiff = S_[1:] - S_[:-1]
+    R_[:-1] = R_[:-1] | (R_[:-1] < sdiff)
+    adj = [[] for _ in range(T)]
+    for (u, v) in origin_g.edge_list:
+        adj[v].append(u)
+    # Swapping has been reflected on s
+    for t in range(T):
+        for v in range(t, -1, -1):
+            for u in adj[v]:
+                if R_[t, v] > R_[t, u] + S_[t, u]:
+                    R_[t, u] = 1
     return R_, P_, Q_
 
 def render_graph(g: DFGraph, fused: List, directory, name=""):

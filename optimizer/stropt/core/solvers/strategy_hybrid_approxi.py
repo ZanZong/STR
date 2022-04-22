@@ -19,7 +19,7 @@ from stropt.core.solvers.graph_reducer import simplify, recover
 def solve_hybrid_approximate_lp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = None, approx=True,
                      imposed_schedule: ImposedSchedule=ImposedSchedule.FULL_SCHEDULE, solve_r=False,
                      time_limit: Optional[int] = None, write_log_file: Optional[PathLike] = None, print_to_console=True,
-                     write_model_file: Optional[PathLike] = None, eps_noise=0.01, solver_cores=os.cpu_count()):
+                     write_model_file: Optional[PathLike] = None, eps_noise=0.01, solver_cores=os.cpu_count(), reduce_graph_size=64):
     """
     Approximation solver with constraints relation, i.e., using the RecursiveSourceTracing algorithm.
 
@@ -63,10 +63,10 @@ def solve_hybrid_approximate_lp(g: DFGraph, budget: int, seed_s: Optional[np.nda
         # pruned_q = ilpsolver.prun_q_opt(q_, s_)
         # ilpsolver.format_matrix(pruned_q, "PrunedQ", approx_fmt="%i") # pruned_q is edited below
         
-        ilpsolver.format_matrix(r_appro, "R_approx", approx_fmt="%i")
-        ilpsolver.format_matrix(s_appro, "S_approx", approx_fmt="%i")
-        ilpsolver.format_matrix(p_appro, "P_approx", approx_fmt="%i")
-        ilpsolver.format_matrix(q_appro, "Q_approx", approx_fmt="%i")
+        ilpsolver.format_matrix(r_appro, "R-approx", approx_fmt="%i")
+        ilpsolver.format_matrix(s_appro, "S-approx", approx_fmt="%i")
+        ilpsolver.format_matrix(p_appro, "P-approx", approx_fmt="%i")
+        ilpsolver.format_matrix(q_appro, "Q-approx", approx_fmt="%i")
 
         ilp_feasible = True
     except ValueError as e:
@@ -94,7 +94,7 @@ def solve_hybrid_approximate_lp(g: DFGraph, budget: int, seed_s: Optional[np.nda
 def reduced_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = None, approx='partition',
                      imposed_schedule: ImposedSchedule=ImposedSchedule.FULL_SCHEDULE, solve_r=False,
                      time_limit: Optional[int] = None, write_log_file: Optional[PathLike] = None, print_to_console=True,
-                     write_model_file: Optional[PathLike] = None, eps_noise=0.01, solver_cores=os.cpu_count()):
+                     write_model_file: Optional[PathLike] = None, eps_noise=0.01, solver_cores=os.cpu_count(), reduce_graph_size=64):
     """
     Approximation with computational graph partitioning.
 
@@ -121,7 +121,7 @@ def reduced_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarra
                   'StartNodeLimit': 10000000}
 
     ## TODO simplify graph
-    new_graph, fuse_handler = simplify(g, 64)
+    new_graph, fuse_handler = simplify(g, reduce_graph_size)
     
     ilpsolver = HybridILPSolver(new_graph, budget, gurobi_params=param_dict, seed_s=seed_s,
                           eps_noise=eps_noise, imposed_schedule=imposed_schedule,
@@ -132,12 +132,12 @@ def reduced_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarra
         pruned_Qout = prun_q_opt(ilpsolver.swap_control, q, s)
         rec_r, rec_p, rec_q = recover(g, r, s, p, pruned_Qout, fuse_handler)
 
-        ilpsolver.format_matrix(rec_r, "R")
-        ilpsolver.format_matrix(s, "S")
-        ilpsolver.format_matrix(u, "U")
-        ilpsolver.format_matrix(free_e, "Free_Eout")
-        ilpsolver.format_matrix(rec_p, "P")
-        ilpsolver.format_matrix(rec_q, "Q")
+        ilpsolver.format_matrix(rec_r, "R-approx")
+        ilpsolver.format_matrix(s, "S-approx")
+        ilpsolver.format_matrix(u, "U-approx")
+        ilpsolver.format_matrix(free_e, "Free_Eout-approx")
+        ilpsolver.format_matrix(rec_p, "P-approx")
+        ilpsolver.format_matrix(rec_q, "Q-approx")
         # ilpsolver.format_matrix(pruned_Qout, "PrunedQ")
         # swap_finish_mat, swap_start_mat = ilpsolver.dump_swap_finish_stage()
         # ilpsolver.format_matrix(swap_finish_mat, "SFMat")

@@ -83,6 +83,7 @@ def extract_params():
     parser.add_argument('--ilp-time-limit', type=int, default=3600, help="Time limit for individual ILP solves, in sec")
     parser.add_argument('--hide-points', action="store_true")
     parser.add_argument('--appro-stgy', type=str, default='rst', help="Support 'rst', recursive source tracing and 'gr', graph reducing")
+    parser.add_argument('--reduced-gsize', type=int, default=64, help="Set a target graph size after reducing if --appro-stgy is set to gr")
 
     _args = parser.parse_args()
     if _args.skip_ilp and len(_args.ilp_eval_points) > 0:
@@ -328,7 +329,7 @@ if __name__ == "__main__":
         future = remote_lp_hybrid_approx(g, b, time_limit=args.ilp_time_limit, solver_cores=NUM_ILP_CORES,
                                   write_log_file=hybrid_approx / f"lp_approx_hybrid_{b}.log", print_to_console=False,
                                   write_model_file=hybrid_approx / f"lp_approx_hybrid_{b}.lp" if args.debug else None,
-                                  eps_noise=0, approx=True)
+                                  eps_noise=0, approx=True, reduce_graph_size=args.reduced_gsize)
         futures.append(future)
     result_dict[SolveStrategy.MIXED_ILP_APPROXIMATE] = get_futures(futures, desc="LP approx hybrid")
 

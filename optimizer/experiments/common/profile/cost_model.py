@@ -21,6 +21,8 @@ BATCH_SIZES_LOAD = [32, 64, 128, 256, 512, 1024, 2048]
 
 
 class CostModel:
+    """The unit of computational cost loaded from npy file is microsecond.
+    """
     def __init__(self, model_name: str, platform: str, log_base: PathLike, quantization: int):
         self.log_base = log_base
         self.logger = logging.getLogger("CostModel")

@@ -33,7 +33,11 @@ class ConfigHandler:
                                     os.path.join(CONFIG_DIR, "strategy.conf"))
             print("Using original tensorflow without memory optimization")
         else:
-            assert name in ["str", "dynprog", "checkmate", "capuchin", "chen-heurist", "str-app"], "Strategy not supported!"
+            assert name in ["str", "dynprog", "checkmate", "capuchin", "chen-heurist", "str-app"], \
+                        "Strategy beyond ['str', 'dynprog', 'checkmate', 'capuchin', 'chen-heurist', 'str-app'] is not supported."
+            if not os.path.exists(os.path.join(self.model_base_dir, name + ".conf")):
+                print(f"Configuration for strategy {name} doesn't exist in {self.model_base_dir}")
+                exit(-1)
             shutil.copy(os.path.join(self.model_base_dir, name + ".conf"), \
                                     os.path.join(CONFIG_DIR, "strategy.conf"))
 
