@@ -37,7 +37,6 @@ from stropt.tensorflow2.extraction import dfgraph_from_keras
 
 # ILP solve params
 NUM_ILP_CORES = os.environ.get("ILP_CORES", 12)
-
 # Budget selection parameters
 NUM_ILP_GLOBAL = 32
 NUM_ILP_LOCAL = 32
@@ -67,6 +66,11 @@ YLIM = {
     ("VGG16", 256): [0.95, 1.5]
 }
 
+# Bound reduced graph size
+B_max = 10E3
+V_min = 80
+V_max = 120
+GR_USING_THRESHOLD = 150
 
 def extract_params():
     parser = argparse.ArgumentParser()
@@ -83,7 +87,7 @@ def extract_params():
     parser.add_argument('--ilp-time-limit', type=int, default=3600, help="Time limit for individual ILP solves, in sec")
     parser.add_argument('--hide-points', action="store_true")
     parser.add_argument('--appro-stgy', type=str, default='rst', help="Support 'rst', recursive source tracing and 'gr', graph reducing")
-    parser.add_argument('--reduced-gsize', type=int, default=64, help="Set a target graph size after reducing if --appro-stgy is set to gr")
+    parser.add_argument('--reduced-gsize', type=int, default=-1, help="Set a target graph size after reducing if --appro-stgy is set to gr")
 
     _args = parser.parse_args()
     if _args.skip_ilp and len(_args.ilp_eval_points) > 0:
@@ -116,6 +120,13 @@ def dist_points(start, stop, n, min_val=0.0):
     assert start > 0 and stop > 0, "Start and stop ranges must be positive"
     pts = sorted(start + np.arange(0, 1, 1. / n) * (stop - start))
     return [p for p in pts if p > min_val]
+
+def determine_graph_size(graph_size: int):
+    if graph_size < V_min:
+        return V_min
+    elif graph_size > B_max:
+        return V_max
+    return int(V_min + (graph_size / B_max) * (V_max - V_min))
 
 
 def get_global_eval_points(g: DFGraph, results: Dict[SolveStrategy, List[ScheduledResult]]) -> List[int]:
@@ -318,18 +329,24 @@ if __name__ == "__main__":
     #                                                                        desc="LP approx det 0.5")
 
     # hybrid LP approximate
+
     hybrid_approx = log_base / "lp_hybrid"
     hybrid_approx.mkdir(parents=True, exist_ok=True)
-    if args.appro_stgy == 'rst':
-        remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(solve_hybrid_approximate_lp).remote
-    else:
+    if args.appro_stgy == 'gr' and g.size > GR_USING_THRESHOLD:
+        if args.reduced_gsize == -1:
+            rg = determine_graph_size(g.size)
+        else:
+            rg = args.reduced_gsize
         remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(reduced_hybrid_appro_ilp).remote
+    else:
+        remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(solve_hybrid_approximate_lp).remote
+        
     futures = []
     for b in approx_eval_points:
         future = remote_lp_hybrid_approx(g, b, time_limit=args.ilp_time_limit, solver_cores=NUM_ILP_CORES,
                                   write_log_file=hybrid_approx / f"lp_approx_hybrid_{b}.log", print_to_console=False,
                                   write_model_file=hybrid_approx / f"lp_approx_hybrid_{b}.lp" if args.debug else None,
-                                  eps_noise=0, approx=True, reduce_graph_size=args.reduced_gsize)
+                                  eps_noise=0, approx=True, reduce_graph_size=rg)
         futures.append(future)
     result_dict[SolveStrategy.MIXED_ILP_APPROXIMATE] = get_futures(futures, desc="LP approx hybrid")
 

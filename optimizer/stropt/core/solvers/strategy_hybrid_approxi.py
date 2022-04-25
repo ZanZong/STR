@@ -119,7 +119,7 @@ def reduced_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarra
                   'IntFeasTol': 1e-3 if approx else 1e-5,
                   'Presolve': 2,
                   'StartNodeLimit': 10000000}
-
+    print(f"Set fused graph size {reduce_graph_size}")
     ## TODO simplify graph
     new_graph, fuse_handler = simplify(g, reduce_graph_size)
     

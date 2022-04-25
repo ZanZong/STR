@@ -328,17 +328,17 @@ def recover(origin_g: DFGraph, r: np.ndarray, s: np.ndarray, p: np.ndarray, q: n
                 
     # Fix R and S
     S_ = gen_s_matrix_fixed_checkpoints(origin_g, list(set(checkpointed)))
-    sdiff = S_[1:] - S_[:-1]
-    R_[:-1] = R_[:-1] | (R_[:-1] < sdiff)
-    adj = [[] for _ in range(T)]
-    for (u, v) in origin_g.edge_list:
-        adj[v].append(u)
-    # Swapping has been reflected on s
-    for t in range(T):
-        for v in range(t, -1, -1):
-            for u in adj[v]:
-                if R_[t, v] > R_[t, u] + S_[t, u]:
-                    R_[t, u] = 1
+    # sdiff = S_[1:] - S_[:-1]
+    # R_[:-1] = R_[:-1] | (R_[:-1] < sdiff)
+    # adj = [[] for _ in range(T)]
+    # for (u, v) in origin_g.edge_list:
+    #     adj[v].append(u)
+    # # Swapping has been reflected on s
+    # for t in range(T):
+    #     for v in range(t, -1, -1):
+    #         for u in adj[v]:
+    #             if R_[t, v] > R_[t, u] + S_[t, u]:
+    #                 R_[t, u] = 1
     return R_, P_, Q_
 
 def render_graph(g: DFGraph, fused: List, directory, name=""):

@@ -96,12 +96,12 @@ def parse_profile_timeline(path, layer_file):
 
 if __name__ == "__main__":
     # 1. Print throughput for logs in specific path
-    # log = sys.argv[1]
-    # analysis_performance(log)
+    log = sys.argv[1]
+    analysis_performance(log)
 
     # 2. Write out npy file of profile logs
     # log = sys.argv[1]
     # layer_file = sys.argv[2]
-    log = "/home/zongzan/dist_dnn_training/STR/runtime/logs/timeline-resnet101-64.json"
-    layer_file = "/home/zongzan/dist_dnn_training/STR/optimizer/logs/ResNet101_64/layer_names"
-    parse_profile_timeline(log, layer_file)
+    # log = "/home/zongzan/dist_dnn_training/STR/runtime/logs/timeline-resnet101-64.json"
+    # layer_file = "/home/zongzan/dist_dnn_training/STR/optimizer/logs/ResNet101_64/layer_names"
+    # parse_profile_timeline(log, layer_file)

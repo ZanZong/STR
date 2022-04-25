@@ -1,7 +1,7 @@
 import argparse
 import os
 from requests import options
-os.environ["CUDA_VISIBLE_DEVICES"] = "4"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 # disable the log of tf c++ core
 os.environ['TF_CPP_MIN_LOG_LEVEL']='1'
 import tensorflow as tf
@@ -23,6 +23,7 @@ from tensorflow.core.protobuf import rewriter_config_pb2
 from tensorflow.python.keras import backend as K
 from keras_model import cifar10, get_keras_model, segmentation_dataset
 from str_config import ConfigHandler
+from transformer_model import build_model, load_dataset
 
 # GPU memory limitation
 # sess = tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(per_process_gpu_memory_fraction=0.676))) 
@@ -79,9 +80,24 @@ if __name__ == "__main__":
               batch_size=args.batch_size,
               steps_per_epoch=64,
               epochs=1)
-    
+    elif args.model_name == "transformer":
+      # using imdb dataset to train transformer
+      vocab_size=512
+      max_len=128
+      train, test = load_dataset(vocab_size, max_len)
+      x_train, x_train_masks, y_train = train
+
+      model = build_model(vocab_size, max_len)
+      model.compile(optimizer=tf.keras.optimizers.Adam(beta_1=0.9, beta_2=0.98, epsilon=1e-9),
+                    loss='categorical_crossentropy', metrics=['accuracy'])
+
+      es = tf.keras.callbacks.EarlyStopping(patience=3)
+      model.fit([x_train, x_train_masks], y_train,
+                batch_size=args.batch_size, epochs=args.epochs, 
+                steps_per_epoch=np.math.ceil(len(x_train) / args.batch_size), callbacks=[es])
+
     else:
-      train_generator, validation_generator, input_shape, classes = cifar10(args.batch_size, (224, 224), [40000, 10000]) # max support 40000, 10000
+      train_generator, validation_generator, input_shape, classes = cifar10(args.batch_size, (224, 224), [40000, 10000])
       model = get_keras_model(model_name=args.model_name, input_shape=input_shape, 
                                   classes=classes, include_top=True, weights=None)
       if args.profile:
