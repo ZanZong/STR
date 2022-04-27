@@ -1,7 +1,7 @@
 import argparse
 import os
 from requests import options
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "5"
 # disable the log of tf c++ core
 os.environ['TF_CPP_MIN_LOG_LEVEL']='1'
 import tensorflow as tf
@@ -88,9 +88,15 @@ if __name__ == "__main__":
       x_train, x_train_masks, y_train = train
 
       model = build_model(vocab_size, max_len)
-      model.compile(optimizer=tf.keras.optimizers.Adam(beta_1=0.9, beta_2=0.98, epsilon=1e-9),
-                    loss='categorical_crossentropy', metrics=['accuracy'])
-
+      if args.profile:
+        model.compile(optimizer=tf.keras.optimizers.Adam(beta_1=0.9, beta_2=0.98, epsilon=1e-9),
+                      loss='categorical_crossentropy', 
+                      metrics=['accuracy'],
+                      options=run_options, # for write out timeline.json
+                      run_metadata=run_metadata)
+      else:
+        model.compile(optimizer=tf.keras.optimizers.Adam(beta_1=0.9, beta_2=0.98, epsilon=1e-9),
+                      loss='categorical_crossentropy', metrics=['accuracy'])
       es = tf.keras.callbacks.EarlyStopping(patience=3)
       model.fit([x_train, x_train_masks], y_train,
                 batch_size=args.batch_size, epochs=args.epochs, 
@@ -99,12 +105,7 @@ if __name__ == "__main__":
     else:
       train_generator, validation_generator, input_shape, classes = cifar10(args.batch_size, (224, 224), [40000, 10000])
       model = get_keras_model(model_name=args.model_name, input_shape=input_shape, 
-                                  classes=classes, include_top=True, weights=None)
-      if args.profile:
-        with open(f"layer_names_{args.model_name}", "w") as f:
-          for layer in model.layers:
-            f.write(layer.name + "\n")
-            
+                                  classes=classes, include_top=True, weights=None) 
       # training
       if args.profile:
         model.compile(loss='categorical_crossentropy',
@@ -122,7 +123,13 @@ if __name__ == "__main__":
               validation_data=validation_generator,
               verbose=1)
       
-      if args.profile:
-        trace = timeline.Timeline(step_stats=run_metadata.step_stats)
-        with open(f"timeline-{args.model_name}-{args.batch_size}.json", "w") as f:
-          f.write(trace.generate_chrome_trace_format())
+    if args.profile:
+      # Write out names of each layer
+      # Tips: for transformer, this layer is too coarse-grained. We will parse second-level names with tool.py
+      with open(f"layer_names_{args.model_name}", "w") as f:
+          for layer in model.layers:
+            f.write(layer.name + "\n")
+      # Save timeline file
+      trace = timeline.Timeline(step_stats=run_metadata.step_stats)
+      with open(f"timeline-{args.model_name}-{args.batch_size}.json", "w") as f:
+        f.write(trace.generate_chrome_trace_format())

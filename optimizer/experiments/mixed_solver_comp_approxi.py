@@ -22,6 +22,7 @@ from experiments.common.load_keras_model import MODEL_NAMES, get_keras_model, CH
 from experiments.common.profile.cost_model import CostModel
 from experiments.common.profile.platforms import PLATFORM_CHOICES
 from experiments.common.ray_utils import get_futures
+from experiments.common.transformer_model import build_model
 from stropt.core.dfgraph import DFGraph
 from stropt.core.enum_strategy import SolveStrategy
 from stropt.core.schedule import ScheduledResult
@@ -33,7 +34,7 @@ from stropt.core.solvers.strategy_griewank import solve_griewank, clean_griewank
 from stropt.core.solvers.strategy_optimal_ilp import solve_ilp_gurobi
 from stropt.core.solvers.strategy_hybrid_ilp import solve_hybrid_ilp
 from stropt.core.solvers.strategy_hybrid_approxi import solve_hybrid_approximate_lp, reduced_hybrid_appro_ilp
-from stropt.tensorflow2.extraction import dfgraph_from_keras
+from stropt.tensorflow2.extraction import dfgraph_from_keras, dfgraph_transformer
 
 # ILP solve params
 NUM_ILP_CORES = os.environ.get("ILP_CORES", 12)
@@ -197,32 +198,34 @@ if __name__ == "__main__":
         if args.debug:
             cost_model.plot_costs()
 
-    # gen redis key
-    if cost_model is None:
-        key_list = ["flops", args.batch_size]
-    else:
-        key_list = [cost_model.platform, cost_model.quantization, args.batch_size]
-    redis_cost_key = "_".join(map(str, key_list))
-
     # load model from Keras
     logger.info(f"Loading model {model_name}")
-    model = get_keras_model(model_name, input_shape=args.input_shape)
-    g = dfgraph_from_keras(model, batch_size=args.batch_size, cost_model=cost_model,
-                           loss_cpu_cost=0, loss_ram_cost=(4 * args.batch_size))
+    if model_name == "transformer":
+        vocab_size = 512
+        max_len = 128
+        node_file = "/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_32/layer_names"
+        deps_file = "/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_32/transformer-layer-deps.json"
+        model = build_model(vocab_size, max_len)
+        g = dfgraph_transformer(model, batch_size=args.batch_size, cost_model=cost_model,
+                            node_file=node_file, deps_file=deps_file, loss_ram_cost=(4 * args.batch_size))
+    else:
+        model = get_keras_model(model_name, input_shape=args.input_shape)
+        g = dfgraph_from_keras(model, batch_size=args.batch_size, cost_model=cost_model,
+                            loss_cpu_cost=0, loss_ram_cost=(4 * args.batch_size))
     if args.debug:
         tf.keras.utils.plot_model(model,
                                   to_file=log_base / f"plot_{model_name}_keras.png",
                                   show_shapes=True,
                                   show_layer_names=True)
         render_dfgraph(g, log_base, name=model_name)
-
+    
     # sweep constant baselines
     logger.info(f"Running constant baselines (ALL, ALL_AP, LAST_NODE, SQRTN_NOAP, SQRTN)")
-    result_dict[SolveStrategy.CHECKPOINT_ALL] = [solve_checkpoint_all(g)]
-    result_dict[SolveStrategy.CHECKPOINT_ALL_AP] = [solve_checkpoint_all_ap(g)]
-    result_dict[SolveStrategy.CHECKPOINT_LAST_NODE] = [solve_checkpoint_last_node(g)]
-    result_dict[SolveStrategy.CHEN_SQRTN_NOAP] = [solve_chen_sqrtn(g, False)]
-    result_dict[SolveStrategy.CHEN_SQRTN] = [solve_chen_sqrtn(g, True)]
+    # result_dict[SolveStrategy.CHECKPOINT_ALL] = [solve_checkpoint_all(g)]
+    # result_dict[SolveStrategy.CHECKPOINT_ALL_AP] = [solve_checkpoint_all_ap(g)]
+    # result_dict[SolveStrategy.CHECKPOINT_LAST_NODE] = [solve_checkpoint_last_node(g)]
+    # result_dict[SolveStrategy.CHEN_SQRTN_NOAP] = [solve_chen_sqrtn(g, False)]
+    # result_dict[SolveStrategy.CHEN_SQRTN] = [solve_chen_sqrtn(g, True)]
     result_dict[SolveStrategy.OPTIMAL_ILP_GC] = list()
     result_dict[SolveStrategy.MIXED_ILP_OPTIMAL] = list()
     result_dict[SolveStrategy.MIXED_ILP_APPROXIMATE] = list()
@@ -396,7 +399,7 @@ if __name__ == "__main__":
     # todo save pandas results dict
     # sns.set()
     # sns.set_style("white")
-
+    """
     baseline_cpu = np.sum(list(g.cost_cpu.values()))
     fig, ax = plt.subplots(1, 1, figsize=(4, 4))
     ax.set_xlabel("Memory budget (GB)")
@@ -444,7 +447,7 @@ if __name__ == "__main__":
         legend_elements.append(Line2D([0], [0], lw=2, label=label, markersize=markersize, color=color, marker=marker))
 
         export_prefix_min[solve_strategy.name] = list(zip(x_step, y_step))
-
+    """
     """
     # Plot ideal (checkpoint all)
     xlim_min, xlim_max = ax.get_xlim()

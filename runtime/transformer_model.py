@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "5"
+# import os
+# os.environ["CUDA_VISIBLE_DEVICES"] = "5"
 
 import numpy as np
 import math
@@ -512,7 +512,7 @@ def load_dataset(vocab_size, max_len):
     return (x_train, x_train_masks, y_train), (x_test, x_test_masks, y_test)
 
 
-def build_model(vocab_size, max_len, model_dim=8, n_heads=2, encoder_stack=3, decoder_stack=3, ff_size=50):
+def build_model(vocab_size, max_len, model_dim=8, n_heads=4, encoder_stack=3, decoder_stack=3, ff_size=50):
     encoder_inputs = tf.keras.Input(shape=(max_len,), name='encoder_inputs')
     decoder_inputs = tf.keras.Input(shape=(max_len,), name='decoder_inputs')
     outputs = Transformer(

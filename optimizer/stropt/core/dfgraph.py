@@ -25,6 +25,7 @@ class DFGraph:
         """
         self.key = key
         self.args = defaultdict(list, args)
+        print(f"DFGraph get vertex len={len(v)}")
         self.v = list(sorted(v))
         self.size = len(self.v)
         self.edge_list = adj_to_edge_list(self.args, reverse_edge=True)
