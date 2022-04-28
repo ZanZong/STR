@@ -499,6 +499,9 @@ class TextGenerator(tf.keras.utils.Sequence):
         batch_y = self.y[idx * self.batch_size: (idx + 1) * self.batch_size]
         return (batch_x, mask_x), batch_y
 
+    def on_epoch_end(self):
+        pass
+
 def load_dataset(vocab_size, max_len):
     (x_train, y_train), (x_test, y_test) = tf.keras.datasets.imdb.load_data(maxlen=max_len, num_words=vocab_size)
     x_train = x_train[:2000]
@@ -536,7 +539,6 @@ def train_model(vocab_size=512, max_len=128, batch_size=128, epochs=1):
     x_test, x_test_masks, y_test = test
 
     model = build_model(vocab_size, max_len)
-
     model.compile(optimizer=tf.keras.optimizers.Adam(beta_1=0.9, beta_2=0.98, epsilon=1e-9),
                   loss='categorical_crossentropy', metrics=['accuracy'])
 

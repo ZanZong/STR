@@ -14,7 +14,8 @@ from experiments.common.load_keras_model import get_keras_model
 from experiments.common.profile.cost_model import CostModel
 from stropt.tensorflow2.extraction import dfgraph_from_keras
 from stropt.core.solvers.strategy_capuchin import Tensor, hybrid_policy
-
+from stropt.tensorflow2.extraction import dfgraph_from_keras, dfgraph_transformer
+from experiments.common.transformer_model import build_model
 
 def extract_params():
     parser = argparse.ArgumentParser()
@@ -97,9 +98,18 @@ if __name__ == "__main__":
 
     # load model from Keras
     print(f"Loading model {model_name}")
-    model = get_keras_model(model_name, input_shape=args.input_shape)
-    g = dfgraph_from_keras(model, batch_size=args.batch_size, cost_model=cost_model,
-                           loss_cpu_cost=0, loss_ram_cost=(4 * args.batch_size))
+    if model_name == "transformer":
+        vocab_size = 512
+        max_len = 128
+        node_file = "/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_32/layer_names"
+        deps_file = "/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_32/transformer-layer-deps.json"
+        model = build_model(vocab_size, max_len)
+        g = dfgraph_transformer(model, batch_size=args.batch_size, cost_model=cost_model,
+                            node_file=node_file, deps_file=deps_file, loss_ram_cost=(4 * args.batch_size))
+    else:
+        model = get_keras_model(model_name, input_shape=args.input_shape)
+        g = dfgraph_from_keras(model, batch_size=args.batch_size, cost_model=cost_model,
+                            loss_cpu_cost=0, loss_ram_cost=(4 * args.batch_size))
     result = solve_checkpoint_all(g)
     peak_memory = result.schedule_aux_data.peak_ram
     # print(f"Schedule timeline of checkpoint all:\n {result.schedule_aux_data.mem_timeline}")
