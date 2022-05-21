@@ -341,18 +341,25 @@ if __name__ == "__main__":
         else:
             rg = args.reduced_gsize
         remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(reduced_hybrid_appro_ilp).remote
+        futures = []
+        for b in approx_eval_points:
+            future = remote_lp_hybrid_approx(g, b, time_limit=args.ilp_time_limit, solver_cores=NUM_ILP_CORES,
+                                    write_log_file=hybrid_approx / f"lp_approx_hybrid_{b}.log", print_to_console=False,
+                                    write_model_file=hybrid_approx / f"lp_approx_hybrid_{b}.lp" if args.debug else None,
+                                    eps_noise=0, approx=True, reduce_graph_size=rg)
+            futures.append(future)
+        result_dict[SolveStrategy.MIXED_ILP_APPROXIMATE] = get_futures(futures, desc="LP approx hybrid")
     else:
         remote_lp_hybrid_approx = ray.remote(num_cpus=NUM_ILP_CORES)(solve_hybrid_approximate_lp).remote
-        
-    futures = []
-    for b in approx_eval_points:
-        future = remote_lp_hybrid_approx(g, b, time_limit=args.ilp_time_limit, solver_cores=NUM_ILP_CORES,
-                                  write_log_file=hybrid_approx / f"lp_approx_hybrid_{b}.log", print_to_console=False,
-                                  write_model_file=hybrid_approx / f"lp_approx_hybrid_{b}.lp" if args.debug else None,
-                                  eps_noise=0, approx=True, reduce_graph_size=rg)
-        futures.append(future)
-    result_dict[SolveStrategy.MIXED_ILP_APPROXIMATE] = get_futures(futures, desc="LP approx hybrid")
-
+        futures = []
+        for b in approx_eval_points:
+            future = remote_lp_hybrid_approx(g, b, time_limit=args.ilp_time_limit, solver_cores=NUM_ILP_CORES,
+                                    write_log_file=hybrid_approx / f"lp_approx_hybrid_{b}.log", print_to_console=False,
+                                    write_model_file=hybrid_approx / f"lp_approx_hybrid_{b}.lp" if args.debug else None,
+                                    eps_noise=0)
+            futures.append(future)
+        result_dict[SolveStrategy.MIXED_ILP_APPROXIMATE] = get_futures(futures, desc="LP approx hybrid")
+    
     # # sweep LP rounding (deterministic w/ randomly sampled threshold)
     # lpdetrand_log_base = log_base / "lp_det_rand"
     # lpdetrand_log_base.mkdir(parents=True, exist_ok=True)

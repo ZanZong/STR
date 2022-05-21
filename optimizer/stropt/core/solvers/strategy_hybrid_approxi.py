@@ -19,7 +19,7 @@ from stropt.core.solvers.graph_reducer import simplify, recover
 def solve_hybrid_approximate_lp(g: DFGraph, budget: int, seed_s: Optional[np.ndarray] = None, approx=True,
                      imposed_schedule: ImposedSchedule=ImposedSchedule.FULL_SCHEDULE, solve_r=False,
                      time_limit: Optional[int] = None, write_log_file: Optional[PathLike] = None, print_to_console=True,
-                     write_model_file: Optional[PathLike] = None, eps_noise=0.01, solver_cores=os.cpu_count(), reduce_graph_size=64):
+                     write_model_file: Optional[PathLike] = None, eps_noise=0.01, solver_cores=os.cpu_count()):
     """
     Approximation solver with constraints relation, i.e., using the RecursiveSourceTracing algorithm.
 
