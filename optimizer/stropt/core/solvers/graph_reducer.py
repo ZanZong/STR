@@ -1,5 +1,6 @@
 import copy, logging
 from functools import reduce
+import math
 import numpy as np
 from typing import List, Tuple
 from stropt.core.dfgraph import DFGraph, EdgeList, Vertex
@@ -261,13 +262,16 @@ def simplify(g: DFGraph, target_n: int) -> Tuple[DFGraph, FuseHandler]:
     tmp_g = copy.deepcopy(g)
     
     print(f"Graph size={tmp_g.size}")
-    # edge-weighted rank
-    edge_count = [len(deps) if len(deps) != 0 else 1 for u, deps in tmp_g.successor_dict.items()]
-    edge_count.append(1) # for last node without successor
-    print(f"--- Edge count (len={len(edge_count)}):")
+    # TODO: edge-weighted ranking
+    # edge_count = [len(deps) if len(deps) != 0 else 1 for u, deps in tmp_g.successor_dict.items()]
+    # edge_count.append(1) # for last node without successor
+    # print(f"--- Edge count (len={len(edge_count)}):")
     # print(edge_count)
-    # edge_weighted_cost = [tmp_g.cost_ram[i] * edge_count[i] for i in range(tmp_g.size)]
-    edge_weighted_cost = [tmp_g.cost_ram[i] for i in range(tmp_g.size)]
+    # print(f"node with max edge={max(edge_count)}, min edge={min(edge_count)}")
+    # edge_weighted_cost = [tmp_g.cost_ram[i] * pow(2, len(tmp_g.successors_indexed(i)) \
+    #                                             if len(tmp_g.successors_indexed(i)) != 0 else 1 ) \
+    #                                                 for i in range(tmp_g.size)]
+    edge_weighted_cost = [tmp_g.cost_ram[i] for i in range(tmp_g.size)] # pure ram as weight
     # Set loss node to inf to avoid node fusing
     edge_weighted_cost[g.vloss] = np.inf
     fuse_handler = FuseHandler(g=tmp_g, weight=edge_weighted_cost)
@@ -291,10 +295,10 @@ def recover(origin_g: DFGraph, r: np.ndarray, s: np.ndarray, p: np.ndarray, q: n
     """
     T = handler.origin_size
     NT = r.shape[0]
-    R_ = np.eye(T, dtype=r.dtype)
-    S_ = np.zeros((T, T), dtype=s.dtype)
-    P_ = np.zeros((T, T), dtype=p.dtype)
-    Q_ = np.zeros((T, T), dtype=q.dtype)
+    R_ = np.eye(T, dtype=np.int)
+    S_ = np.zeros((T, T), dtype=np.int)
+    P_ = np.zeros((T, T), dtype=np.int)
+    Q_ = np.zeros((T, T), dtype=np.int)
     
     grouped = defaultdict(list)
     for origin_v, new_v in handler.get_v2group().items():
@@ -315,10 +319,12 @@ def recover(origin_g: DFGraph, r: np.ndarray, s: np.ndarray, p: np.ndarray, q: n
                 #     Q_[first_stage_in_group, node] = 1
                 # start swap one-by-one
                 swap_stage = 0
-                for node in mapped_nodes:
+                for node in mapped_nodes[::-1]:
                     Q_[grouped[t][swap_stage], node] = 1
                     if swap_stage < len(grouped[t]) - 1:
                         swap_stage += 1
+                    else: # waste other node swap 
+                        break
             if s[t, i] == 1:
                 for node in mapped_nodes:
                     for stage in grouped[t]:

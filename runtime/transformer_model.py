@@ -12,6 +12,7 @@ from tensorflow.keras.callbacks import Callback
 
 # TensorFlow 1.x doesn't support the official implementation of Transformer,
 # here we choose to use the Keras implementation from 
+#  https://github.com/LongmaoTeamTf/deep_recommenders,
 #  https://raw.githubusercontent.com/LongmaoTeamTf/ \
 #  deep_recommenders/master/deep_recommenders/keras/models/nlp/transformer.py
 
@@ -489,18 +490,34 @@ class TextGenerator(tf.keras.utils.Sequence):
         self.y = y
         self.mask = mask
         self.batch_size = batch_size
+        self.batch_per_epoch = 15 # only run this num. batches per epoch
+        self.real_max_batches = len(self.x) // self.batch_size
     
     def __len__(self):
-        return math.ceil(len(self.x) / self.batch_size)
+        return self.batch_per_epoch
 
     def __getitem__(self, idx):
+        if idx >= self.real_max_batches:
+            idx %= self.real_max_batches
         batch_x = self.x[idx * self.batch_size: (idx + 1) * self.batch_size]
         mask_x = self.mask[idx * self.batch_size: (idx + 1) * self.batch_size]
         batch_y = self.y[idx * self.batch_size: (idx + 1) * self.batch_size]
-        return (batch_x, mask_x), batch_y
+        return [batch_x, mask_x], batch_y
 
     def on_epoch_end(self):
         pass
+
+def load_generator(vocab_size, max_len, batch_size):
+    (x_train, y_train), (x_test, y_test) = tf.keras.datasets.imdb.load_data(maxlen=max_len, num_words=vocab_size)
+    # x_train = x_train[:2000]
+    # y_train = y_train[:2000]
+    x_train = tf.keras.preprocessing.sequence.pad_sequences(x_train, maxlen=max_len)
+    x_test = tf.keras.preprocessing.sequence.pad_sequences(x_test, maxlen=max_len)
+    x_train_masks = tf.equal(x_train, 0)
+    x_test_masks = tf.equal(x_test, 0)
+    y_train = tf.keras.utils.to_categorical(y_train)
+    # y_test = tf.keras.utils.to_categorical(y_test)
+    return TextGenerator(x_train, x_train_masks, y_train, batch_size)
 
 def load_dataset(vocab_size, max_len):
     (x_train, y_train), (x_test, y_test) = tf.keras.datasets.imdb.load_data(maxlen=max_len, num_words=vocab_size)
@@ -515,7 +532,7 @@ def load_dataset(vocab_size, max_len):
     return (x_train, x_train_masks, y_train), (x_test, x_test_masks, y_test)
 
 
-def build_model(vocab_size, max_len, model_dim=8, n_heads=4, encoder_stack=3, decoder_stack=3, ff_size=50):
+def build_model(vocab_size, max_len, model_dim=10, n_heads=5, encoder_stack=8, decoder_stack=8, ff_size=64):
     encoder_inputs = tf.keras.Input(shape=(max_len,), name='encoder_inputs')
     decoder_inputs = tf.keras.Input(shape=(max_len,), name='decoder_inputs')
     outputs = Transformer(
@@ -533,18 +550,20 @@ def build_model(vocab_size, max_len, model_dim=8, n_heads=4, encoder_stack=3, de
 
 def train_model(vocab_size=512, max_len=128, batch_size=128, epochs=1):
 
-    train, test = load_dataset(vocab_size, max_len)
+    # train, test = load_dataset(vocab_size, max_len)
+    # x_train, x_train_masks, y_train = train
+    # x_test, x_test_masks, y_test = test
 
-    x_train, x_train_masks, y_train = train
-    x_test, x_test_masks, y_test = test
+    gen = load_generator(vocab_size, max_len, batch_size)
 
     model = build_model(vocab_size, max_len)
     model.compile(optimizer=tf.keras.optimizers.Adam(beta_1=0.9, beta_2=0.98, epsilon=1e-9),
                   loss='categorical_crossentropy', metrics=['accuracy'])
 
     es = tf.keras.callbacks.EarlyStopping(patience=3)
-    model.fit([x_train, x_train_masks], y_train,
-              batch_size=batch_size, epochs=epochs, steps_per_epoch=np.math.ceil(len(x_train)/batch_size), callbacks=[es])
+    # model.fit([x_train, x_train_masks], y_train,
+    #           batch_size=batch_size, epochs=epochs, steps_per_epoch=np.math.ceil(len(x_train)/batch_size), callbacks=[es])
+    model.fit(gen, epochs=epochs, callbacks=[es])
 
     # test_metrics = model.evaluate([x_test, x_test_masks], y_test, batch_size=batch_size, verbose=0)
     # print("loss on Test: %.4f" % test_metrics[0])

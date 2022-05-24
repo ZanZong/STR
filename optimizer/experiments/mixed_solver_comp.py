@@ -206,11 +206,11 @@ if __name__ == "__main__":
     g = dfgraph_from_keras(model, batch_size=args.batch_size, cost_model=cost_model,
                            loss_cpu_cost=0, loss_ram_cost=(4 * args.batch_size))
     # if args.debug:
-    tf.keras.utils.plot_model(model,
-                                to_file=log_base / f"plot_{model_name}_keras.png",
-                                show_shapes=True,
-                                show_layer_names=True)
-    render_dfgraph(g, log_base, name=model_name)
+    # tf.keras.utils.plot_model(model,
+    #                             to_file=log_base / f"plot_{model_name}_keras.png",
+    #                             show_shapes=True,
+    #                             show_layer_names=True)
+    # render_dfgraph(g, log_base, name=model_name)
     
     # sweep constant baselines
     logger.info(f"Running constant baselines (ALL, ALL_AP, LAST_NODE, SQRTN_NOAP, SQRTN)")

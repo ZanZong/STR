@@ -61,12 +61,15 @@ def dfgraph_transformer(mod: tf.keras.models.Model, input_dep=False, output_dep=
     # Get per-node compute costs and activation memory usages
     costs = {loss_node_idx: loss_cpu_cost}
     mems = {loss_node_idx: loss_ram_cost}
-    mem_b16 = np.load(PROFILE_DIR + "/transformer_mem_16.npy")
-    mem_b24 = np.load(PROFILE_DIR + "/transformer_mem_24.npy")
-    assert len(mem_b16) == len(layers)
-    assert len(mem_b24) == len(layers)
-    for idx, (y1, y2) in enumerate(zip(mem_b16, mem_b24)):
-        fit = scipy.stats.linregress([16, 24], [y1, y2])
+    mem_b64 = np.load(PROFILE_DIR + "/transformer_mem_64.npy")
+    mem_b128 = np.load(PROFILE_DIR + "/transformer_mem_128.npy")
+    # mem_b256 = np.load(PROFILE_DIR + "/transformer_mem_256.npy")
+    
+    assert len(mem_b64) == len(layers)
+    assert len(mem_b128) == len(layers)
+    # assert len(mem_b256) == len(layers)
+    for idx, (y1, y2) in enumerate(zip(mem_b64, mem_b128)):
+        fit = scipy.stats.linregress([64, 128], [y1, y2])
         slope, intercept, rvalue, pvalue, stderr = fit
         mems[idx] = slope * batch_size + intercept
         mems[fwd_to_bwd(idx)] = slope * batch_size + intercept

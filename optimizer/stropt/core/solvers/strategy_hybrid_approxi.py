@@ -12,7 +12,7 @@ from stropt.core.utils.definitions import PathLike
 from stropt.core.utils.scheduler import schedule_from_rspq
 import stropt.core.utils.solver_common as solver_common
 from stropt.core.utils.approximate_hybrid import fine_grained_approx
-from stropt.core.utils.approximate_graph_par import graph_partition
+# from stropt.core.utils.approximate_graph_par import graph_partition
 from stropt.core.solvers.graph_reducer import simplify, recover
 
 
@@ -123,21 +123,26 @@ def reduced_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarra
     ## TODO simplify graph
     new_graph, fuse_handler = simplify(g, reduce_graph_size)
     
+    # ilpsolver = HybridILPSolver(new_graph, budget, gurobi_params=param_dict, seed_s=seed_s,
+    #                       eps_noise=eps_noise, imposed_schedule=imposed_schedule,
+    #                       solve_r=solve_r, write_model_file=write_model_file)
     ilpsolver = HybridILPSolver(new_graph, budget, gurobi_params=param_dict, seed_s=seed_s,
                           eps_noise=eps_noise, imposed_schedule=imposed_schedule,
-                          solve_r=solve_r, write_model_file=write_model_file)
+                          solve_r=solve_r, write_model_file=write_model_file, integral=False)
     ilpsolver.build_model()
     try:
         r, s, u, free_e, p, q = ilpsolver.solve()
-        pruned_Qout = prun_q_opt(ilpsolver.swap_control, q, s)
-        rec_r, rec_p, rec_q = recover(g, r, s, p, pruned_Qout, fuse_handler)
+        r_appro, s_appro, p_appro, q_appro = fine_grained_approx(g=new_graph, sc=ilpsolver.swap_control, \
+                    r=r, s=s, p=p, q=q, u=u, mem_budget=ilpsolver.budget*ilpsolver.ram_gcd)
+        # pruned_Qout = prun_q_opt(ilpsolver.swap_control, q, s)
+        rec_r, rec_p, rec_q = recover(g, r_appro, s_appro, p_appro, q_appro, fuse_handler)
 
-        ilpsolver.format_matrix(rec_r, "R-approx")
-        ilpsolver.format_matrix(s, "S-approx")
+        ilpsolver.format_matrix(rec_r, "R-approx", approx_fmt="%i")
+        ilpsolver.format_matrix(s, "S-approx", approx_fmt="%i")
         ilpsolver.format_matrix(u, "U-approx")
-        ilpsolver.format_matrix(free_e, "Free_Eout-approx")
-        ilpsolver.format_matrix(rec_p, "P-approx")
-        ilpsolver.format_matrix(rec_q, "Q-approx")
+        ilpsolver.format_matrix(free_e, "Free_Eout-approx", approx_fmt="%i")
+        ilpsolver.format_matrix(rec_p, "P-approx", approx_fmt="%i")
+        ilpsolver.format_matrix(rec_q, "Q-approx", approx_fmt="%i")
         # ilpsolver.format_matrix(pruned_Qout, "PrunedQ")
         # swap_finish_mat, swap_start_mat = ilpsolver.dump_swap_finish_stage()
         # ilpsolver.format_matrix(swap_finish_mat, "SFMat")
