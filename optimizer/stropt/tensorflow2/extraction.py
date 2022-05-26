@@ -93,7 +93,6 @@ def dfgraph_transformer(mod: tf.keras.models.Model, input_dep=False, output_dep=
     # Get parameter and gradient momentum memory usage
     total_params = np.array(list(count_params_keras(mod)))
     total_mem_params = total_params * MEMORY_MULTIPLIER
-
     logging.info(f"Build graph from profiling, cost and memory info:\n---cost---\n{costs}\n---mem---\n{mems}")
     return dfgraph.DFGraph(args=args, v=vfwd + [loss_node_idx] + vback, vfwd_map=vfwd_map,
                            vloss=loss_node_idx, cost_cpu=costs, cost_ram=mems, node_names=names,

@@ -209,8 +209,8 @@ def parse_transformer_timeline(path, deps_path, mems_path, batch_size):
 
 if __name__ == "__main__":
     # 1. Print throughput for logs in specific path
-    # log = sys.argv[1]
-    # analysis_performance(log)
+    log = sys.argv[1]
+    analysis_performance(log)
 
     # 2. Write out npy file of profile logs
     # log = "/home/zongzan/dist_dnn_training/STR/runtime/logs/timeline-resnet101-64.json"
@@ -218,8 +218,10 @@ if __name__ == "__main__":
     # parse_profile_timeline(log, layer_file)
 
     # 4. Write out npy file of profile logs for transformer
-    log = "/home/zongzan/dist_dnn_training/STR/runtime/logs/timeline-transformer-128.json"
-    # the following two logs from instrumentated tensorflow runtime
-    layer_file = "/home/zongzan/dist_dnn_training/STR/runtime/logs/transformer-deps-origin.json"
-    mem_file = "/home/zongzan/dist_dnn_training/STR/runtime/logs/transformer-128-mem.json"
-    parse_transformer_timeline(log, layer_file, mem_file, 128)
+    # log = "/home/zongzan/dist_dnn_training/STR/runtime/logs/timeline-transformer-256.json"
+    # # the following two logs from instrumentated tensorflow runtime
+    # # layer_file = "/home/zongzan/dist_dnn_training/STR/runtime/logs/transformer-deps-origin.json"
+    # # mem_file = "/home/zongzan/dist_dnn_training/STR/runtime/logs/transformer-128-mem.json"
+    # layer_file = "/home/zongzan/dependencies.json"
+    # mem_file = "/home/zongzan/memory.json"
+    # parse_transformer_timeline(log, layer_file, mem_file, 256)

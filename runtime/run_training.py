@@ -83,10 +83,10 @@ if __name__ == "__main__":
     elif args.model_name == "transformer":
       # using imdb dataset to train transformer
       vocab_size = 512
-      max_len = 300
-      # train, test = load_dataset(vocab_size, max_len)
-      # x_train, x_train_masks, y_train = train
-      generator = load_generator(vocab_size, max_len, args.batch_size)
+      max_len = 128
+      train, test = load_dataset(vocab_size, max_len)
+      x_train, x_train_masks, y_train = train
+      # generator = load_generator(vocab_size, max_len, args.batch_size)
 
       model = build_model(vocab_size, max_len)
       if args.profile:
@@ -99,10 +99,10 @@ if __name__ == "__main__":
         model.compile(optimizer=tf.keras.optimizers.Adam(beta_1=0.9, beta_2=0.98, epsilon=1e-9),
                       loss='categorical_crossentropy', metrics=['accuracy'])
       es = tf.keras.callbacks.EarlyStopping(patience=3)
-      # model.fit([x_train, x_train_masks], y_train,
-      #           batch_size=args.batch_size, epochs=args.epochs, 
-      #           steps_per_epoch=np.math.ceil(len(x_train) / args.batch_size), callbacks=[es])
-      model.fit(generator, epochs=args.epochs)
+      model.fit([x_train, x_train_masks], y_train,
+                batch_size=args.batch_size, epochs=args.epochs, 
+                steps_per_epoch=np.math.ceil(len(x_train) / args.batch_size), callbacks=[es])
+      # model.fit(generator, epochs=args.epochs)
 
     else:
       train_generator, validation_generator, input_shape, classes = cifar10(args.batch_size, (224, 224), [40000, 10000])

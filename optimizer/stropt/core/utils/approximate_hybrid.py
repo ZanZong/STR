@@ -118,3 +118,15 @@ def pick_row_max(mat, out_mat):
             row_axis_max.append((t, max_idx))
     for (t, i) in row_axis_max:
             out_mat[t, i] = 1
+
+
+def fill_p(mat_q):
+    """ Given matrix q, fill a matrix p for un-zero columns of q.
+    """
+    T = mat_q.shape[0]
+    p_ = np.zeros((T, T), dtype=solver_common.SOLVER_DTYPE)
+    for index, col_sum in enumerate(np.sum(mat_q, axis=0)):
+        if col_sum > 0:
+            p_[index + 1, index] = 1
+
+    return p_

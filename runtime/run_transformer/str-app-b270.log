@@ -1,0 +1,3390 @@
+WARNING:tensorflow:From ../run_training.py:46: The name tf.RunOptions is deprecated. Please use tf.compat.v1.RunOptions instead.
+
+WARNING:tensorflow:From ../run_training.py:47: The name tf.RunMetadata is deprecated. Please use tf.compat.v1.RunMetadata instead.
+
+/home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/datasets/imdb.py:129: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray
+  x_train, y_train = np.array(xs[:idx]), np.array(labels[:idx])
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/resource_variable_ops.py:1630: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/keras/initializers.py:119: calling RandomUniform.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+WARNING:tensorflow:From /home/zongzan/dist_dnn_training/STR/runtime/transformer_model.py:69: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:970: The name tf.train.SessionRunHook is deprecated. Please use tf.estimator.SessionRunHook instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/python/ops/stropt/lms.py:928: The name tf.logging.info is deprecated. Please use tf.compat.v1.logging.info instead.
+
+WARNING:tensorflow:From /home/zongzan/.conda/envs/STR36/lib/python3.6/site-packages/tensorflow_core/contrib/graph_editor/select.py:554: get_backward_walk_ops (from tensorflow.contrib.graph_editor.select) is deprecated and will be removed after 2019-06-06.
+Instructions for updating:
+Please use tensorflow.python.ops.op_selector.get_backward_walk_ops.
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 270), ('epochs', 1), ('model_name', 'transformer'), ('profile', False), ('strategy', 'str-app'), ('verbose', False)]
+[STR DEBUG] Parsing STR configuration: [{'strategy': 'hybrid', 'verbose': 'false', 'tags': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_270/layer_names'}, {'r': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_270/R-approx', 'p': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_270/P-approx', 'q': '/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_270/Q-approx'}]
+[STR DEBUG] Processing layer 0's swapping, swap out at [1], swap in at [441, 442, 457, 520, 584, 716, 758, 800, 821]
+[STR DEBUG] Cannot find swap-out control nodes for layer 0, use the first op name: "transformer/add_6"
+op: "AddV2"
+input: "transformer/position_wise_feed_forward_2/add_1"
+input: "transformer/layer_normalization_2/add_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention_10/scaled_dot_product_attention_9/Softmax"
+op: "Softmax"
+input: "transformer/multi_head_attention_10/scaled_dot_product_attention_9/add"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention_10/scaled_dot_product_attention_9/Softmax:0", shape=(?, 128, 128), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'transformer/add_6' type=AddV2>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 441, use the last op name: "training/Adam/gradients/gradients/global_average_pooling1d/Mean_grad/Cast"
+op: "Cast"
+input: "training/Adam/gradients/gradients/global_average_pooling1d/Mean_grad/floordiv_1"
+attr {
+  key: "DstT"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "SrcT"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "Truncate"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/global_average_pooling1d/Mean_grad/Cast"
+op: "Cast"
+input: "training/Adam/gradients/gradients/global_average_pooling1d/Mean_grad/floordiv_1"
+attr {
+  key: "DstT"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "SrcT"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "Truncate"
+  value {
+    b: false
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention_10/scaled_dot_product_attention_9/Softmax_grad/mul_1' type=Mul>, <tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention_10/scaled_dot_product_attention_9/Softmax_grad/mul' type=Mul>, <tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention_10/scaled_dot_product_attention_9/dropout/mul_grad/Mul_1' type=Mul>]
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/Softmax_grad/mul"
+op: "Mul"
+input: "training/Adam/gradients/gradients/global_average_pooling1d/Mean_grad/truediv"
+input: "transformer/Softmax"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention_10/scaled_dot_product_attention_9/Softmax_grad/mul_1' type=Mul>, <tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention_10/scaled_dot_product_attention_9/Softmax_grad/mul' type=Mul>, <tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention_10/scaled_dot_product_attention_9/dropout/mul_grad/Mul_1' type=Mul>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 457, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/add_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/add_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/add_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/Relu_grad/ReluGrad"
+op: "ReluGrad"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/Reshape_3_grad/Reshape"
+input: "transformer/position_wise_feed_forward_6/Relu"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention_10/scaled_dot_product_attention_9/Softmax_grad/mul_1' type=Mul>, <tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention_10/scaled_dot_product_attention_9/Softmax_grad/mul' type=Mul>, <tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention_10/scaled_dot_product_attention_9/dropout/mul_grad/Mul_1' type=Mul>]
+[STR DEBUG] Processing layer 1's swapping, swap out at [2], swap in at [395, 443, 446, 459, 512, 523, 543, 576, 587, 607, 640, 704, 705, 725, 739, 750, 767, 781, 792, 809, 834, 851]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 1, among [<tf.Operation 'transformer/add_6' type=AddV2>, <tf.Operation 'transformer/add_16' type=AddV2>, <tf.Operation 'transformer/add_20' type=AddV2>, <tf.Operation 'transformer/add_1' type=AddV2>, <tf.Operation 'transformer/add_8' type=AddV2>, <tf.Operation 'transformer/add_15' type=AddV2>, <tf.Operation 'transformer/add_11' type=AddV2>, <tf.Operation 'transformer/add_19' type=AddV2>, <tf.Operation 'transformer/add_3' type=AddV2>, <tf.Operation 'transformer/add_7' type=AddV2>, <tf.Operation 'transformer/add_4' type=AddV2>, <tf.Operation 'transformer/add' type=AddV2>, <tf.Operation 'transformer/add_5' type=AddV2>, <tf.Operation 'transformer/add_18' type=AddV2>, <tf.Operation 'transformer/add_17' type=AddV2>, <tf.Operation 'transformer/add_21' type=AddV2>, <tf.Operation 'transformer/add_14' type=AddV2>, <tf.Operation 'transformer/add_13' type=AddV2>, <tf.Operation 'transformer/add_10' type=AddV2>, <tf.Operation 'transformer/add_2' type=AddV2>, <tf.Operation 'transformer/add_9' type=AddV2>, <tf.Operation 'transformer/add_12' type=AddV2>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/add_12"
+op: "AddV2"
+input: "transformer/position_wise_feed_forward_4/add_1"
+input: "transformer/layer_normalization_12/add_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 1, use the first op name: "transformer/dropout/mul_1"
+op: "Mul"
+input: "transformer/dropout/mul"
+input: "transformer/dropout/Cast"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/add_12"
+op: "AddV2"
+input: "transformer/position_wise_feed_forward_4/add_1"
+input: "transformer/layer_normalization_12/add_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/add_12:0", shape=(?, 128, 8), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'transformer/dropout/mul_1' type=Mul>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 443, use the last op name: "training/Adam/gradients/gradients/transformer/Reshape_2_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/Softmax_grad/mul_1"
+input: "training/Adam/gradients/gradients/transformer/Reshape_2_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 446, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_19/pow_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_19/pow_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_19/pow_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 459, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/MatMul_grad/MatMul"
+op: "MatMul"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/Reshape_2_grad/Reshape"
+input: "transformer/position_wise_feed_forward_7/Reshape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: true
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 512, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_18/sub_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_18/sub_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_18/sub_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 523, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/MatMul_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/position_wise_feed_forward_6/Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/Reshape_2_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 543, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/split_grad/concat"
+op: "ConcatV2"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/concat_grad/Slice"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/concat_grad/Slice_1"
+input: "transformer/multi_head_attention_10/split/split_dim"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 576, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_17/sub_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_17/sub_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_17/sub_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 587, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/MatMul_1_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/position_wise_feed_forward_5/Reshape_3"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/Reshape_5_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 607, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/split_1_grad/concat"
+op: "ConcatV2"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/concat_1_grad/Slice"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/concat_1_grad/Slice_1"
+input: "transformer/multi_head_attention_9/split_1/split_dim"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 640, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_16/sub_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_16/sub_grad/Sum"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_16/sub_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 704, use the last op name: "training/Adam/gradients/gradients/transformer/mul_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/mul_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/mul_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 705, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_7/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_7/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_7/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 725, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_3/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_3/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_3/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 739, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/split_2_grad/concat"
+op: "ConcatV2"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/concat_2_grad/Slice"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/concat_2_grad/Slice_1"
+input: "transformer/multi_head_attention_3/split_2/split_dim"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 750, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_6/sub_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_6/sub_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_6/sub_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 767, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_2/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_2/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_2/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 781, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/split_2_grad/concat"
+op: "ConcatV2"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/concat_2_grad/Slice"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/concat_2_grad/Slice_1"
+input: "transformer/multi_head_attention_2/split_2/split_dim"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 792, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_5/sub_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_5/sub_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_5/sub_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 809, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_1/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_1/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_1/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 834, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_4/sub_grad/Sum_1"
+op: "Sum"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_4/sub_grad/Neg"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_4/sub_grad/BroadcastGradientArgs:1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "keep_dims"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 851, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 2's swapping, swap out at [3], swap in at [393, 447, 458, 466, 521, 530, 547, 585, 594, 611, 649, 699, 743, 785]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 2, among [<tf.Operation 'transformer/dropout/mul_1' type=Mul>, <tf.Operation 'transformer/dropout/mul' type=Mul>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/dropout/mul"
+op: "Mul"
+input: "transformer/add"
+input: "transformer/dropout/truediv"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/dropout/mul"
+op: "Mul"
+input: "transformer/add"
+input: "transformer/dropout/truediv"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/dropout/mul:0", shape=(?, 128, 8), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'transformer/dropout/mul_1' type=Mul>]
+[STR DEBUG] Add swap-in op at name: "transformer/multi_head_attention_11/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention_11/Reshape_3"
+input: "transformer/multi_head_attention_11/Reshape_4"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/dropout/mul_1_grad/Mul_1' type=Mul>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 447, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_19/add_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_19/add_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_19/add_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 458, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/Reshape_2_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/add_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/Reshape_2_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/Reshape_2_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/add_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/Reshape_2_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/dropout/mul_1_grad/Mul_1' type=Mul>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 466, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_15/pow_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_15/pow_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_15/pow_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 521, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/add_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/add_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/add_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 530, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_14/pow_grad/Select"
+op: "Select"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_14/pow_grad/Greater"
+input: "transformer/layer_normalization_14/add"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_14/pow_grad/ones_like"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 547, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/MatMul_1_grad/MatMul"
+op: "MatMul"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_5_grad/Reshape"
+input: "transformer/multi_head_attention_10/Reshape_4"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: true
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/MatMul_1_grad/MatMul"
+op: "MatMul"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_5_grad/Reshape"
+input: "transformer/multi_head_attention_10/Reshape_4"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: true
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/dropout/mul_1_grad/Mul_1' type=Mul>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 585, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 594, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_13/pow_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_13/pow_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_13/pow_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 611, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/MatMul_1_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention_9/Reshape_3"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/Reshape_5_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 649, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_4/add_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_4/add_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_4/add_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 699, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/MatMul_grad/MatMul"
+op: "MatMul"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_2_grad/Reshape"
+input: "transformer/multi_head_attention_4/Reshape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: true
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 743, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/MatMul_1_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention_3/Reshape_3"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_5_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 785, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/MatMul_1_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention_2/Reshape_3"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_5_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Processing layer 3's swapping, swap out at [4], swap in at [388, 449, 463, 527, 545, 591, 609, 693, 700, 717, 741, 759, 783, 801, 843]
+[STR DEBUG] Cannot find swap-out control nodes for layer 3, use the first op name: "transformer/multi_head_attention/Reshape_7"
+op: "Reshape"
+input: "transformer/multi_head_attention/transpose_2"
+input: "transformer/multi_head_attention/Reshape_7/shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/dropout/mul_1"
+op: "Mul"
+input: "transformer/dropout/mul"
+input: "transformer/dropout/Cast"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/dropout/mul_1:0", shape=(?, 128, 8), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/Reshape_7' type=Reshape>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 388, use the last op name: "transformer/layer_normalization_11/pow"
+op: "Pow"
+input: "transformer/layer_normalization_11/add"
+input: "transformer/layer_normalization_11/pow/y"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 545, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/MatMul_2_grad/MatMul"
+op: "MatMul"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_8_grad/Reshape"
+input: "transformer/multi_head_attention_10/Reshape_7"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: true
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 609, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/MatMul_2_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention_9/Reshape_6"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/Reshape_8_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 693, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/split_3_grad/concat"
+op: "ConcatV2"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/concat_3_grad/Slice"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/concat_3_grad/Slice_1"
+input: "transformer/multi_head_attention_4/split_3/split_dim"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 700, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_7_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/MatMul_2_grad/MatMul_1"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_7_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 717, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_3/add_1_grad/Sum_1"
+op: "Sum"
+input: "training/Adam/gradients/gradients/transformer/add_8_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_3/add_1_grad/BroadcastGradientArgs:1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "keep_dims"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 741, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/MatMul_2_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention_3/Reshape_6"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_8_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 759, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_2/add_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_2/add_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_2/add_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 783, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/MatMul_2_grad/MatMul"
+op: "MatMul"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_8_grad/Reshape"
+input: "transformer/multi_head_attention_2/Reshape_7"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: true
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 801, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_1/add_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_1/add_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_1/add_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 843, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward/add_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward/add_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward/add_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 4's swapping, swap out at [5], swap in at [390, 464, 528, 592, 697]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 4, among [<tf.Operation 'transformer/multi_head_attention/Reshape_7' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape/shape' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_1/shape' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_4/shape' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_3/shape' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_3' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_1' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_2' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_2/shape/1' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_2/shape' type=Pack>, <tf.Operation 'transformer/multi_head_attention/Reshape_2/shape/2' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_6/shape' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_6' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_7/shape' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_8' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_8/shape/2' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_8/shape' type=Pack>, <tf.Operation 'transformer/multi_head_attention/Reshape_8/shape/1' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_5/shape/1' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_5/shape' type=Pack>, <tf.Operation 'transformer/multi_head_attention/Reshape_5' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_4' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_5/shape/2' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/Reshape_5/shape/2"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 8
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 4, use the first op name: "transformer/multi_head_attention/MatMul_2"
+op: "MatMul"
+input: "transformer/multi_head_attention/Reshape_6"
+input: "transformer/multi_head_attention/Reshape_7"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/Reshape_5/shape/2"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 8
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/Reshape_5/shape/2:0", shape=(), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/MatMul_2' type=MatMul>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 390, use the last op name: "transformer/multi_head_attention_11/Reshape_8/shape"
+op: "Pack"
+input: "transformer/multi_head_attention_11/unstack_4"
+input: "transformer/multi_head_attention_11/Reshape_8/shape/1"
+input: "transformer/multi_head_attention_11/Reshape_8/shape/2"
+attr {
+  key: "N"
+  value {
+    i: 3
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "axis"
+  value {
+    i: 0
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 697, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/MatMul_1_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention_4/Reshape_3"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_5_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Processing layer 5's swapping, swap out at [6], swap in at [450, 544, 608, 701, 740, 782]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 5, among [<tf.Operation 'transformer/multi_head_attention/MatMul_2' type=MatMul>, <tf.Operation 'transformer/multi_head_attention/MatMul' type=MatMul>, <tf.Operation 'transformer/multi_head_attention/MatMul_1' type=MatMul>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention/Reshape_3"
+input: "transformer/multi_head_attention/Reshape_4"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 5, use the first op name: "transformer/multi_head_attention/Reshape_2"
+op: "Reshape"
+input: "transformer/multi_head_attention/MatMul"
+input: "transformer/multi_head_attention/Reshape_2/shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention/Reshape_3"
+input: "transformer/multi_head_attention/Reshape_4"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/MatMul_1:0", shape=(?, 8), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/Reshape_2' type=Reshape>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 544, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_8_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/split_2_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_8_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 608, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/Reshape_8_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/split_2_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/Reshape_8_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 701, use the last op name: "training/Adam/gradients/gradients/transformer/dropout_1/mul_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/dropout_1/mul_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/dropout_1/mul_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 740, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_8_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/split_2_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_8_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 782, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_8_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/split_2_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_8_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 6's swapping, swap out at [7], swap in at [391, 462, 526, 590]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 6, among [<tf.Operation 'transformer/multi_head_attention/Reshape_2' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_2/shape/1' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_2/shape' type=Pack>, <tf.Operation 'transformer/multi_head_attention/Reshape_2/shape/2' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/Reshape_2/shape/2"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 8
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/Reshape_2/shape/2"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 8
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/Reshape_2/shape/2:0", shape=(), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/MatMul_1' type=MatMul>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 391, use the last op name: "transformer/multi_head_attention_11/MatMul_2"
+op: "MatMul"
+input: "transformer/multi_head_attention_11/Reshape_6"
+input: "transformer/multi_head_attention_11/Reshape_7"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Processing layer 7's swapping, swap out at [8], swap in at [389, 460, 524, 588]
+[STR DEBUG] Cannot find swap-out control nodes for layer 7, use the first op name: "transformer/multi_head_attention/Reshape_5/shape/1"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 128
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention/Reshape_3"
+input: "transformer/multi_head_attention/Reshape_4"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/MatMul_1:0", shape=(?, 8), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/Reshape_5/shape/1' type=Const>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 389, use the last op name: "transformer/layer_normalization_11/add_1/ReadVariableOp"
+op: "ReadVariableOp"
+input: "transformer/layer_normalization_11/beta"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 460, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/Reshape_1_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/MatMul_grad/MatMul_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/Reshape_1_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 524, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/Reshape_1_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/MatMul_grad/MatMul_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/Reshape_1_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 588, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/Reshape_4_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/MatMul_1_grad/MatMul_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/Reshape_4_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 8's swapping, swap out at [9], swap in at [455, 550, 614, 696, 746, 788]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 8, among [<tf.Operation 'transformer/multi_head_attention/Reshape_5/shape/1' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_5/shape' type=Pack>, <tf.Operation 'transformer/multi_head_attention/Reshape_5' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_5/shape/2' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/Reshape_5/shape/2"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 8
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/Reshape_5/shape/2"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 8
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/Reshape_5/shape/2:0", shape=(), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/MatMul_2' type=MatMul>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 455, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/Reshape_3_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/MatMul_1_grad/MatMul"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/Reshape_3_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 550, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_6_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/MatMul_2_grad/MatMul"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_6_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 614, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/Reshape_3_grad/Shape"
+op: "Shape"
+input: "transformer/layer_normalization_7/add_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "out_type"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 696, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_5_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/split_1_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_5_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 746, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_4_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/MatMul_1_grad/MatMul_1"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_4_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 788, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_8_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/split_2_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_8_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 9's swapping, swap out at [10], swap in at [692]
+[STR DEBUG] Cannot find swap-out control nodes for layer 9, use the first op name: "transformer/multi_head_attention/Reshape_8"
+op: "Reshape"
+input: "transformer/multi_head_attention/MatMul_2"
+input: "transformer/multi_head_attention/Reshape_8/shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/MatMul_2"
+op: "MatMul"
+input: "transformer/multi_head_attention/Reshape_6"
+input: "transformer/multi_head_attention/Reshape_7"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/MatMul_2:0", shape=(?, 8), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/Reshape_8' type=Reshape>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 692, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/concat_3_grad/Slice_1"
+op: "Slice"
+input: "training/Adam/gradients/gradients/transformer/add_10_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/concat_3_grad/ConcatOffset:1"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/concat_3_grad/ShapeN:1"
+attr {
+  key: "Index"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Processing layer 10's swapping, swap out at [11], swap in at [467, 531, 595, 691, 718]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 10, among [<tf.Operation 'transformer/multi_head_attention/Reshape_8' type=Reshape>, <tf.Operation 'transformer/multi_head_attention/Reshape_8/shape/2' type=Const>, <tf.Operation 'transformer/multi_head_attention/Reshape_8/shape' type=Pack>, <tf.Operation 'transformer/multi_head_attention/Reshape_8/shape/1' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/Reshape_8/shape/1"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 128
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 10, use the first op name: "transformer/multi_head_attention/split_3"
+op: "Split"
+input: "transformer/multi_head_attention/split_3/split_dim"
+input: "transformer/multi_head_attention/scaled_dot_product_attention/MatMul_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "num_split"
+  value {
+    i: 2
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/Reshape_8/shape/1"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 128
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/Reshape_8/shape/1:0", shape=(), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/split_3' type=Split>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 467, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_15/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_15/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_15/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 531, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_14/add_grad/Sum_1"
+op: "Sum"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_14/pow_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_14/add_grad/BroadcastGradientArgs:1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "keep_dims"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 595, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_13/add_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_13/add_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_13/add_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 718, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_3/Reshape_2_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_3/add_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_3/Reshape_2_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 11's swapping, swap out at [12], swap in at [386, 648]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 11, among [<tf.Operation 'transformer/multi_head_attention/split_3' type=Split>, <tf.Operation 'transformer/multi_head_attention/split_2/split_dim' type=Const>, <tf.Operation 'transformer/multi_head_attention/split_1' type=Split>, <tf.Operation 'transformer/multi_head_attention/split_1/split_dim' type=Const>, <tf.Operation 'transformer/multi_head_attention/split_3/split_dim' type=Const>, <tf.Operation 'transformer/multi_head_attention/split_2' type=Split>, <tf.Operation 'transformer/multi_head_attention/split/split_dim' type=Const>, <tf.Operation 'transformer/multi_head_attention/split' type=Split>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/split"
+op: "Split"
+input: "transformer/multi_head_attention/split/split_dim"
+input: "transformer/multi_head_attention/Reshape_2"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "num_split"
+  value {
+    i: 2
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 11, use the first op name: "transformer/multi_head_attention/concat_3"
+op: "ConcatV2"
+input: "transformer/multi_head_attention/split_3"
+input: "transformer/multi_head_attention/split_3:1"
+input: "transformer/multi_head_attention/concat_3/axis"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/split"
+op: "Split"
+input: "transformer/multi_head_attention/split/split_dim"
+input: "transformer/multi_head_attention/Reshape_2"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "num_split"
+  value {
+    i: 2
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/split:0", shape=(?, 128, 4), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/concat_3' type=ConcatV2>]
+[STR DEBUG] Processing layer 12's swapping, swap out at [13], swap in at [387, 452, 553, 617, 695, 749, 791]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 12, among [<tf.Operation 'transformer/multi_head_attention/concat_3' type=ConcatV2>, <tf.Operation 'transformer/multi_head_attention/concat_3/axis' type=Const>, <tf.Operation 'transformer/multi_head_attention/concat_1/axis' type=Const>, <tf.Operation 'transformer/multi_head_attention/concat' type=ConcatV2>, <tf.Operation 'transformer/multi_head_attention/concat/axis' type=Const>, <tf.Operation 'transformer/multi_head_attention/concat_1' type=ConcatV2>, <tf.Operation 'transformer/multi_head_attention/concat_2' type=ConcatV2>, <tf.Operation 'transformer/multi_head_attention/concat_2/axis' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/concat_2/axis"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 0
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 12, use the first op name: "transformer/multi_head_attention/split_1"
+op: "Split"
+input: "transformer/multi_head_attention/split_1/split_dim"
+input: "transformer/multi_head_attention/Reshape_5"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "num_split"
+  value {
+    i: 2
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/concat_2/axis"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 0
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/concat_2/axis:0", shape=(), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/split_1' type=Split>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 387, use the last op name: "transformer/layer_normalization_11/add_1/ReadVariableOp"
+op: "ReadVariableOp"
+input: "transformer/layer_normalization_11/beta"
+attr {
+  key: "dtype"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 452, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 553, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_10/add_grad/Sum"
+op: "Sum"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_10/pow_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_10/add_grad/BroadcastGradientArgs"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "keep_dims"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 617, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_9/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_9/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_9/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 695, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/MatMul_2_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention_4/Reshape_6"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_8_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 749, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_6/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_6/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_6/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 791, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_5/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_5/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_5/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 13's swapping, swap out at [14], swap in at [454, 469, 533, 549, 597, 613, 694, 745, 787]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 13, among [<tf.Operation 'transformer/multi_head_attention/split_1' type=Split>, <tf.Operation 'transformer/multi_head_attention/split_1/split_dim' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/split_1/split_dim"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 2
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 13, use the first op name: "transformer/multi_head_attention/concat_1/axis"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 0
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/split_1/split_dim"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 2
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/split_1/split_dim:0", shape=(), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/concat_1/axis' type=Const>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 454, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/MatMul_1_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/position_wise_feed_forward_7/Reshape_3"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_7/Reshape_5_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 549, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/MatMul_2_grad/MatMul"
+op: "MatMul"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_8_grad/Reshape"
+input: "transformer/multi_head_attention_10/Reshape_7"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: true
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/MatMul_2_grad/MatMul"
+op: "MatMul"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_8_grad/Reshape"
+input: "transformer/multi_head_attention_10/Reshape_7"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: true
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention/split_1_grad/concat' type=ConcatV2>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 613, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/MatMul_1_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention_9/Reshape_3"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/Reshape_5_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 694, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_8_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/split_2_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_8_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 745, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/MatMul_1_grad/MatMul_1"
+op: "MatMul"
+input: "transformer/multi_head_attention_3/Reshape_3"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_5_grad/Reshape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: false
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 787, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/MatMul_2_grad/MatMul"
+op: "MatMul"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_8_grad/Reshape"
+input: "transformer/multi_head_attention_2/Reshape_7"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: true
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/MatMul_2_grad/MatMul"
+op: "MatMul"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_8_grad/Reshape"
+input: "transformer/multi_head_attention_2/Reshape_7"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "transpose_a"
+  value {
+    b: false
+  }
+}
+attr {
+  key: "transpose_b"
+  value {
+    b: true
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention/split_1_grad/concat' type=ConcatV2>]
+[STR DEBUG] Processing layer 14's swapping, swap out at [15], swap in at [444, 542, 606, 702, 738, 780, 844]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 14, among [<tf.Operation 'transformer/multi_head_attention/concat_1/axis' type=Const>, <tf.Operation 'transformer/multi_head_attention/concat_1' type=ConcatV2>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/concat_1"
+op: "ConcatV2"
+input: "transformer/multi_head_attention/split_1"
+input: "transformer/multi_head_attention/split_1:1"
+input: "transformer/multi_head_attention/concat_1/axis"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 14, use the first op name: "transformer/multi_head_attention/split_2/split_dim"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 2
+    }
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/concat_1"
+op: "ConcatV2"
+input: "transformer/multi_head_attention/split_1"
+input: "transformer/multi_head_attention/split_1:1"
+input: "transformer/multi_head_attention/concat_1/axis"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/concat_1:0", shape=(?, 128, 4), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/split_2/split_dim' type=Const>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 444, use the last op name: "training/Adam/gradients/gradients/transformer/Reshape_1_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/MatMul_grad/MatMul_1"
+input: "training/Adam/gradients/gradients/transformer/Reshape_1_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 542, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/concat_1_grad/Rank"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 3
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 606, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/concat_2_grad/Slice_1"
+op: "Slice"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/scaled_dot_product_attention_7/MatMul_1_grad/Reshape_1"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/concat_2_grad/ConcatOffset:1"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/concat_2_grad/ShapeN:1"
+attr {
+  key: "Index"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 702, use the last op name: "training/Adam/gradients/gradients/transformer/dropout_1/mul_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/dropout_1/mul_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/dropout_1/mul_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 738, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/concat_2_grad/Slice_1"
+op: "Slice"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/scaled_dot_product_attention_3/MatMul_1_grad/Reshape_1"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/concat_2_grad/ConcatOffset:1"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/concat_2_grad/ShapeN:1"
+attr {
+  key: "Index"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 780, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/concat_3_grad/Shape"
+op: "Shape"
+input: "transformer/multi_head_attention_2/split_3"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "out_type"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 844, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward/Reshape_2_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward/add_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward/Reshape_2_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 15's swapping, swap out at [16], swap in at [398, 445, 461, 522, 525, 541, 586, 589, 605, 650, 703, 737, 760, 779, 802, 842]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 15, among [<tf.Operation 'transformer/multi_head_attention/split_2/split_dim' type=Const>, <tf.Operation 'transformer/multi_head_attention/split_2' type=Split>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/split_2"
+op: "Split"
+input: "transformer/multi_head_attention/split_2/split_dim"
+input: "transformer/multi_head_attention/Reshape_8"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "num_split"
+  value {
+    i: 2
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 15, use the first op name: "transformer/multi_head_attention/concat_2"
+op: "ConcatV2"
+input: "transformer/multi_head_attention/split_2"
+input: "transformer/multi_head_attention/split_2:1"
+input: "transformer/multi_head_attention/concat_2/axis"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/split_2"
+op: "Split"
+input: "transformer/multi_head_attention/split_2/split_dim"
+input: "transformer/multi_head_attention/Reshape_8"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "num_split"
+  value {
+    i: 2
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/split_2:0", shape=(?, 128, 4), dtype=float32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/concat_2' type=ConcatV2>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 398, use the last op name: "transformer/multi_head_attention_11/concat_3"
+op: "ConcatV2"
+input: "transformer/multi_head_attention_11/split_3"
+input: "transformer/multi_head_attention_11/split_3:1"
+input: "transformer/multi_head_attention_11/concat_3/axis"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 445, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_19/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_19/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_19/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 522, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/Reshape_2_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/add_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_6/Reshape_2_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 586, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/Reshape_2_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/add_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_5/Reshape_2_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 650, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_4/Reshape_2_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_4/add_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_4/Reshape_2_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 703, use the last op name: "training/Adam/gradients/gradients/transformer/add_9_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/add_9_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/add_9_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 760, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_2/Reshape_2_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_2/add_grad/Reshape"
+input: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_2/Reshape_2_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 802, use the last op name: "training/Adam/gradients/gradients/transformer/position_wise_feed_forward_1/Reshape_2_grad/Shape"
+op: "Shape"
+input: "transformer/position_wise_feed_forward_1/MatMul"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "out_type"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 16's swapping, swap out at [17], swap in at [394, 465, 529, 593]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 16, among [<tf.Operation 'transformer/multi_head_attention/concat_2' type=ConcatV2>, <tf.Operation 'transformer/multi_head_attention/concat_2/axis' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/concat_2/axis"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 0
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 16, use the first op name: "transformer/multi_head_attention/split_3"
+op: "Split"
+input: "transformer/multi_head_attention/split_3/split_dim"
+input: "transformer/multi_head_attention/scaled_dot_product_attention/MatMul_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "num_split"
+  value {
+    i: 2
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/concat_2/axis"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 0
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/concat_2/axis:0", shape=(), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/split_3' type=Split>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 394, use the last op name: "transformer/multi_head_attention_11/Reshape_5/shape"
+op: "Pack"
+input: "transformer/multi_head_attention_11/unstack_2"
+input: "transformer/multi_head_attention_11/Reshape_5/shape/1"
+input: "transformer/multi_head_attention_11/Reshape_5/shape/2"
+attr {
+  key: "N"
+  value {
+    i: 3
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "axis"
+  value {
+    i: 0
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 465, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_15/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_15/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_15/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 529, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_14/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_14/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_14/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 593, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_13/add_1_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_13/add_1_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_13/add_1_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Processing layer 17's swapping, swap out at [18], swap in at [448, 546, 610, 698, 742, 784]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 17, among [<tf.Operation 'transformer/multi_head_attention/split_3' type=Split>, <tf.Operation 'transformer/multi_head_attention/split_3/split_dim' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/split_3/split_dim"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 0
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 17, use the first op name: "transformer/multi_head_attention/concat_3"
+op: "ConcatV2"
+input: "transformer/multi_head_attention/split_3"
+input: "transformer/multi_head_attention/split_3:1"
+input: "transformer/multi_head_attention/concat_3/axis"
+attr {
+  key: "N"
+  value {
+    i: 2
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tidx"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/split_3/split_dim"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 0
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/split_3/split_dim:0", shape=(), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'transformer/multi_head_attention/concat_3' type=ConcatV2>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 448, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_19/sub_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_19/sub_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_19/sub_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/layer_normalization_19/sub_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_19/sub_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_19/sub_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention/split_3_grad/concat' type=ConcatV2>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 546, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_5_grad/Shape"
+op: "Shape"
+input: "transformer/multi_head_attention_10/MatMul_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "out_type"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/multi_head_attention_10/Reshape_5_grad/Shape"
+op: "Shape"
+input: "transformer/multi_head_attention_10/MatMul_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "out_type"
+  value {
+    type: DT_INT32
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention/split_3_grad/concat' type=ConcatV2>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 610, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/Reshape_5_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/split_1_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/Reshape_5_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/Reshape_5_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/split_1_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_9/Reshape_5_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention/split_3_grad/concat' type=ConcatV2>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 698, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_2_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/split_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_4/Reshape_2_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 742, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_5_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/split_1_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_5_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_5_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/split_1_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_3/Reshape_5_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention/split_3_grad/concat' type=ConcatV2>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 784, use the last op name: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_5_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/split_1_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_5_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Add swap-in op at name: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_5_grad/Reshape"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/split_1_grad/concat"
+input: "training/Adam/gradients/gradients/transformer/multi_head_attention_2/Reshape_5_grad/Shape"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+ for consumer [<tf.Operation 'training/Adam/gradients/gradients/transformer/multi_head_attention/split_3_grad/concat' type=ConcatV2>]
+[STR DEBUG] Processing layer 18's swapping, swap out at [19], swap in at [392, 451, 552, 616, 748, 790]
+[STR DEBUG] Cannot find swap-out activation nodes for layer 18, among [<tf.Operation 'transformer/multi_head_attention/concat_3' type=ConcatV2>, <tf.Operation 'transformer/multi_head_attention/concat_3/axis' type=Const>]
+[STR DEBUG] Choose op that have outputs: name: "transformer/multi_head_attention/concat_3/axis"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 2
+    }
+  }
+}
+
+[STR DEBUG] Cannot find swap-out control nodes for layer 18, use the first op name: "transformer/add_16"
+op: "AddV2"
+input: "transformer/multi_head_attention_6/concat_3"
+input: "transformer/layer_normalization_17/add_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Find swapout ops: name: "transformer/multi_head_attention/concat_3/axis"
+op: "Const"
+attr {
+  key: "dtype"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "value"
+  value {
+    tensor {
+      dtype: DT_INT32
+      tensor_shape {
+      }
+      int_val: 2
+    }
+  }
+}
+, 
+	choose swap tensor Tensor("transformer/multi_head_attention/concat_3/axis:0", shape=(), dtype=int32), 
+	finish at the end of ops: [<tf.Operation 'transformer/add_16' type=AddV2>]
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 392, use the last op name: "transformer/multi_head_attention_11/Reshape_2/shape"
+op: "Pack"
+input: "transformer/multi_head_attention_11/unstack"
+input: "transformer/multi_head_attention_11/Reshape_2/shape/1"
+input: "transformer/multi_head_attention_11/Reshape_2/shape/2"
+attr {
+  key: "N"
+  value {
+    i: 3
+  }
+}
+attr {
+  key: "T"
+  value {
+    type: DT_INT32
+  }
+}
+attr {
+  key: "axis"
+  value {
+    i: 0
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 451, use the last op name: "training/Adam/gradients/gradients/transformer/add_21_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/add_21_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/add_21_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 552, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_10/pow_grad/Select"
+op: "Select"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_10/pow_grad/Greater"
+input: "transformer/layer_normalization_10/add"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_10/pow_grad/ones_like"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 616, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_9/pow_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_9/pow_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_9/pow_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 748, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_6/pow_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_6/pow_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_6/pow_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+[STR DEBUG] Cannot find swap-in control nodes for ref. layer 790, use the last op name: "training/Adam/gradients/gradients/transformer/layer_normalization_5/pow_grad/Reshape_1"
+op: "Reshape"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_5/pow_grad/Sum_1"
+input: "training/Adam/gradients/gradients/transformer/layer_normalization_5/pow_grad/Shape_1"
+attr {
+  key: "T"
+  value {
+    type: DT_FLOAT
+  }
+}
+attr {
+  key: "Tshape"
+  value {
+    type: DT_INT32
+  }
+}
+
+Train on 12 samples
+ 1/12 [=>............................] - ETA: 1:49 - loss: 0.6934 - acc: 0.4623 2/12 [====>.........................] - ETA: 52s - loss: 0.6933 - acc: 0.4623  3/12 [======>.......................] - ETA: 33s - loss: 0.6933 - acc: 0.4874 4/12 [=========>....................] - ETA: 23s - loss: 0.6932 - acc: 0.5000 5/12 [===========>..................] - ETA: 17s - loss: 0.6931 - acc: 0.5075 6/12 [==============>...............] - ETA: 12s - loss: 0.6930 - acc: 0.5126 7/12 [================>.............] - ETA: 9s - loss: 0.6929 - acc: 0.5161  8/12 [===================>..........] - ETA: 6s - loss: 0.6929 - acc: 0.5188 9/12 [=====================>........] - ETA: 4s - loss: 0.6928 - acc: 0.520910/12 [========================>.....] - ETA: 3s - loss: 0.6927 - acc: 0.522611/12 [==========================>...] - ETA: 1s - loss: 0.6926 - acc: 0.5240WARNING:tensorflow:Early stopping conditioned on metric `val_loss` which is not available. Available metrics are: loss,acc
+12/12 [==============================] - 17s 1s/step - loss: 0.6926 - acc: 0.5251

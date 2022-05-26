@@ -101,8 +101,8 @@ if __name__ == "__main__":
     if model_name == "transformer":
         vocab_size = 512
         max_len = 128
-        node_file = "/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_32/layer_names"
-        deps_file = "/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_32/transformer-layer-deps.json"
+        node_file = "/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_230/layer_names"
+        deps_file = "/home/zongzan/dist_dnn_training/STR/optimizer/logs/transformer_230/transformer-layer-deps.json"
         model = build_model(vocab_size, max_len)
         g = dfgraph_transformer(model, batch_size=args.batch_size, cost_model=cost_model,
                             node_file=node_file, deps_file=deps_file, loss_ram_cost=(4 * args.batch_size))

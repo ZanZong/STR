@@ -502,7 +502,7 @@ class TextGenerator(tf.keras.utils.Sequence):
         batch_x = self.x[idx * self.batch_size: (idx + 1) * self.batch_size]
         mask_x = self.mask[idx * self.batch_size: (idx + 1) * self.batch_size]
         batch_y = self.y[idx * self.batch_size: (idx + 1) * self.batch_size]
-        return [batch_x, mask_x], batch_y
+        return (batch_x, mask_x), batch_y
 
     def on_epoch_end(self):
         pass
@@ -521,8 +521,8 @@ def load_generator(vocab_size, max_len, batch_size):
 
 def load_dataset(vocab_size, max_len):
     (x_train, y_train), (x_test, y_test) = tf.keras.datasets.imdb.load_data(maxlen=max_len, num_words=vocab_size)
-    x_train = x_train[:2000]
-    y_train = y_train[:2000]
+    x_train = x_train[:3000]
+    y_train = y_train[:3000]
     x_train = tf.keras.preprocessing.sequence.pad_sequences(x_train, maxlen=max_len)
     x_test = tf.keras.preprocessing.sequence.pad_sequences(x_test, maxlen=max_len)
     x_train_masks = tf.equal(x_train, 0)
@@ -532,7 +532,7 @@ def load_dataset(vocab_size, max_len):
     return (x_train, x_train_masks, y_train), (x_test, x_test_masks, y_test)
 
 
-def build_model(vocab_size, max_len, model_dim=10, n_heads=5, encoder_stack=8, decoder_stack=8, ff_size=64):
+def build_model(vocab_size, max_len, model_dim=8, n_heads=2, encoder_stack=4, decoder_stack=4, ff_size=64):
     encoder_inputs = tf.keras.Input(shape=(max_len,), name='encoder_inputs')
     decoder_inputs = tf.keras.Input(shape=(max_len,), name='decoder_inputs')
     outputs = Transformer(

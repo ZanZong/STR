@@ -197,15 +197,7 @@ class FuseHandler:
                 count += 1
         return count
 
-    def tensor_selection(self):
-        """Return tensors that need to be fused.
-           Heuristics:1) start from vertex with minimal weight, and
-                      2) must fusing the vertex among topology-ordered lower-weighted adjacent dependencies.
-        """
-        v_f = np.argmin([w if w is not None else np.inf for w in self.weight])
-        assert v_f is not None, "All vertex is None!"
-        
-        def step(v_f: Vertex, direct: str):
+    def step(self, v_f: Vertex, direct: str):
             """ Find un-none node with direct 'pred' and 'succ'
             """ 
             cur = v_f
@@ -224,7 +216,16 @@ class FuseHandler:
                     return None
             return cur
 
-        adj_node = [step(v_f, 'pred'), step(v_f, 'succ')]
+    def tensor_selection(self):
+        """Return tensors that need to be fused.
+           Heuristics:1) start from vertex with minimal weight, and
+                      2) must fusing the vertex among topology-ordered lower-weighted adjacent dependencies.
+        """
+        v_f = np.argmin([w if w is not None else np.inf for w in self.weight])
+        assert v_f is not None, "All vertex is None!"
+        
+
+        adj_node = [self.step(v_f, 'pred'), self.step(v_f, 'succ')]
         assert any(adj_node), f"Failed to find valid node for {v_f} among {self.__g.v}"
         min_weight = np.inf
         min_v = None
@@ -245,6 +246,34 @@ class FuseHandler:
 
     def get_v2group(self):
         return self.__v2group
+
+    def edge_selection(self):
+        """ Edge based tensor selection.
+            Heuristics: traverse all edges, find connected vertices with minimal weights.
+        """
+        min_weight = np.inf
+        min_v = None
+        for v_id in self.__g.v:
+            if v_id is None: continue
+            # traverse all adj node connection
+            adj_node = [self.step(v_id, 'pred'), self.step(v_id, 'succ')]
+            if not all(adj_node):
+                continue
+            for v in adj_node:
+                if v is None: continue
+                # TODO: improve weight calculation?
+                weight = self.weight[v_id] + self.weight[v]
+                if weight < min_weight:
+                    min_weight = self.weight[v]
+                    min_v = (v_id, v)
+        if min_v is None:
+            print("Failed to select tensors for fusing")
+        u, v = min_v
+        if self.weight[u] > self.weight[v]:
+            return (v, u)
+        else:
+            return (u, v)
+
 
 def simplify(g: DFGraph, target_n: int) -> Tuple[DFGraph, FuseHandler]:
     """Fusing tensors with some heuristics.
@@ -278,7 +307,7 @@ def simplify(g: DFGraph, target_n: int) -> Tuple[DFGraph, FuseHandler]:
 
     # Node fusing
     while fuse_handler.get_graph_size() > target_n:
-        remove, remain = fuse_handler.tensor_selection()
+        remove, remain = fuse_handler.edge_selection()
         fuse_handler.fuse(remove, remain)
     
     # Greating new graph for optimization
@@ -317,9 +346,17 @@ def recover(origin_g: DFGraph, r: np.ndarray, s: np.ndarray, p: np.ndarray, q: n
                 # first_stage_in_group = min(grouped[t])
                 # for node in mapped_nodes:
                 #     Q_[first_stage_in_group, node] = 1
-                # start swap one-by-one
+                
+                # start swap one-by-one, only swap a part of memory size ops from the top
+                reduce_factor = 0.5 if origin_g.size > 1000 else 1
                 swap_stage = 0
-                for node in mapped_nodes[::-1]:
+                mapped_nodes_mem = [origin_g.cost_ram[v] for v in mapped_nodes]
+                sorted_idx_by_mem = np.argsort(mapped_nodes_mem)
+                if len(sorted_idx_by_mem) > 2:
+                    useful_num = int(len(sorted_idx_by_mem) * reduce_factor)
+                else:
+                    useful_num = 1
+                for node in sorted_idx_by_mem[:useful_num]:
                     Q_[grouped[t][swap_stage], node] = 1
                     if swap_stage < len(grouped[t]) - 1:
                         swap_stage += 1
