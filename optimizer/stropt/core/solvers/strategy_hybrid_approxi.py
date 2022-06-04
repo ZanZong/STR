@@ -1,6 +1,7 @@
 import logging
 import math
 import os
+import time
 from typing import Optional
 import numpy as np
 from stropt.core.dfgraph import DFGraph
@@ -121,8 +122,9 @@ def reduced_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarra
                   'StartNodeLimit': 10000000}
     print(f"Set fused graph size {reduce_graph_size}")
     ## TODO simplify graph
+    t_simplify_start = time.time()
     new_graph, fuse_handler = simplify(g, reduce_graph_size)
-    
+    t_simplify_end = time.time()
     ilpsolver = HybridILPSolver(new_graph, budget, gurobi_params=param_dict, seed_s=seed_s,
                           eps_noise=eps_noise, imposed_schedule=imposed_schedule,
                           solve_r=solve_r, write_model_file=write_model_file)
@@ -132,14 +134,19 @@ def reduced_hybrid_appro_ilp(g: DFGraph, budget: int, seed_s: Optional[np.ndarra
     #                       solve_r=solve_r, write_model_file=write_model_file, integral=False)
     ilpsolver.build_model()
     try:
+        t_solve_start = time.time()
         r, s, u, free_e, p, q = ilpsolver.solve()
+        t_solve_end = time.time()
         # use relaxation
-        # r_appro, s_appro, p_appro, q_appro = fine_grained_approx(g=new_graph, sc=ilpsolver.swap_control, \
+        # r, s, p, q = fine_grained_approx(g=new_graph, sc=ilpsolver.swap_control, \
         #             r=r, s=s, p=p, q=q, u=u, mem_budget=ilpsolver.budget*ilpsolver.ram_gcd)
         q = prun_q_opt(ilpsolver.swap_control, q, s)
+
+        t_recover_start = time.time()
         rec_r, rec_p, rec_q = recover(g, r, s, p, q, fuse_handler)
         rec_p = fill_p(rec_q)
-
+        t_recover_end = time.time()
+        print(f"Time cost: simplify={t_simplify_end - t_simplify_start}s, solving={t_solve_end - t_solve_start}s, recover={t_recover_end - t_recover_start}s")
         ilpsolver.format_matrix(rec_r, "R-approx", approx_fmt="%i")
         ilpsolver.format_matrix(s, "S-approx", approx_fmt="%i")
         ilpsolver.format_matrix(u, "U-approx")

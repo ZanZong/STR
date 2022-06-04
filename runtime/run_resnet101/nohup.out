@@ -1,0 +1,1 @@
+run.sh: line 33: 23797 Segmentation fault      (core dumped) nohup python ../run_training.py --model-name ResNet101 --epoch 1 --batch-size 110 --strategy chen-heurist > chen-heurist-b110.log 2>&1

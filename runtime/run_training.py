@@ -105,7 +105,7 @@ if __name__ == "__main__":
       # model.fit(generator, epochs=args.epochs)
 
     else:
-      train_generator, validation_generator, input_shape, classes = cifar10(args.batch_size, (224, 224), [40000, 10000])
+      train_generator, validation_generator, input_shape, classes = cifar10(args.batch_size, (224, 224), [4000, 1000])
       model = get_keras_model(model_name=args.model_name, input_shape=input_shape, 
                                   classes=classes, include_top=True, weights=None) 
       # training

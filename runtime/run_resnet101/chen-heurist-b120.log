@@ -1,0 +1,7 @@
+WARNING:tensorflow:From ../run_training.py:46: The name tf.RunOptions is deprecated. Please use tf.compat.v1.RunOptions instead.
+
+WARNING:tensorflow:From ../run_training.py:47: The name tf.RunMetadata is deprecated. Please use tf.compat.v1.RunMetadata instead.
+
+1 Physical GPUs, 1 Logical GPUs
+Parsing arguments: [('batch_size', 120), ('epochs', 1), ('model_name', 'ResNet101'), ('profile', False), ('strategy', 'chen-heurist'), ('verbose', False)]
+Configuration for strategy chen-heurist doesn't exist in /home/zongzan/.str/ResNet101_120
