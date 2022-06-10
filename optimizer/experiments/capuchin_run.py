@@ -1,4 +1,5 @@
 import argparse
+import time
 import numpy as np
 import shutil
 import pathlib
@@ -114,7 +115,7 @@ if __name__ == "__main__":
     peak_memory = result.schedule_aux_data.peak_ram
     # print(f"Schedule timeline of checkpoint all:\n {result.schedule_aux_data.mem_timeline}")
     mem_after_each_comp = [result.schedule_aux_data.mem_grid[i, i] for i in range(g.size)]
-    
+    start_time = time.time()
     results = []
     for m_device in device_memory:
         target_mem = m_device - g.cost_ram_fixed
@@ -181,3 +182,4 @@ if __name__ == "__main__":
         results.append((peak_mem, compute_overhead, m_device))
     print("Scheduling results:")
     print(results)
+    print(f"Optimization time cost: {time.time() - start_time}")

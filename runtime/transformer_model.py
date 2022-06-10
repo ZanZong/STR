@@ -535,7 +535,8 @@ def load_dataset(vocab_size, max_len):
     return (x_train, x_train_masks, y_train), (x_test, x_test_masks, y_test)
 
 
-def build_model(vocab_size, max_len, model_dim=8, n_heads=2, encoder_stack=6, decoder_stack=6, ff_size=64):
+def build_model(vocab_size, max_len, model_dim=8, n_heads=2, encoder_stack=6, decoder_stack=6, ff_size=2048):
+    # current profiled version: model_dim=8, n_heads=2, encoder_stack=6, decoder_stack=6, ff_size=64
     encoder_inputs = tf.keras.Input(shape=(max_len,), name='encoder_inputs')
     decoder_inputs = tf.keras.Input(shape=(max_len,), name='decoder_inputs')
     outputs = Transformer(

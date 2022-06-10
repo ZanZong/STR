@@ -208,10 +208,14 @@ if __name__ == "__main__":
         model = build_model(vocab_size, max_len)
         g = dfgraph_transformer(model, batch_size=args.batch_size, cost_model=cost_model,
                             node_file=node_file, deps_file=deps_file, loss_ram_cost=(4 * args.batch_size))
+        print(len(g.v))
+        exit()
     else:
         model = get_keras_model(model_name, input_shape=args.input_shape)
         g = dfgraph_from_keras(model, batch_size=args.batch_size, cost_model=cost_model,
                             loss_cpu_cost=0, loss_ram_cost=(4 * args.batch_size))
+        print(len(g.v))
+        exit()
     if args.debug:
         tf.keras.utils.plot_model(model,
                                   to_file=log_base / f"plot_{model_name}_keras.png",
