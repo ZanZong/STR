@@ -3,23 +3,32 @@ np.set_printoptions(threshold=np.inf)
 
 # Simulate and evaluate the PCIe bandwidth condition
 class SwapControler:
-    def __init__(self, bd: int, costs: list, feature_map_sizes: list) -> None:
+    def __init__(self, bd: int, costs: list, feature_map_sizes: list, pq2r=None) -> None:
         self.bandwidth = bd # bandwidth in bytes/second
 
-        assert len(costs) == len(feature_map_sizes), \
-                            "List of costs and feature map must have the same length."
+        # assert len(costs) == len(feature_map_sizes), \
+        #                     "List of costs and feature map must have the same length."
         self.nodes_compute_costs = costs
         self.feature_sizes = feature_map_sizes
         self.num_nodes = len(self.feature_sizes)
-
-        self.swap_finish_forward = np.zeros((self.num_nodes, self.num_nodes), dtype=np.int16) # (tensor_index, time_stage)
+        # set if use mini-stages
+        self.pq2r = pq2r
+        if pq2r is not None:
+            self.num_stages = len(pq2r.keys())
+        else:
+            self.num_stages = len(costs.keys())
+        self.swap_finish_forward = np.zeros((self.num_nodes, self.num_stages), dtype=np.int16) # (tensor_index, time_stage)
         self.__init_swap_finish_point()
     
     def node_compute_cost(self, index: int):
+        if self.pq2r is not None:
+            index = self.pq2r[index]
         return self.nodes_compute_costs[index]
 
     def node_swap_cost(self, index: int):
-        return self.feature_sizes[index] / self.bandwidth * 10E3 # return in ms
+        if self.pq2r is not None:
+            index = self.pq2r[index]
+        return int(self.feature_sizes[index] / self.bandwidth * 10E3) # return in ms
 
     def __swap_point(self, cur_stage: int, tensor_id: int):
         """Find the swap out/in finish point at current stage cur_stage."""
@@ -32,8 +41,8 @@ class SwapControler:
         return cur_stage
     
     def __init_swap_finish_point(self):
-        for t in range(self.num_nodes):
-            for i in range(t):
+        for t in range(self.num_stages):
+            for i in range(t if self.pq2r is None else self.pq2r[t]):
                 fp = self.__swap_point(t, i)
                 self.swap_finish_forward[i][t] = fp
 

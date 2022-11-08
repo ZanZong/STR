@@ -6,6 +6,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ['TF_CPP_MIN_LOG_LEVEL']='1'
 import tensorflow as tf
 import numpy as np
+import time
 # turn on memory growth
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:
@@ -26,13 +27,16 @@ from str_config import ConfigHandler
 from transformer_model import build_model, load_dataset, load_generator
 
 # GPU memory limitation
-# sess = tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(per_process_gpu_memory_fraction=0.676))) 
-# K.set_session(sess)
+sess = tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(per_process_gpu_memory_fraction=1)))
+K.set_session(sess)
 
-# Configure the memory optimizer and dependency optimizers
+# Configure the memory optimizer and dependency optimizers of MetaOptimizer
+# https://web.stanford.edu/class/cs245/slides/TFGraphOptimizationsStanford.pdf
+# https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/protobuf/rewriter_config.proto
 # config = tf.ConfigProto()
-# config.graph_options.rewrite_options.memory_optimization = rewriter_config_pb2.RewriterConfig.SCHEDULING_HEURISTICS
+# # config.graph_options.rewrite_options.memory_optimization = rewriter_config_pb2.RewriterConfig.SCHEDULING_HEURISTICS
 # config.graph_options.rewrite_options.dependency_optimization = rewriter_config_pb2.RewriterConfig.OFF
+# config.graph_options.rewrite_options.memory_optimization = rewriter_config_pb2.RewriterConfig.NO_MEM_OPT
 # K.set_session(tf.Session(config=config))
 
 # Tensorboard for profiling
@@ -60,6 +64,29 @@ def extract_params():
     _args = parser.parse_args()
     
     return _args
+
+class CustomCallback(tf.keras.callbacks.Callback):
+    def __init__(self, bs=None) -> None:
+      super().__init__()
+      self.batch_times = []
+      self.each_start_batch = None
+      self.bs = bs
+      
+    def on_train_batch_begin(self, batch, logs=None):
+      self.each_start_batch = time.time()
+    
+    def on_train_batch_end(self, batch, logs=None):
+      self.batch_times.append(time.time() - self.each_start_batch)
+    
+    def on_epoch_end(self, epoch, logs=None):
+      avg_size = 1
+      if len(self.batch_times) > 5:
+        avg_size = 5
+      if len(self.batch_times) > 0:
+        avg_cost = sum(self.batch_times[-avg_size:]) / avg_size
+        print("\nAverage per batch cost: {} seconds, throughput={}".format(avg_cost, self.bs / avg_cost))
+        print("Batch times:{}".format(self.batch_times))
+        
 
 if __name__ == "__main__":
     args = extract_params()
@@ -107,7 +134,7 @@ if __name__ == "__main__":
     else:
       train_generator, validation_generator, input_shape, classes = cifar10(args.batch_size, (224, 224), [4000, 1000])
       model = get_keras_model(model_name=args.model_name, input_shape=input_shape, 
-                                  classes=classes, include_top=True, weights=None) 
+                                  classes=classes, include_top=True, weights=None)
       # training
       if args.profile:
         model.compile(loss='categorical_crossentropy',
@@ -123,7 +150,8 @@ if __name__ == "__main__":
               train_generator,
               epochs=args.epochs,
               validation_data=validation_generator,
-              verbose=1)
+              verbose=1,
+              callbacks=[CustomCallback(args.batch_size)])
       
     if args.profile:
       # Write out names of each layer

@@ -29,6 +29,7 @@ from stropt.core.solvers.strategy_chen import solve_chen_sqrtn, solve_chen_greed
 from stropt.core.solvers.strategy_griewank import solve_griewank, clean_griewank_cache
 from stropt.core.solvers.strategy_optimal_ilp import solve_ilp_gurobi
 from stropt.core.solvers.strategy_hybrid_ilp import solve_hybrid_ilp
+from stropt.core.solvers.strategy_hybrid_ilp_ministage import solve_hybrid_ilp as solve_hybrid_ilp2
 from stropt.tensorflow2.extraction import dfgraph_from_keras
 
 np.set_printoptions(threshold=np.inf)
@@ -242,13 +243,14 @@ if __name__ == "__main__":
         ilp_log_base = log_base / "ilp_log"
         ilp_log_base.mkdir(parents=True, exist_ok=True)
         exp_log = ilp_log_base / f"perform_compare_ilp.txt"
-        log_strategy(SolveStrategy.CHECKPOINT_ALL, result_dict[SolveStrategy.CHECKPOINT_ALL], exp_log, g)
-        log_strategy(SolveStrategy.CHEN_GREEDY, result_dict[SolveStrategy.CHEN_GREEDY], exp_log, g)
-        log_strategy(SolveStrategy.CHEN_SQRTN_NOAP, result_dict[SolveStrategy.CHEN_SQRTN_NOAP], exp_log, g)
+        # log_strategy(SolveStrategy.CHECKPOINT_ALL, result_dict[SolveStrategy.CHECKPOINT_ALL], exp_log, g)
+        # log_strategy(SolveStrategy.CHEN_GREEDY, result_dict[SolveStrategy.CHEN_GREEDY], exp_log, g)
+        # log_strategy(SolveStrategy.CHEN_SQRTN_NOAP, result_dict[SolveStrategy.CHEN_SQRTN_NOAP], exp_log, g)
 
         # todo load any ILP results from cache
         remote_ilp = ray.remote(num_cpus=NUM_ILP_CORES)(solve_ilp_gurobi).remote
-        remote_ilp_mixed = ray.remote(num_cpus=NUM_ILP_CORES)(solve_hybrid_ilp).remote
+        # remote_ilp_mixed = ray.remote(num_cpus=NUM_ILP_CORES)(solve_hybrid_ilp).remote
+        remote_ilp_mixed = ray.remote(num_cpus=NUM_ILP_CORES)(solve_hybrid_ilp2).remote
         if len(args.ilp_eval_points) > 0:
             local_ilp_eval_points = [p * 1000 * 1000 - g.cost_ram_fixed for p in args.ilp_eval_points]
         else:
