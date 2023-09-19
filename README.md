@@ -65,36 +65,39 @@ python experiments/mixed_solver_comp_approxi.py --model-name "vgg_unet" -b 32 --
 [1] Jain P, Jain A, Nrusimha A, et al. Checkmate: Breaking the memory wall with optimal tensor rematerialization[J]. Proceedings of Machine Learning and Systems, 2020, 2: 497-511.
 
 # Citation
-Please consider citing:
-> @article{DBLP:journals/tpds/ZongLLWS23,
-  author       = {Zan Zong and
-                  Li Lin and
-                  Leilei Lin and
-                  Lijie Wen and
-                  Yu Sun},
-  title        = {{STR:} Hybrid Tensor Re-Generation to Break Memory Wall for {DNN}
-                  Training},
-  journal      = {{IEEE} Trans. Parallel Distributed Syst.},
-  volume       = {34},
-  number       = {8},
-  pages        = {2403--2418},
-  year         = {2023},
-  url          = {https://doi.org/10.1109/TPDS.2023.3266110},
-  doi          = {10.1109/TPDS.2023.3266110}
+If this repository is useful to you, please consider citing:
+```
+@article{DBLP:journals/tpds/ZongLLWS23, \
+ author       = {Zan Zong and \
+                  Li Lin and \
+                  Leilei Lin and \
+                  Lijie Wen and \
+                  Yu Sun}, \
+ title        = {{STR:} Hybrid Tensor Re-Generation to Break Memory Wall for {DNN} 
+                Training}, \
+ journal      = {{IEEE} Trans. Parallel Distributed Syst.}, \
+ volume       = {34}, \
+ number       = {8}, \
+ pages        = {2403--2418}, \
+ year         = {2023}, \
+ url          = {https://doi.org/10.1109/TPDS.2023.3266110}, \
+ doi          = {10.1109/TPDS.2023.3266110} \
 }
-
-> @inproceedings{DBLP:conf/ipps/WenZ0L22,
-  author       = {Lijie Wen and
-                  Zan Zong and
-                  Li Lin and
-                  Leilei Lin},
+```
+```
+@inproceedings{DBLP:conf/ipps/WenZ0L22,  \
+  author       = {Lijie Wen and \
+                  Zan Zong and \
+                  Li Lin and \
+                  Leilei Lin}, \
   title        = {A Swap Dominated Tensor Re-Generation Strategy for Training Deep Learning
-                  Models},
+                 Models}, \
   booktitle    = {2022 {IEEE} International Parallel and Distributed Processing Symposium,
-                  {IPDPS} 2022, Lyon, France, May 30 - June 3, 2022},
-  pages        = {996--1006},
-  publisher    = {{IEEE}},
-  year         = {2022},
-  url          = {https://doi.org/10.1109/IPDPS53621.2022.00101},
-  doi          = {10.1109/IPDPS53621.2022.00101}
+                 {IPDPS} 2022, Lyon, France, May 30 - June 3, 2022}, \
+  pages        = {996--1006}, \
+  publisher    = {{IEEE}}, \
+  year         = {2022}, \
+  url          = {https://doi.org/10.1109/IPDPS53621.2022.00101}, \
+  doi          = {10.1109/IPDPS53621.2022.00101} \
 }
+```
