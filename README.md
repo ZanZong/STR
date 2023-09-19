@@ -66,7 +66,7 @@ python experiments/mixed_solver_comp_approxi.py --model-name "vgg_unet" -b 32 --
 
 # Citation
 Please consider citing:
-@article{DBLP:journals/tpds/ZongLLWS23,
+> @article{DBLP:journals/tpds/ZongLLWS23,
   author       = {Zan Zong and
                   Li Lin and
                   Leilei Lin and
@@ -83,7 +83,7 @@ Please consider citing:
   doi          = {10.1109/TPDS.2023.3266110}
 }
 
-@inproceedings{DBLP:conf/ipps/WenZ0L22,
+> @inproceedings{DBLP:conf/ipps/WenZ0L22,
   author       = {Lijie Wen and
                   Zan Zong and
                   Li Lin and
